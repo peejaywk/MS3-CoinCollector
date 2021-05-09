@@ -49,5 +49,16 @@ The main aims of the website are:
 
 ### Wireframe Mockups
 
+The website is split into several pages allowing the user to manage/view their coin collection and allowing administrators to add/edit coins. 
+Initial design ideas were captured using [Balsamiq](https://balsamiq.com/) - these are linked below:
+
+* [Home Page - Logged Out](/assets/wireframes/001-HomePage-LoggedOut-v1.png)
+* [Home Page - Logged In](/assets/wireframes/002-HomePage-LoggedIn-v1.png)
+* [Want List Page](/assets/wireframes/003-WantList-v1.png)
+* [Add/Edit Coin Page](/assets/wireframes/004-Add_EditCoinPage-v1.png)
+* [Admin Page](/assets/wireframes/005-AdminPage-v1.png)
+* [Admin Add/Edit Coin](/assets/wireframes/006-Admin-Add_EditCoin-v1.png)
+* [Contact Us Page](/assets/wireframes/007-ContactPage-v1.png)
+
 <a name="features"></a>
 ## Features
