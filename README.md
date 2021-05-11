@@ -127,6 +127,7 @@ Initial design ideas were captured using [Balsamiq](https://balsamiq.com/) - the
 * This website uses HTML, CSS, JavaScript & Python programming languages.
 * [Materialize 1.0.0](https://materializecss.com/). Responsive front-end framework.
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/). Lightweight web application framework.
+* [Heroku](https://www.heroku.com/). Heroku is used as the deployment platform for the website.
 * [GitPod](https://gitpod.io/) was use as the development environment.
 * [GitHub](https://github.com/) was used for configuration control and to host the website.
 * [Font Awesome](https://fontawesome.com/) provided the social media icons and the icons for the concerts and set list sections.
@@ -138,3 +139,11 @@ Initial design ideas were captured using [Balsamiq](https://balsamiq.com/) - the
 Setting up GitPod environment
 Install Flask
 pip3 install Flask
+
+Heroku Deployment
+Create a list of applications and dependencies required to run our website.
+pip3 freeze --local > requirements.txt
+
+Create Procfile so Heroku knows how to run the application
+echo web: python app.py > Procfile
+
