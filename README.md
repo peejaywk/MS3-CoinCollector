@@ -140,10 +140,18 @@ Setting up GitPod environment
 Install Flask
 pip3 install Flask
 
+Install pymongo to allow Flask to communication with our Mongo database
+pip3 install flask-pymongo
+
+Install dnspython so the Mongo SRV connection string can be used
+pip3 install dnspython
+
 Heroku Deployment
 Create a list of applications and dependencies required to run our website.
 pip3 freeze --local > requirements.txt
 
 Create Procfile so Heroku knows how to run the application
 echo web: python app.py > Procfile
+
+
 
