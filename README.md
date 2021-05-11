@@ -19,6 +19,8 @@ The main aims of the website are:
 
 [Features](#features)
 
+[Technologies Used](#technologies)
+
 <a name="userexperience"></a>
 ## User Experience (UX)
 
@@ -117,3 +119,22 @@ Initial design ideas were captured using [Balsamiq](https://balsamiq.com/) - the
     * The contact form will be below the text and will ask for the users contact details and a description of their enquiry.
     * Below the form will be a submit button.
     * This page can be accessed by clicking on the 'Contact' link in the footer or header.
+
+<a name="technologies"></a>
+
+## Technologies Used
+
+* This website uses HTML, CSS, JavaScript & Python programming languages.
+* [Materialize 1.0.0](https://materializecss.com/). Responsive front-end framework.
+* [Flask](https://flask.palletsprojects.com/en/1.1.x/). Lightweight web application framework.
+* [GitPod](https://gitpod.io/) was use as the development environment.
+* [GitHub](https://github.com/) was used for configuration control and to host the website.
+* [Font Awesome](https://fontawesome.com/) provided the social media icons and the icons for the concerts and set list sections.
+* [Googel Fonts](https://fonts.google.com/) provided the Roboto font that is used throughout this website.
+* [jQuery](https://jquery.com/). JavaScript library.
+* [Colorate](https://colorate.azurewebsites.net/). Colour scheme design website.
+* [JS Lint](https://jslint.com/). Javascript code quality tool.
+
+Setting up GitPod environment
+Install Flask
+pip3 install Flask
