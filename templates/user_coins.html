@@ -17,5 +17,21 @@
 
 {% else %}
     <h1>User Page</h1>
+    <ul class="collection">
+    {% for coin in coins %}
+    <li class="collection-item avatar">
+        <img src="{{ coin.reverse_image }}" alt="" class="circle coin-image">
+        <span class="title">{{ coin.denomination }}</span>
+        <p>
+            {{ coin.year }} <br>
+            {{ coin.issue }} <br>
+            {{ coin.description }}
+        </p>
+        <!-- <a href="{{ url_for('add_user_coin', coin_id=coin._id) }}" class="secondary-content btn-small green lighten-1">Add</a> -->
+    </li>
+    {% endfor %}
+
+
+</ul>
 {% endif %}
 {% endblock %}

@@ -23,6 +23,26 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_coins", methods=["GET", "POST"])
 def get_coins():
+    if session.get('user'):
+        # Find the current session user in the db and retrieve the
+        # users ObjectId
+        user_id = mongo.db.users.find_one(
+            {"email": session["user"]})["_id"]
+
+        coin_ids = []
+        # Find all entries that match the current user and add to list
+        for coin in mongo.db.coins.find({"user_id": ObjectId(user_id)}):
+            coin_ids.append(coin["coin_id"])
+
+        coins = []
+        # Find information for each coin in the users collection from
+        # the circulation collection
+        for coin in coin_ids:
+            coins.append(mongo.db.circulation.find_one(
+                {"_id": ObjectId(coin)}))
+
+        return render_template("user_coins.html", coins=coins)
+
     return render_template("user_coins.html")
 
 
