@@ -92,8 +92,31 @@ def logout():
 
 @app.route("/coin_list")
 def coin_list():
-    coins = list(mongo.db.circulation.find())
-    return render_template("coin_list.html", coins=coins)
+
+    # Check that the user is logged in before displaying the coin list
+    # If not redirect to the login page.
+    if session.get('user'):
+        coins = list(mongo.db.circulation.find())
+        return render_template("coin_list.html", coins=coins)
+
+    return redirect(url_for("login"))
+
+
+@app.route("/add_user_coin/<coin_id>")
+def add_user_coin(coin_id):
+    # Find the current session user in the db and retrieve the users ObjectId
+    user_id = mongo.db.users.find_one(
+        {"email": session["user"]})["_id"]
+
+    coin = {
+        "user_id": ObjectId(user_id),
+        "coin_id": ObjectId(coin_id),
+        "date_found": "date",
+        "notes": "user notes"
+    }
+    mongo.db.coins.insert_one(coin)
+    flash("Coin added to your collection.")
+    return redirect(url_for("coin_list"))
 
 
 if __name__ == "__main__":

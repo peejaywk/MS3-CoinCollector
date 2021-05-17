@@ -1,0 +1,10 @@
+/*---------- Generic Sytles ----------*/
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #EBE7EE;
+}
+
+.coin-image {
+    width : 100px;
+    height: 100px;
+}
