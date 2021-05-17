@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_coins")
+@app.route("/get_coins", methods=["GET", "POST"])
 def get_coins():
     return render_template("user_coins.html")
 
@@ -41,7 +41,8 @@ def register():
             "fname": request.form.get("fname").lower(),
             "lname": request.form.get("lname").lower(),
             "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "admin": False
         }
         mongo.db.users.insert_one(register)
 
@@ -64,7 +65,8 @@ def login():
             # ensure hased password matches user input
             if check_password_hash(existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email").lower()
-                flash("Welcome, {}".format(request.form.get("fname")))
+                flash("Welcome, {}".format(
+                    existing_user["fname"].capitalize()))
                 # return redirect(url_for("profile", username=session["user"]))
                 return redirect(url_for("get_coins"))
             else:
@@ -86,6 +88,12 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("get_coins"))
+
+
+@app.route("/coin_list")
+def coin_list():
+    coins = list(mongo.db.circulation.find())
+    return render_template("coin_list.html", coins=coins)
 
 
 if __name__ == "__main__":

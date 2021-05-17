@@ -23,7 +23,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('get_coins') }}">Home</a></li>
                 {% if session.user %}
-                    <li><a href="#">Want List</a></li>
+                    <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
@@ -37,7 +37,7 @@
     <ul class="sidenav" id="mobile-demo">
         <li><a href="{{ url_for('get_coins') }}">Home</a></li>
             {% if session.user %}
-                <li><a href="#">Want List</a></li>
+                <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Coins In Circulation</h1>
+{% for coin in coins %}
+    <p>{{ coin.denomination }}</p>
+    <p>{{ coin.year }}</p>
+    <p>{{ coin.issue }}</p>
+    <p>{{ coin.description }}</p>
+    <br>
+{% endfor %}
+{% endblock %}
