@@ -2,22 +2,49 @@
 {% block content %}
 
 {% if not session.user %}
-    <h1>Welcome to Coin Collector</h1>
-    <p>Coin Collector is a website create for people who enjoy collecting coins that are in everyday
-        circulation within the UK. Coin Collector is a place to easily record coins you have found and
-        to see what coins are missing from your collection.
-    </p>
-    <p>To get started please register to create an account. If already registered the please login to 
-        see your collection.
-    </p>
-    <p>Good luck collecting those coins!</p>
+<h1>Welcome to Coin Collector</h1>
+<p>Coin Collector is a website created for people who enjoy collecting coins that are in everyday
+    circulation within the UK. Coin Collector is a place to easily record coins you have found and
+    to see what coins are missing from your collection.
+</p>
+<p>To get started please register to create an account. If already registered the please login to
+    see your collection.
+</p>
+<p>Good luck collecting those coins!</p>
 
-    <a class="waves-effect waves-light btn-large" href="{{ url_for('register') }}">Register</a>
-    <a class="waves-effect waves-light btn-large" href="{{ url_for('login') }}">Login</a>
+<a class="waves-effect waves-light btn-large" href="{{ url_for('register') }}">Register</a>
+<a class="waves-effect waves-light btn-large" href="{{ url_for('login') }}">Login</a>
 
 {% else %}
-    <h1>User Page</h1>
-    <ul class="collection">
+<h1>User Page</h1>
+
+<table>
+    <!-- <thead>
+        <tr>
+            <th>Name</th>
+            <th>Item Name</th>
+            <th>Item Price</th>
+        </tr>
+    </thead> -->
+
+    <tbody class="coin-table">
+        {% for coin in coins %}
+        <tr class="coin-table-row">
+            <td class="coin-table-data"><img src="{{ coin.reverse_image }}" alt="" class="square coin-image"></td>
+            <td><span class="title">{{ coin.denomination }}</span></td>
+            <td>
+                <p>
+                    {{ coin.year }} <br>
+                    {{ coin.issue }} <br>
+                    {{ coin.description }}
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- <ul class="collection">
     {% for coin in coins %}
     <li class="collection-item avatar">
         <img src="{{ coin.reverse_image }}" alt="" class="circle coin-image">
@@ -27,11 +54,10 @@
             {{ coin.issue }} <br>
             {{ coin.description }}
         </p>
-        <!-- <a href="{{ url_for('add_user_coin', coin_id=coin._id) }}" class="secondary-content btn-small green lighten-1">Add</a> -->
     </li>
     {% endfor %}
 
 
-</ul>
+</ul> -->
 {% endif %}
 {% endblock %}
