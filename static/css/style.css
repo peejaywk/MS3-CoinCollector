@@ -33,5 +33,21 @@ nav li a {
 
 .coin-table-row,
 .coin-table-data {
-    border: solid 1px #DDDDDD;
+    border-bottom: solid 1px #DDDDDD;
+}
+
+.coin-table-img {
+    border-right: solid 1px #DDDDDD;
+    border-bottom: solid 1px #DDDDDD;
+}
+
+.td-text {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+td {
+    padding-top: 1px;
+    padding-bottom: 1px;
 }

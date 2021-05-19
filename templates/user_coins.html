@@ -29,17 +29,55 @@
 
     <tbody class="coin-table">
         {% for coin in coins %}
-        <tr class="coin-table-row">
-            <td class="coin-table-data"><img src="{{ coin.reverse_image }}" alt="" class="square coin-image"></td>
-            <td><span class="title">{{ coin.denomination }}</span></td>
+        <tr>
+            <td rowspan="4" class="coin-table-img"><img src="{{ coin.reverse_image }}" alt="" class="square coin-image"></td>
+            <!-- <td><span class="title">{{ coin.denomination }}</span></td> -->
+        
+        
             <td>
+                <p class="td-text">Denomination:</p>
+            </td>
+            <td>
+                <p class="td-text">{{ coin.denomination }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td >
+                <p class="td-text">Year:</p>
+            </td>
+            <td>
+                <p class="td-text">{{ coin.year }} </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="td-text">Issue:</p>
+            </td>
+            <td>
+                <p class="td-text">{{ coin.issue }} </p>
+            </td>
+        </tr>
+        <tr>
+            <td class="coin-table-data">
+                <p class="td-text">Description:</p>
+            </td>
+            <td class="coin-table-data">
+                <p class="td-text">{{ coin.description }} </p>
+            </td>
+        </tr>
+            <!-- <td class="coin-table-data td-text">
                 <p>
-                    {{ coin.year }} <br>
+                     <br>
+                    <br>
                     {{ coin.issue }} <br>
                     {{ coin.description }}
                 </p>
             </td>
-        </tr>
+            <td>
+                <a class="waves-effect waves-light btn-small">Edit</a>
+                <a class="waves-effect waves-light btn-small">Delete</a>
+            </td> -->
+        
         {% endfor %}
     </tbody>
 </table>
