@@ -4,11 +4,16 @@ body {
     background-color: #101E30;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: #4078C0;
 }
 
-p, 
+p,
 nav .brand-logo {
     color: #DDDDDD;
 }
@@ -24,7 +29,7 @@ nav li a {
 
 /*---------- Coin table inside collapsible ----------*/
 .coin-image {
-    width : 100px;
+    width: 100px;
     height: 100px;
 }
 
@@ -41,4 +46,18 @@ td {
 
 .collapsible-header {
     background-color: #101E30;
+}
+
+.input-field label {
+    color: #DDDDDD;
+}
+
+.input-field input[type=text]:focus+label {
+    color: #DDDDDD !important;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 0 #DDDDDD;
 }

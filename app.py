@@ -139,6 +139,16 @@ def add_user_coin(coin_id):
     return redirect(url_for("coin_list"))
 
 
+@app.route("/add_coin", methods=["GET", "POST"])
+def add_coin():
+    print(request.method)
+    if request.method == "POST":
+        flash("Image Uploaded")
+        render_template("add_coin.html")
+
+    return render_template("add_coin.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

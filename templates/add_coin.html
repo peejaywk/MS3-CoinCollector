@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="denomination" name="denomination" type="text" class="validate">
+                <label for="denomination">Denomination</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="year" name="year" type="text" class="validate">
+                <label for="year">Year</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="issue" name="issue" type="text" class="validate">
+                <label for="issue">Issue</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="description" name="description" type="text" class="validate">
+                <label for="description">Description</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="edge" name="edge" type="text" class="validate">
+                <label for="edge">Edge Inscription</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="mintage" name="mintage" type="text" class="validate">
+                <label for="mintage">Mintage</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="material" name="material" type="text" class="validate">
+                <label for="material">Material</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="thickness" name="thickness" type="text" class="validate">
+                <label for="thickness">Thickness</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="weight" name="weight" type="text" class="validate">
+                <label for="weight">Weight</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="diameter" name="diameter" type="text" class="validate">
+                <label for="diameter">Diameter</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="obverse_designer" name="obverse_designer" type="text" class="validate">
+                <label for="obverse_designer">Obverse Designer</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="reverse_designer" name="reverse_designer" type="text" class="validate">
+                <label for="reverse_designer">Reverse Designer</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="file-field input-field col s6">
+                <div class="btn">
+                    <span>Obverse Image</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+
+            <div class="file-field input-field col s6">
+                <div class="btn">
+                    <span>Reverse Image</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+        <!-- Submit Form -->
+        <div class="row">
+            <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
+                Upload <i class="fas fa-sign-in-alt"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
