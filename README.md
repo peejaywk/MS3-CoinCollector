@@ -135,6 +135,12 @@ Initial design ideas were captured using [Balsamiq](https://balsamiq.com/) - the
 * [jQuery](https://jquery.com/). JavaScript library.
 * [Colorate](https://colorate.azurewebsites.net/). Colour scheme design website.
 * [JS Lint](https://jslint.com/). Javascript code quality tool.
+* Amazon AWS
+
+
+https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3
+
+
 
 Setting up GitPod environment
 Install Flask
