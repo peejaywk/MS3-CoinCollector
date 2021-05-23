@@ -53,7 +53,10 @@ td {
     color: #DDDDDD;
 }
 
-
+/* Set the colour of the select item icon */
+.select-wrapper .caret {
+    fill: #DDDDDD;
+}
 
 .input-field input[type=text]:focus+label {
     color: #DDDDDD !important;
@@ -81,3 +84,4 @@ input:-webkit-autofill:active {
 input:-webkit-autofill {
     -webkit-text-fill-color: #DDDDDD !important;
 }
+

@@ -20,6 +20,12 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # Create an instance of PyMongo
 mongo = PyMongo(app)
 
+# Configure Amazon S3 Bucket for image storage
+S3_BUCKET = os.environ.get("S3_BUCKET")
+S3_KEY = os.environ.get("S3_KEY")
+S3_SECRET = os.environ.get("S3_SECRET_ACCESS_KEY")
+S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
+
 
 @app.route("/")
 @app.route("/get_coins", methods=["GET", "POST"])
@@ -163,11 +169,10 @@ def add_coin():
             "reverse_image": request.form.get("reverse_img_fname"),
             "date_added": date.today().strftime("%d %b %Y")
         }
+        mongo.db.circulation.insert_one(coin_data)
+        flash("Coin added to database.")
 
-        print(coin_data)
-
-        flash("Image Uploaded")
-        render_template("add_coin.html")
+        return render_template("add_coin.html", denominations=denominations)
 
     return render_template("add_coin.html", denominations=denominations)
 

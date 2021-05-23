@@ -153,6 +153,9 @@ pip3 freeze --local > requirements.txt
 Create Procfile so Heroku knows how to run the application
 echo web: python app.py > Procfile
 
+Install boto3 AWS SDK
+pip3 install boto3
+
 
 
 Bugs
