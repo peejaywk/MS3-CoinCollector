@@ -22,23 +22,10 @@ nav li a {
     font-weight: 400;
 }
 
+/*---------- Coin table inside collapsible ----------*/
 .coin-image {
     width : 100px;
     height: 100px;
-}
-
-.coin-table {
-    border: solid 1px #DDDDDD;
-}
-
-.coin-table-row,
-.coin-table-data {
-    border-bottom: solid 1px #DDDDDD;
-}
-
-.coin-table-img {
-    border-right: solid 1px #DDDDDD;
-    border-bottom: solid 1px #DDDDDD;
 }
 
 .td-text {
@@ -50,4 +37,8 @@ nav li a {
 td {
     padding-top: 1px;
     padding-bottom: 1px;
+}
+
+.collapsible-header {
+    background-color: #101E30;
 }
