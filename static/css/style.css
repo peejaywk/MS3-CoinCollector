@@ -48,9 +48,12 @@ td {
     background-color: #101E30;
 }
 
-.input-field label {
+.input-field label,
+.input-field input {
     color: #DDDDDD;
 }
+
+
 
 .input-field input[type=text]:focus+label {
     color: #DDDDDD !important;
@@ -60,4 +63,21 @@ td {
 .input-field input[type=text]:focus {
     border-bottom: 1px solid #DDDDDD;
     box-shadow: 0 1px 0 0 #DDDDDD;
+}
+
+/* A fix to stop Chrome from setting the background colour to white
+when the user selects a input from the autocomplete list.
+Set the box shadow to the same colour as the background
+CREDIT: https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px #101E30 inset !important;
+    -webkit-box-shadow: 0 0 0 30px #101E30 inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #DDDDDD !important;
 }

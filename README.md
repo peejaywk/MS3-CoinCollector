@@ -155,3 +155,7 @@ echo web: python app.py > Procfile
 
 
 
+Bugs
+
+Chrome autofill changes the background to a different colour on the coin add form. A solution implemented in the CSS file was found here.
+https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete

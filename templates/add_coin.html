@@ -1,26 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row">
-    <form class="col s12">
+<div class="row add-coin-form">
+    <form class="col s12" method="POST" action="{{ url_for('add_coin') }}">
         <div class="row">
             <div class="input-field col s6">
-                <input id="denomination" name="denomination" type="text" class="validate">
-                <label for="denomination">Denomination</label>
+                <select name="denomination" id="denomination" class="validate" required>
+                    <option value="">Select Denomination</option>
+                    {% for denomination in denominations %}
+                        <option value="{{ denomination.name }}">{{ denomination.name }}</option>
+                    {% endfor %}
+                    <label for="denomination">Denomination</label>
+                </select>
             </div>
             <div class="input-field col s6">
-                <input id="year" name="year" type="text" class="validate">
+                <input id="year" name="year" type="text" class="validate" required>
                 <label for="year">Year</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
-                <input id="issue" name="issue" type="text" class="validate">
+                <input id="issue" name="issue" type="text" class="validate" required>
                 <label for="issue">Issue</label>
             </div>
             <div class="input-field col s6">
-                <input id="description" name="description" type="text" class="validate">
+                <input id="description" name="description" type="text" class="validate" required>
                 <label for="description">Description</label>
             </div>
         </div>
@@ -73,7 +78,7 @@
             <div class="file-field input-field col s6">
                 <div class="btn">
                     <span>Obverse Image</span>
-                    <input type="file">
+                    <input id="obverse_img_fname" name="obverse_img_fname" type="file">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
@@ -83,7 +88,7 @@
             <div class="file-field input-field col s6">
                 <div class="btn">
                     <span>Reverse Image</span>
-                    <input type="file">
+                    <input id="reverse_img_fname" name="reverse_img_fname" type="file">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">

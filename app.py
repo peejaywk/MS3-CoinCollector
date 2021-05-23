@@ -1,4 +1,5 @@
 import os
+from datetime import date
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -141,12 +142,34 @@ def add_user_coin(coin_id):
 
 @app.route("/add_coin", methods=["GET", "POST"])
 def add_coin():
-    print(request.method)
+    denominations = list(mongo.db.denominations.find().sort("name", 1))
+    print(denominations)
+
     if request.method == "POST":
+        coin_data = {
+            "denomination": request.form.get("denomination"),
+            "year": request.form.get("year"),
+            "issue": request.form.get("issue"),
+            "description": request.form.get("description"),
+            "edge": request.form.get("edge"),
+            "mintage": request.form.get("mintage"),
+            "material": request.form.get("material"),
+            "thickness": request.form.get("thickness"),
+            "weight": request.form.get("weight"),
+            "diameter": request.form.get("diameter"),
+            "obverse_designer": request.form.get("obverse_designer"),
+            "reverse_designer": request.form.get("reverse_designer"),
+            "obverse_image": request.form.get("obverse_img_fname"),
+            "reverse_image": request.form.get("reverse_img_fname"),
+            "date_added": date.today().strftime("%d %b %Y")
+        }
+
+        print(coin_data)
+
         flash("Image Uploaded")
         render_template("add_coin.html")
 
-    return render_template("add_coin.html")
+    return render_template("add_coin.html", denominations=denominations)
 
 
 if __name__ == "__main__":
