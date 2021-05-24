@@ -5,71 +5,75 @@
     <form class="col s12" method="POST" action="{{ url_for('add_coin') }}" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s6">
-                <select name="denomination" id="denomination" class="validate" required>
+                <select name="denomination" id="denomination" class="validate" value="{{ coin.denomination }}"required>
                     <option value="">Select Denomination</option>
                     {% for denomination in denominations %}
-                    <option value="{{ denomination.name }}">{{ denomination.name }}</option>
+                        {% if coin.denomination == denomination.name %}
+                            <option value="{{ denomination.name }}" selected>{{ denomination.name }}</option>
+                        {% else %}
+                            <option value="{{ denomination.name }}">{{ denomination.name }}</option>
+                        {% endif %}
                     {% endfor %}
                     <label for="denomination">Denomination</label>
                 </select>
             </div>
             <div class="input-field col s6">
-                <input id="year" name="year" type="text" class="validate" required>
+                <input id="year" name="year" type="text" class="validate" value="{{ coin.year }}" required>
                 <label for="year">Year</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
-                <input id="issue" name="issue" type="text" class="validate" required>
+                <input id="issue" name="issue" type="text" class="validate" value="{{ coin.issue }}" required>
                 <label for="issue">Issue</label>
             </div>
             <div class="input-field col s6">
-                <input id="description" name="description" type="text" class="validate" required>
+                <input id="description" name="description" type="text" class="validate" value="{{ coin.description }}" required>
                 <label for="description">Description</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
-                <input id="edge" name="edge" type="text" class="validate">
+                <input id="edge" name="edge" type="text" class="validate" value="{{ coin.edge }}">
                 <label for="edge">Edge Inscription</label>
             </div>
             <div class="input-field col s6">
-                <input id="mintage" name="mintage" type="text" class="validate">
+                <input id="mintage" name="mintage" type="text" class="validate" value="{{ coin.mintage }}">
                 <label for="mintage">Mintage</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
-                <input id="material" name="material" type="text" class="validate">
+                <input id="material" name="material" type="text" class="validate" value="{{ coin.material }}">
                 <label for="material">Material</label>
             </div>
             <div class="input-field col s6">
-                <input id="thickness" name="thickness" type="text" class="validate">
+                <input id="thickness" name="thickness" type="text" class="validate" value="{{ coin.thickness }}">
                 <label for="thickness">Thickness</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
-                <input id="weight" name="weight" type="text" class="validate">
+                <input id="weight" name="weight" type="text" class="validate" value="{{ coin.weight }}">
                 <label for="weight">Weight</label>
             </div>
             <div class="input-field col s6">
-                <input id="diameter" name="diameter" type="text" class="validate">
+                <input id="diameter" name="diameter" type="text" class="validate" value="{{ coin.diameter }}">
                 <label for="diameter">Diameter</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
-                <input id="obverse_designer" name="obverse_designer" type="text" class="validate">
+                <input id="obverse_designer" name="obverse_designer" type="text" class="validate" value="{{ coin.obverse_designer }}">
                 <label for="obverse_designer">Obverse Designer</label>
             </div>
             <div class="input-field col s6">
-                <input id="reverse_designer" name="reverse_designer" type="text" class="validate">
+                <input id="reverse_designer" name="reverse_designer" type="text" class="validate" value="{{ coin.reverse_designer }}">
                 <label for="reverse_designer">Reverse Designer</label>
             </div>
         </div>

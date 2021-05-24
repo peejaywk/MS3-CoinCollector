@@ -241,6 +241,30 @@ def add_coin():
     return render_template("add_coin.html", denominations=denominations)
 
 
+@app.route("/edit_coin/<coin_id>", methods=["GET", "POST"])
+def edit_coin(coin_id):
+    # Request a list of denominations from Mongo for the form.
+    denominations = list(mongo.db.denominations.find().sort("name", 1))
+
+    if request.method == "POST":
+        is_urgent = "on" if request.form.get("is_urgent") else "off"
+        submit = {
+            "category_name": request.form.get("category_name"),
+            "task_name": request.form.get("task_name"),
+            "task_description": request.form.get("task_description"),
+            "is_urgent": is_urgent,
+            "due_date": request.form.get("due_date"),
+            "created_by": session["user"]
+        }
+        # mongo.db.circulation.update({"_id": ObjectId(coin_id)}, submit)
+        flash("Coin Successfully Updated")
+        redirect(url_for("coin_list"))
+
+    coin = mongo.db.circulation.find_one({"_id": ObjectId(coin_id)})
+
+    return render_template("edit_coin.html", coin=coin, denominations=denominations)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
