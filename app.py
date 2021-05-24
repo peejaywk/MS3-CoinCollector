@@ -64,8 +64,8 @@ def upload_file_to_s3(file, acl="public-read"):
     return "{}{}".format(S3_LOCATION, file.filename)
 
 
+# CREDIT https://www.codegrepper.com/code-examples/python/validate+file+type+python+flask
 def allowed_file(filename):
-
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -194,15 +194,26 @@ def add_coin():
     # Request a list of denominations from Mongo for the form.
     denominations = list(mongo.db.denominations.find().sort("name", 1))
 
-    if "obverse_img_fname" not in request.files:
-        print("File does not exist")
-    else:
+    # Check to see if the user has selected files for upload
+    # Check for obverse image
+    if "obverse_img_fname" in request.files:
         file_ob = request.files["obverse_img_fname"]
         if file_ob and allowed_file(file_ob.filename):
             file_ob.filename = secure_filename(file_ob.filename)
             output = upload_file_to_s3(file_ob)
-            print(str(output))
-            return str(output)
+            file_ob_url = str(output)
+    else:
+        file_ob_url = ""
+
+    # Check for reverse image
+    if "reverse_img_fname" in request.files:
+        file_rev = request.files["reverse_img_fname"]
+        if file_rev and allowed_file(file_rev.filename):
+            file_rev.filename = secure_filename(file_rev.filename)
+            output = upload_file_to_s3(file_rev)
+            file_rev_url = str(output)
+    else:
+        file_rev_url = ""
 
     if request.method == "POST":
         coin_data = {
@@ -218,11 +229,11 @@ def add_coin():
             "diameter": request.form.get("diameter"),
             "obverse_designer": request.form.get("obverse_designer"),
             "reverse_designer": request.form.get("reverse_designer"),
-            "obverse_image": request.form.get("obverse_img_fname"),
-            "reverse_image": request.form.get("reverse_img_fname"),
+            "obverse_image": file_ob_url,
+            "reverse_image": file_rev_url,
             "date_added": date.today().strftime("%d %b %Y")
         }
-        # mongo.db.circulation.insert_one(coin_data)
+        mongo.db.circulation.insert_one(coin_data)
         flash("Coin added to database.")
 
         return render_template("add_coin.html", denominations=denominations)
