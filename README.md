@@ -21,6 +21,8 @@ The main aims of the website are:
 
 [Technologies Used](#technologies)
 
+[Credits](#credits)
+
 <a name="userexperience"></a>
 ## User Experience (UX)
 
@@ -138,7 +140,7 @@ Initial design ideas were captured using [Balsamiq](https://balsamiq.com/) - the
 * Amazon AWS
 
 
-https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3
+
 
 
 
@@ -168,3 +170,8 @@ Bugs
 
 Chrome autofill changes the background to a different colour on the coin add form. A solution implemented in the CSS file was found here.
 https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete
+
+<a name="credits"></a>
+## Credits
+
+[Karim Cheurfi Blog - Amazon S3 File Upload](https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3) - How to use Flask to upload files to Amazon S3

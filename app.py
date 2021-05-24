@@ -7,6 +7,7 @@ from flask import (Flask, flash, render_template,
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 if os.path.exists("env.py"):
     import env
 
@@ -21,6 +22,9 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 # Create an instance of PyMongo
 mongo = PyMongo(app)
+
+# Allowed extensions for file upload to Amazon S3
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 
 # Configure Amazon S3 Bucket for image storage
 S3_BUCKET = os.environ.get("S3_BUCKET")
@@ -57,7 +61,13 @@ def upload_file_to_s3(file, acl="public-read"):
         print("Something Happened: ", e)
         return e
 
-    return "{}{}".format(app.config["S3_LOCATION"], file.filename)
+    return "{}{}".format(S3_LOCATION, file.filename)
+
+
+def allowed_file(filename):
+
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route("/")
@@ -181,8 +191,18 @@ def add_user_coin(coin_id):
 
 @app.route("/add_coin", methods=["GET", "POST"])
 def add_coin():
+    # Request a list of denominations from Mongo for the form.
     denominations = list(mongo.db.denominations.find().sort("name", 1))
-    print(denominations)
+
+    if "obverse_img_fname" not in request.files:
+        print("File does not exist")
+    else:
+        file_ob = request.files["obverse_img_fname"]
+        if file_ob and allowed_file(file_ob.filename):
+            file_ob.filename = secure_filename(file_ob.filename)
+            output = upload_file_to_s3(file_ob)
+            print(str(output))
+            return str(output)
 
     if request.method == "POST":
         coin_data = {
@@ -202,7 +222,7 @@ def add_coin():
             "reverse_image": request.form.get("reverse_img_fname"),
             "date_added": date.today().strftime("%d %b %Y")
         }
-        mongo.db.circulation.insert_one(coin_data)
+        # mongo.db.circulation.insert_one(coin_data)
         flash("Coin added to database.")
 
         return render_template("add_coin.html", denominations=denominations)

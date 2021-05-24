@@ -2,13 +2,13 @@
 {% block content %}
 
 <div class="row add-coin-form">
-    <form class="col s12" method="POST" action="{{ url_for('add_coin') }}">
+    <form class="col s12" method="POST" action="{{ url_for('add_coin') }}" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s6">
                 <select name="denomination" id="denomination" class="validate" required>
                     <option value="">Select Denomination</option>
                     {% for denomination in denominations %}
-                        <option value="{{ denomination.name }}">{{ denomination.name }}</option>
+                    <option value="{{ denomination.name }}">{{ denomination.name }}</option>
                     {% endfor %}
                     <label for="denomination">Denomination</label>
                 </select>
@@ -75,7 +75,7 @@
         </div>
 
         <div class="row">
-            <div class="file-field input-field col s6">
+            <!-- <div class="file-field input-field col s6">
                 <div class="btn">
                     <span>Obverse Image</span>
                     <input id="obverse_img_fname" name="obverse_img_fname" type="file">
@@ -83,9 +83,26 @@
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
                 </div>
+            </div> -->
+
+
+            <div class="file-field input-field col s6">
+                <input type="file" id="obverse_img_fname" name="obverse_img_fname" />
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Select Obverse Image File" />
+                    <label for="obverse_img_fname">Obverse image file (optional)</label>
+                </div>
             </div>
 
             <div class="file-field input-field col s6">
+                <input type="file" id="reverse_img_fname" name="reverse_img_fname" />
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Select Reverse Image File" />
+                    <label for="reverse_img_fname">Reverse image file (optional)</label>
+                </div>
+            </div>
+
+            <!-- <div class="file-field input-field col s6">
                 <div class="btn">
                     <span>Reverse Image</span>
                     <input id="reverse_img_fname" name="reverse_img_fname" type="file">
@@ -93,7 +110,7 @@
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- Submit Form -->
         <div class="row">
