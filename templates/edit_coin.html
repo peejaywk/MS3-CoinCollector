@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row add-coin-form">
-    <form class="col s12" method="POST" action="{{ url_for('add_coin') }}" enctype="multipart/form-data">
+    <form class="col s12" method="POST" action="{{ url_for('edit_coin', coin_id=coin._id) }}" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s6">
                 <select name="denomination" id="denomination" class="validate" value="{{ coin.denomination }}"required>
