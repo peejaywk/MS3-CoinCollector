@@ -53,17 +53,22 @@ td {
     color: #DDDDDD;
 }
 
+.input-field textarea {
+    color: #DDDDDD;
+}
+
 /* Set the colour of the select item icon */
 .select-wrapper .caret {
     fill: #DDDDDD;
 }
 
-.input-field input[type=text]:focus+label {
-    color: #DDDDDD !important;
-}
-
 /* label underline focus color */
 .input-field input[type=text]:focus {
+    border-bottom: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 0 #DDDDDD;
+}
+
+.input-field textarea.materialize-textarea[type=text]:focus {
     border-bottom: 1px solid #DDDDDD;
     box-shadow: 0 1px 0 0 #DDDDDD;
 }

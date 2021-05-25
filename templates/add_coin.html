@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="row">
+    <div class="col s12">
+        <p>To add a new coin to the database complete the form below.</p>
+    </div>
+</div>
 <div class="row add-coin-form">
     <form class="col s12" method="POST" action="{{ url_for('add_coin') }}" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s6">
+                
                 <select name="denomination" id="denomination" class="validate" required>
-                    <option value="">Select Denomination</option>
+                    <option value="" disabled selected>Select Denomination</option>
                     {% for denomination in denominations %}
                     <option value="{{ denomination.name }}">{{ denomination.name }}</option>
                     {% endfor %}
-                    <label for="denomination">Denomination</label>
+                    <label for="denomination">Denomination</label>    
                 </select>
             </div>
             <div class="input-field col s6">
@@ -25,8 +31,19 @@
                 <label for="issue">Issue</label>
             </div>
             <div class="input-field col s6">
-                <input id="description" name="description" type="text" class="validate" required>
+                <textarea name="description" id="description" cols="30" rows="10" class="materialize-textarea validate" required></textarea>
                 <label for="description">Description</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <select name="circulation" id="circulation" class="validate" required>
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="circulation">General Circulation (Yes/No)</label>
             </div>
         </div>
 

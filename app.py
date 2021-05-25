@@ -196,24 +196,31 @@ def add_coin():
 
     # Check to see if the user has selected files for upload
     # Check for obverse image
-    if "obverse_img_fname" in request.files:
-        file_ob = request.files["obverse_img_fname"]
-        if file_ob and allowed_file(file_ob.filename):
-            file_ob.filename = secure_filename(file_ob.filename)
-            output = upload_file_to_s3(file_ob)
-            file_ob_url = str(output)
-    else:
+    print(request.files)
+    if "obverse_img_fname" not in request.files:
         file_ob_url = ""
+    else:
+        file_ob = request.files["obverse_img_fname"]
+        if file_ob.filename == "":
+            file_ob_url = ""
+        else:
+            if file_ob and allowed_file(file_ob.filename):
+                file_ob.filename = secure_filename(file_ob.filename)
+                output = upload_file_to_s3(file_ob)
+                file_ob_url = str(output)
 
     # Check for reverse image
-    if "reverse_img_fname" in request.files:
-        file_rev = request.files["reverse_img_fname"]
-        if file_rev and allowed_file(file_rev.filename):
-            file_rev.filename = secure_filename(file_rev.filename)
-            output = upload_file_to_s3(file_rev)
-            file_rev_url = str(output)
-    else:
+    if "reverse_img_fname" not in request.files:
         file_rev_url = ""
+    else:
+        file_rev = request.files["reverse_img_fname"]
+        if file_rev.filename == "":
+            file_rev_url = ""
+        else:
+            if file_rev and allowed_file(file_rev.filename):
+                file_rev.filename = secure_filename(file_rev.filename)
+                output = upload_file_to_s3(file_rev)
+                file_rev_url = str(output)
 
     if request.method == "POST":
         coin_data = {
@@ -221,6 +228,7 @@ def add_coin():
             "year": request.form.get("year"),
             "issue": request.form.get("issue"),
             "description": request.form.get("description"),
+            "circulation": request.form.get("circulation"),
             "edge": request.form.get("edge"),
             "mintage": request.form.get("mintage"),
             "material": request.form.get("material"),
@@ -231,7 +239,8 @@ def add_coin():
             "reverse_designer": request.form.get("reverse_designer"),
             "obverse_image": file_ob_url,
             "reverse_image": file_rev_url,
-            "date_added": date.today().strftime("%d %b %Y")
+            "date_added": date.today().strftime("%d %b %Y"),
+            "date_edited": date.today().strftime("%d %b %Y")
         }
         mongo.db.circulation.insert_one(coin_data)
         flash("Coin added to database.")
@@ -277,6 +286,7 @@ def edit_coin(coin_id):
             "year": request.form.get("year"),
             "issue": request.form.get("issue"),
             "description": request.form.get("description"),
+            "circulation": request.form.get("circulation"),
             "edge": request.form.get("edge"),
             "mintage": request.form.get("mintage"),
             "material": request.form.get("material"),
@@ -287,7 +297,8 @@ def edit_coin(coin_id):
             "reverse_designer": request.form.get("reverse_designer"),
             "obverse_image": file_ob_url,
             "reverse_image": file_rev_url,
-            "date_added": date.today().strftime("%d %b %Y")
+            "date_added": coin["date_added"],
+            "date_edited": date.today().strftime("%d %b %Y"),
         }
         print(coin_data)
         mongo.db.circulation.update({"_id": ObjectId(coin_id)}, coin_data)

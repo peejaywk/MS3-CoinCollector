@@ -174,4 +174,5 @@ https://stackoverflow.com/questions/2781549/removing-input-background-colour-for
 <a name="credits"></a>
 ## Credits
 
-[Karim Cheurfi Blog - Amazon S3 File Upload](https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3) - How to use Flask to upload files to Amazon S3
+* [Karim Cheurfi Blog - Amazon S3 File Upload](https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3) - How to use Flask to upload files to Amazon S3
+* [British Fifty Pence 2015 Obverse](https://en.wikipedia.org/w/index.php?curid=45261115)

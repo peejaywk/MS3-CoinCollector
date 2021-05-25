@@ -29,8 +29,27 @@
                 <label for="issue">Issue</label>
             </div>
             <div class="input-field col s6">
-                <input id="description" name="description" type="text" class="validate" value="{{ coin.description }}" required>
+                <textarea name="description" id="description" cols="30" rows="10" class="materialize-textarea validate" required>{{ coin.description }}</textarea>
                 <label for="description">Description</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <select name="circulation" id="circulation" class="validate" required>
+                    <option value="" disabled selected>Choose your option</option>
+                    {% if coin.circulation == "Yes" %}
+                        <option value="Yes" selected>Yes</option>
+                    {% else %}
+                        <option value="Yes">Yes</option>
+                    {% endif %}
+                    {% if coin.circulation == "No" %}
+                        <option value="No" selected>No</option>
+                    {% else %}
+                        <option value="No">No</option>
+                    {% endif %}
+                </select>
+                <label for="circulation">General Circulation (Yes/No)</label>
             </div>
         </div>
 
