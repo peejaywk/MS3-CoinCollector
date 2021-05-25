@@ -29,8 +29,10 @@ nav li a {
 
 /*---------- Coin table inside collapsible ----------*/
 .coin-image {
-    width: 100px;
-    height: 100px;
+    /* width: 100px; */
+    /* height: 100px; */
+    max-width: 180px;
+    max-height: 180px;
 }
 
 .td-text {
@@ -72,6 +74,36 @@ td {
     border-bottom: 1px solid #DDDDDD;
     box-shadow: 0 1px 0 0 #DDDDDD;
 }
+
+.card .card-title {
+    font-size: 14px;
+    font-weight: 300;
+    color: #DDDDDD !important;
+}
+
+/* Center align the card images. */
+.card .card-image img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.card {
+    background-color: rgba(0,0,0,0.2);
+}
+
+.card-content {
+    border-bottom: 10px;
+}
+
+.card-content {
+    padding: 1rem !important;
+}
+
+.card-action {
+    padding: 1rem !important;
+}
+
 
 /* A fix to stop Chrome from setting the background colour to white
 when the user selects a input from the autocomplete list.
