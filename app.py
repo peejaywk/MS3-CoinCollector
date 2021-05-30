@@ -8,9 +8,11 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+import pprint
 if os.path.exists("env.py"):
     import env
 
+pp = pprint.PrettyPrinter(indent=4)
 
 # Create instance of Flask
 app = Flask(__name__)
@@ -82,15 +84,21 @@ def get_coins():
         coin_ids = []
         # Find all entries that match the current user and add to list
         for coin in mongo.db.coins.find({"user_id": ObjectId(user_id)}):
-            coin_ids.append(coin["coin_id"])
+            coin_ids.append((coin["_id"], coin["coin_id"]))
 
         coins = []
-        # Find information for each coin in the users collection from
-        # the circulation collection
-        for coin in coin_ids:
-            coins.append(mongo.db.circulation.find_one(
-                {"_id": ObjectId(coin)}))
+        # Gather all data into one dictionary ready for rendering.
+        for id, coin in coin_ids:
+            # Find the coin data from the circulation collection
+            coin_data = mongo.db.circulation.find_one({"_id": ObjectId(coin)})
 
+            # Find the users entry from the coins collection and add
+            # in the coin data. 
+            user_coin = mongo.db.coins.find_one({"_id": id})
+            user_coin['coin_data'] = coin_data
+            coins.append(user_coin)
+
+        pp.pprint(coins)
         return render_template("user_coins.html", coins=coins)
 
     return render_template("user_coins.html")
@@ -187,6 +195,14 @@ def add_user_coin(coin_id):
     mongo.db.coins.insert_one(coin)
     flash("Coin added to your collection.")
     return redirect(url_for("coin_list"))
+
+
+@app.route("/delete_user_coin/<user_coin_id>")
+def delete_user_coin(user_coin_id):
+    print(user_coin_id)
+    mongo.db.coins.remove({"_id": ObjectId(user_coin_id)})
+    flash("Coin Deleted From Collection")
+    return redirect(url_for("get_coins"))
 
 
 @app.route("/add_coin", methods=["GET", "POST"])

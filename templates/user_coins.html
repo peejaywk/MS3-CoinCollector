@@ -23,20 +23,20 @@
         {% for coin in coins %}
         <li>
             <div class="collapsible-header">
-                <p class="td-text">{{ coin.year }} - {{ coin.denomination }} - {{ coin.issue }}</p>
+                <p class="td-text">{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} - {{ coin.coin_data.issue }}</p>
             </div>
             <div class="collapsible-body">
                 <table>
                     <tbody>
                         <tr>
-                            <td rowspan="4" class="coin-table-img"><img src="{{ coin.reverse_image }}" alt=""
+                            <td rowspan="4" class="coin-table-img"><img src="{{ coin.coin_data.reverse_image }}" alt=""
                                     class="square coin-image">
                             </td>
                             <td>
                                 <p class="td-text">Denomination:</p>
                             </td>
                             <td>
-                                <p class="td-text">{{ coin.denomination }}</p>
+                                <p class="td-text">{{ coin.coin_data.denomination }}</p>
                             </td>
                         </tr>
                         <tr>
@@ -44,7 +44,7 @@
                                 <p class="td-text">Year:</p>
                             </td>
                             <td>
-                                <p class="td-text">{{ coin.year }} </p>
+                                <p class="td-text">{{ coin.coin_data.year }} </p>
                             </td>
                         </tr>
                         <tr>
@@ -52,7 +52,7 @@
                                 <p class="td-text">Issue:</p>
                             </td>
                             <td>
-                                <p class="td-text">{{ coin.issue }} </p>
+                                <p class="td-text">{{ coin.coin_data.issue }} </p>
                             </td>
                         </tr>
                         <tr>
@@ -60,14 +60,14 @@
                                 <p class="td-text">Description:</p>
                             </td>
                             <td>
-                                <p class="td-text">{{ coin.description }} </p>
+                                <p class="td-text">{{ coin.coin_data.description }} </p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <div>
                     <a class="waves-effect waves-light btn-small green lighten-1">Edit</a>
-                    <a class="waves-effect waves-light btn-small red lighten-1">Delete</a>
+                    <a href="{{ url_for('delete_user_coin', user_coin_id=coin._id)}}" class="waves-effect waves-light btn-small red lighten-1">Delete</a>
                 </div>
             </div>
         </li>
