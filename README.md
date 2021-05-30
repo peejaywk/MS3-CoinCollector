@@ -176,3 +176,5 @@ https://stackoverflow.com/questions/2781549/removing-input-background-colour-for
 
 * [Karim Cheurfi Blog - Amazon S3 File Upload](https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3) - How to use Flask to upload files to Amazon S3
 * [British Fifty Pence 2015 Obverse](https://en.wikipedia.org/w/index.php?curid=45261115)
+* [Flask Pagination - Stackoverflow](https://stackoverflow.com/questions/66734992/flask-paginate-per-page-not-changing-the-amount-of-visible-items)
+* [Flask Pagination - GitHub](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)

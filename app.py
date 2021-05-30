@@ -5,14 +5,12 @@ from datetime import date
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
+from flask_paginate import Pagination, get_page_args, get_page_parameter
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-import pprint
 if os.path.exists("env.py"):
     import env
-
-pp = pprint.PrettyPrinter(indent=4)
 
 # Create instance of Flask
 app = Flask(__name__)
@@ -93,12 +91,11 @@ def get_coins():
             coin_data = mongo.db.circulation.find_one({"_id": ObjectId(coin)})
 
             # Find the users entry from the coins collection and add
-            # in the coin data. 
+            # in the coin data.
             user_coin = mongo.db.coins.find_one({"_id": id})
             user_coin['coin_data'] = coin_data
             coins.append(user_coin)
 
-        pp.pprint(coins)
         return render_template("user_coins.html", coins=coins)
 
     return render_template("user_coins.html")
@@ -167,14 +164,26 @@ def logout():
     return redirect(url_for("get_coins"))
 
 
+def paginate_coins(coins, offset, per_page):
+    return coins[offset: offset + per_page]
+
+
 @app.route("/coin_list")
 def coin_list():
 
     # Check that the user is logged in before displaying the coin list
     # If not redirect to the login page.
     if session.get('user'):
+
         coins = list(mongo.db.circulation.find())
-        return render_template("coin_list.html", coins=coins)
+
+        page = int(request.args.get('page', 1))
+        per_page = 6
+        offset = (page - 1) * per_page
+
+        pagination_coins = paginate_coins(coins, offset=offset, per_page=per_page)
+        pagination = Pagination(page=page, per_page=per_page, total=len(coins))
+        return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
 
     return redirect(url_for("login"))
 
