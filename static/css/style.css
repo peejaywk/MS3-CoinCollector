@@ -27,10 +27,12 @@ nav li a {
     font-weight: 400;
 }
 
+.modal {
+    max-width: 400px !important
+}
+
 /*---------- Coin table inside collapsible ----------*/
 .coin-image {
-    /* width: 100px; */
-    /* height: 100px; */
     max-width: 180px;
     max-height: 180px;
 }
@@ -82,14 +84,14 @@ td {
 }
 
 /* Center align the card images. */
-.card .card-image img{
+.card .card-image img {
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
 
 .card {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .card-content {
@@ -121,4 +123,3 @@ input:-webkit-autofill:active {
 input:-webkit-autofill {
     -webkit-text-fill-color: #DDDDDD !important;
 }
-

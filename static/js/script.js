@@ -3,6 +3,7 @@ $(document).ready(function () {
     $('.sidenav').sidenav();
     $('.collapsible').collapsible();
     $("select").formSelect();
+    $('.modal').modal();
 
     // Code used to validate the materialize select items
     // CREDIT: Code Institute Flask mini project
