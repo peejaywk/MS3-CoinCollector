@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Coins In Circulation</h1>
+<div class="row">
+    <div class="col s12">
+        <h4>Coin List</h4>
+        <p>Below are the coins currently listed in the database for collection. Click on a coin for more details and to
+            add to your collection
+            please click on the 'Add' button.
+        </p>
+    </div>
+</div>
 
 <div class="row">
     {% for coin in coins %}
@@ -20,11 +28,11 @@
             <div class="card-action">
                 <div class="col s6">
                     <a href="{{ url_for('add_user_coin', coin_id=coin._id) }}"
-                        class="secondary-content btn-small green lighten-1">Add</a>
+                        class="secondary-content btn-small green lighten-1 left">Add</a>
                 </div>
                 <div class="col s6">
                     <a href="{{ url_for('edit_coin', coin_id=coin._id) }}"
-                        class="secondary-content btn-small orange lighten-1">Edit</a>
+                        class="secondary-content btn-small orange lighten-1 right">Edit</a>
                 </div>
             </div>
             <div class="card-reveal">

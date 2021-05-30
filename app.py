@@ -145,7 +145,6 @@ def login():
                 session["user"] = request.form.get("email").lower()
                 flash("Welcome, {}".format(
                     existing_user["fname"].capitalize()))
-                # return redirect(url_for("profile", username=session["user"]))
                 return redirect(url_for("get_coins"))
             else:
                 # invalid password match

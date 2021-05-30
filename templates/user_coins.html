@@ -12,12 +12,13 @@
 </p>
 <p>Good luck collecting those coins!</p>
 
-<a class="waves-effect waves-light btn-large" href="{{ url_for('register') }}">Register</a>
-<a class="waves-effect waves-light btn-large" href="{{ url_for('login') }}">Login</a>
+<a class="waves-effect waves-light btn-large light-blue darken-4" href="{{ url_for('register') }}">Register</a>
+<a class="waves-effect waves-light btn-large light-blue darken-4" href="{{ url_for('login') }}">Login</a>
 
 {% else %}
 {% if coins|length > 0 %}
-<h4>Coin Collection</h4>
+<h4>Your Coin Collection</h4>
+<p></p>
 
 <ul class="collapsible">
     {% for coin in coins %}
@@ -27,7 +28,7 @@
                 {{ coin.coin_data.issue }}</p>
         </div>
         <div class="collapsible-body">
-            <table>
+            <table class="user_coin_table">
                 <tbody>
                     <tr>
                         <td rowspan="4" class="coin-table-img"><img src="{{ coin.coin_data.reverse_image }}" alt=""
@@ -77,14 +78,17 @@
             <div class="modal-content">
                 <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
                     {{ coin.coin_data.issue }}</h5>
-                <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
+                <div class="center-align">
+                    <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
+                </div>
+                
                 <p>Please confirm deletion of the above coin from your collection.</p>
             </div>
 
             <div class="modal-footer">
                 <a href="{{ url_for('delete_user_coin', user_coin_id=coin._id)}}"
-                    class="modal-close waves-effect waves-green btn-flat left">Confirm</a>
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat left">Cancel</a>
+                    class="modal-close waves-effect waves-green btn-small left red lighten-1">Confirm</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-small right green lighten-1">Cancel</a>
             </div>
         </div>
 

@@ -28,13 +28,27 @@ nav li a {
 }
 
 .modal {
-    max-width: 400px !important
+    max-width: 400px !important;
+}
+
+.login-panel,
+.register-panel {
+    background-color: #101E30 !important;
+    border: 1px solid #DDDDDD;
 }
 
 /*---------- Coin table inside collapsible ----------*/
 .coin-image {
     max-width: 180px;
     max-height: 180px;
+}
+
+.card-reveal {
+    background-color: #4078C0 !important;
+}
+
+.user_coin_table {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .td-text {
@@ -67,12 +81,12 @@ td {
 }
 
 /* label underline focus color */
-.input-field input[type=text]:focus {
+.coin-input input[type=text]:focus {
     border-bottom: 1px solid #DDDDDD;
     box-shadow: 0 1px 0 0 #DDDDDD;
 }
 
-.input-field textarea.materialize-textarea[type=text]:focus {
+.coin-input textarea.materialize-textarea[type=text]:focus {
     border-bottom: 1px solid #DDDDDD;
     box-shadow: 0 1px 0 0 #DDDDDD;
 }

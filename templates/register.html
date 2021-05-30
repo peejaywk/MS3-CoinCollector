@@ -6,7 +6,7 @@
 
 <div class="row">
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
-        <div class="card-panel">
+        <div class="card-panel register-panel">
             <!-- username -->
             <div class="row">
                 <div class="input-field col s12 l6">
@@ -34,12 +34,12 @@
                     <input id="password" name="password" type="password" minlength="5" maxlength="16"
                         class="validate" required>
                     <label for="password">Password</label>
-                    <span class="helper-text" data-error="invalid password" data-success="valid password">Password must be 5 to 16 characters long</span>
+                    <span class="helper-text grey-text" data-error="invalid password" data-success="valid password">Password must be 5 to 16 characters long</span>
                 </div>
             </div>
             <!-- register -->
             <div class="row">
-                <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
+                <button type="submit" class="col s12 btn-large light-blue darken-4">
                     Register <i class="fas fa-sign-in-alt"></i>
                 </button>
             </div>
