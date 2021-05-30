@@ -9,35 +9,36 @@
 <div class="row">
     <form class="col s12" method="POST" action="{{ url_for('add_coin') }}" enctype="multipart/form-data">
         <div class="row">
-            <div class="input-field col s6">
-                
+            <div class="input-field col s12 l6">
+
                 <select name="denomination" id="denomination" class="validate" required>
                     <option value="" disabled selected>Select Denomination</option>
                     {% for denomination in denominations %}
                     <option value="{{ denomination.name }}">{{ denomination.name }}</option>
                     {% endfor %}
-                    <label for="denomination">Denomination</label>    
+                    <label for="denomination">Denomination</label>
                 </select>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="year" name="year" type="text" class="validate" required>
                 <label for="year">Year</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="issue" name="issue" type="text" class="validate" required>
                 <label for="issue">Issue</label>
             </div>
-            <div class="input-field col s6">
-                <textarea name="description" id="description" cols="30" rows="10" class="materialize-textarea validate" required></textarea>
+            <div class="input-field col s12 l6">
+                <textarea name="description" id="description" cols="30" rows="10" class="materialize-textarea validate"
+                    required></textarea>
                 <label for="description">Description</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <select name="circulation" id="circulation" class="validate" required>
                     <option value="" disabled selected>Choose your option</option>
                     <option value="Yes">Yes</option>
@@ -48,51 +49,51 @@
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="edge" name="edge" type="text" class="validate coin-input">
                 <label for="edge">Edge Inscription</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="mintage" name="mintage" type="text" class="validate">
                 <label for="mintage">Mintage</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="material" name="material" type="text" class="validate">
                 <label for="material">Material</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="thickness" name="thickness" type="text" class="validate">
                 <label for="thickness">Thickness</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="weight" name="weight" type="text" class="validate">
                 <label for="weight">Weight</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="diameter" name="diameter" type="text" class="validate">
                 <label for="diameter">Diameter</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="obverse_designer" name="obverse_designer" type="text" class="validate">
                 <label for="obverse_designer">Obverse Designer</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12 l6">
                 <input id="reverse_designer" name="reverse_designer" type="text" class="validate">
                 <label for="reverse_designer">Reverse Designer</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="file-field input-field col s6">
+            <div class="file-field input-field col s12 l6">
                 <input type="file" id="obverse_img_fname" name="obverse_img_fname" />
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" placeholder="Select Obverse Image File" />
@@ -100,7 +101,7 @@
                 </div>
             </div>
 
-            <div class="file-field input-field col s6">
+            <div class="file-field input-field col s12 l6">
                 <input type="file" id="reverse_img_fname" name="reverse_img_fname" />
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" placeholder="Select Reverse Image File" />
@@ -110,9 +111,12 @@
         </div>
         <!-- Submit Form -->
         <div class="row">
-            <button type="submit" class="col s12 btn-large light-blue darken-4">
-                Upload <i class="fas fa-sign-in-alt"></i>
-            </button>
+            <div class="add-coin-btn">
+                <button type="submit" class="col btn-large green lighten-1">Upload</button>
+            </div>
+            <div class="add-coin-btn">
+                <a href="{{ url_for('coin_list') }}" class="btn-large red lighten-1 left">Cancel</a>
+            </div>
         </div>
     </form>
 </div>

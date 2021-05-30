@@ -37,10 +37,21 @@ nav li a {
     border: 1px solid #DDDDDD;
 }
 
+.coin-card {
+    border: 1px solid #DDDDDD;
+    border-radius: 2%;
+}
+
+.add-coin-btn {
+    padding: 1em;
+    display: inline-block;
+}
+
 /*---------- Coin table inside collapsible ----------*/
 .coin-image {
-    max-width: 180px;
-    max-height: 180px;
+    margin-top: 10px;
+    max-width: 160px;
+    max-height: 160px;
 }
 
 .card-reveal {
