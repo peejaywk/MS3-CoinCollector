@@ -60,6 +60,16 @@ nav li a {
     color: #DDDDDD;
 }
 
+/* ---------- Search Panel ---------- */
+.search-panel {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid #DDDDDD;
+    margin-top: 0px;
+    margin-right: 0.75rem;
+    margin-left: 0.75rem;
+    padding: 10px;
+}
+
 .modal {
     max-width: 400px !important;
 }
@@ -199,4 +209,19 @@ input:-webkit-autofill {
 
 .pagination li.active {
     background-color: #66BB6A;
+}
+
+/* ---------- Media Queries ---------- */
+
+@media screen and (min-width: 992px) {
+    .search-valign {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
 }

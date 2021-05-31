@@ -181,7 +181,8 @@ def coin_list():
         per_page = 6
         offset = (page - 1) * per_page
 
-        pagination_coins = paginate_coins(coins, offset=offset, per_page=per_page)
+        pagination_coins = paginate_coins(
+            coins, offset=offset, per_page=per_page)
         pagination = Pagination(page=page, per_page=per_page, total=len(coins))
         return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
 
@@ -330,6 +331,21 @@ def edit_coin(coin_id):
         return redirect(url_for("coin_list"))
 
     return render_template("edit_coin.html", coin=coin, denominations=denominations)
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    coins = list(mongo.db.circulation.find({"$text": {"$search": query}}))
+
+    page = int(request.args.get('page', 1))
+    per_page = 6
+    offset = (page - 1) * per_page
+
+    pagination_coins = paginate_coins(
+        coins, offset=offset, per_page=per_page)
+    pagination = Pagination(page=page, per_page=per_page, total=len(coins))
+    return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
 
 
 if __name__ == "__main__":

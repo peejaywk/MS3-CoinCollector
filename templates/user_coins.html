@@ -20,101 +20,110 @@
 </div>
 {% else %}
 {% if coins|length > 0 %}
-<h4>Your Coin Collection</h4>
-<p></p>
+<div class="row">
+    <div class="col s12">
+        <h4>Your Coin Collection</h4>
+        <p></p>
+    </div>
+</div>
 
-<ul class="collapsible">
-    {% for coin in coins %}
-    <li>
-        <div class="collapsible-header">
-            <p class="td-text">{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
-                {{ coin.coin_data.issue }}</p>
-        </div>
-        <div class="collapsible-body">
-            <table class="user_coin_table">
-                <tbody>
-                    <tr>
-                        <td rowspan="4" class="coin-table-img"><img src="{{ coin.coin_data.reverse_image }}" alt=""
-                                class="square coin-image">
-                        </td>
-                        <td>
-                            <p class="td-text">Denomination:</p>
-                        </td>
-                        <td>
-                            <p class="td-text">{{ coin.coin_data.denomination }}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="td-text">Year:</p>
-                        </td>
-                        <td>
-                            <p class="td-text">{{ coin.coin_data.year }} </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="td-text">Issue:</p>
-                        </td>
-                        <td>
-                            <p class="td-text">{{ coin.coin_data.issue }} </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="td-text">Description:</p>
-                        </td>
-                        <td>
-                            <p class="td-text">{{ coin.coin_data.description }} </p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div>
-                <a href="#edit_{{coin._id}}"
-                    class="waves-effect waves-light btn-small green lighten-1 modal-trigger">Edit</a>
-                <a href="#delete_{{coin._id}}"
-                    class="waves-effect waves-light btn-small red lighten-1 modal-trigger">Delete</a>
-            </div>
-        </div>
-
-        <!-- Delete Modal Structure -->
-        <div id="delete_{{coin._id}}" class="modal">
-            <div class="modal-content">
-                <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
-                    {{ coin.coin_data.issue }}</h5>
-                <div class="center-align">
-                    <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
+<div class="row">
+    <div class="col s12">
+        <ul class="collapsible">
+            {% for coin in coins %}
+            <li>
+                <div class="collapsible-header">
+                    <p class="td-text">{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
+                        {{ coin.coin_data.issue }}</p>
+                </div>
+                <div class="collapsible-body">
+                    <table class="user_coin_table">
+                        <tbody>
+                            <tr>
+                                <td rowspan="4" class="coin-table-img"><img src="{{ coin.coin_data.reverse_image }}"
+                                        alt="" class="square coin-image">
+                                </td>
+                                <td>
+                                    <p class="td-text">Denomination:</p>
+                                </td>
+                                <td>
+                                    <p class="td-text">{{ coin.coin_data.denomination }}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="td-text">Year:</p>
+                                </td>
+                                <td>
+                                    <p class="td-text">{{ coin.coin_data.year }} </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="td-text">Issue:</p>
+                                </td>
+                                <td>
+                                    <p class="td-text">{{ coin.coin_data.issue }} </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="td-text">Description:</p>
+                                </td>
+                                <td>
+                                    <p class="td-text">{{ coin.coin_data.description }} </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a href="#edit_{{coin._id}}"
+                            class="waves-effect waves-light btn-small green lighten-1 modal-trigger">Edit</a>
+                        <a href="#delete_{{coin._id}}"
+                            class="waves-effect waves-light btn-small red lighten-1 modal-trigger">Delete</a>
+                    </div>
                 </div>
 
-                <p>Please confirm deletion of the above coin from your collection.</p>
-            </div>
+                <!-- Delete Modal Structure -->
+                <div id="delete_{{coin._id}}" class="modal">
+                    <div class="modal-content">
+                        <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
+                            {{ coin.coin_data.issue }}</h5>
+                        <div class="center-align">
+                            <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
+                        </div>
 
-            <div class="modal-footer">
-                <a href="{{ url_for('delete_user_coin', user_coin_id=coin._id)}}"
-                    class="modal-close waves-effect waves-green btn-small left red lighten-1">Confirm</a>
-                <a href="#!" class="modal-close waves-effect waves-green btn-small right green lighten-1">Cancel</a>
-            </div>
-        </div>
+                        <p>Please confirm deletion of the above coin from your collection.</p>
+                    </div>
 
-        <!-- Edit Modal Structure -->
-        <div id="edit_{{coin._id}}" class="modal">
-            <div class="modal-content">
-                <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
-                    {{ coin.coin_data.issue }}</h5>
-                <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
-                <p>Please confirm deletion of the above coin from your collection.</p>
-            </div>
+                    <div class="modal-footer">
+                        <a href="{{ url_for('delete_user_coin', user_coin_id=coin._id)}}"
+                            class="modal-close waves-effect waves-green btn-small left red lighten-1">Confirm</a>
+                        <a href="#!"
+                            class="modal-close waves-effect waves-green btn-small right green lighten-1">Cancel</a>
+                    </div>
+                </div>
 
-            <div class="modal-footer">
-                <!-- <a href="{{ url_for('delete_user_coin', user_coin_id=coin._id)}}"
+                <!-- Edit Modal Structure -->
+                <div id="edit_{{coin._id}}" class="modal">
+                    <div class="modal-content">
+                        <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
+                            {{ coin.coin_data.issue }}</h5>
+                        <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
+                        <p>Please confirm deletion of the above coin from your collection.</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <!-- <a href="{{ url_for('delete_user_coin', user_coin_id=coin._id)}}"
                     class="modal-close waves-effect waves-green btn-flat left">Confirm</a> -->
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat left">Cancel</a>
-            </div>
-        </div>
-    </li>
-    {% endfor %}
-</ul>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat left">Cancel</a>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 
 {% else %}
 <div class="row">
