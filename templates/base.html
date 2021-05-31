@@ -24,8 +24,8 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="{{ url_for('get_coins') }}" class="brand-logo">Coin Collector</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+            <a href="{{ url_for('get_coins') }}" class="brand-logo left">Coin Collector</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
                 {% if session.user %}
                     <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
@@ -46,7 +46,7 @@
         </div>
     </nav>
 
-    <ul class="sidenav" id="mobile-demo">
+    <ul class="sidenav" id="mobile-nav">
         {% if session.user %}
             <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
         {% else %}

@@ -13,9 +13,14 @@ h6 {
     color: #4078C0;
 }
 
-p,
+p {
+    color: #DDDDDD;
+}
+
 nav .brand-logo {
     color: #DDDDDD;
+    margin-left: 25px;
+    font-size: 2rem
 }
 
 .nav-wrapper {
