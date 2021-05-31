@@ -14,7 +14,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap"
         rel="stylesheet">
-        
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
@@ -22,23 +22,24 @@
 </head>
 
 <body>
+    <!-- Nav Bar -->
     <nav>
         <div class="nav-wrapper">
             <a href="{{ url_for('get_coins') }}" class="brand-logo left">Coin Collector</a>
             <a href="#" data-target="mobile-nav" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
                 {% if session.user %}
-                    <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
+                <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
                 {% else %}
-                    <li><a href="{{ url_for('get_coins') }}">Home</a></li>
+                <li><a href="{{ url_for('get_coins') }}">Home</a></li>
                 {% endif %}
-                
+
                 {% if session.user %}
-                    <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
-                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
                 <li><a href="#">Contact Us</a></li>
@@ -48,24 +49,24 @@
 
     <ul class="sidenav" id="mobile-nav">
         {% if session.user %}
-            <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
+        <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
         {% else %}
-            <li><a href="{{ url_for('get_coins') }}">Home</a></li>
+        <li><a href="{{ url_for('get_coins') }}">Home</a></li>
         {% endif %}
 
         {% if session.user %}
-            <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
         {% else %}
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
         {% endif %}
         <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
         <li><a href="#">Contact Us</a></li>
     </ul>
 
+    <!-- Flash Message -->
     <section>
-        <!-- flash messages -->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
@@ -77,11 +78,48 @@
         {% endwith %}
     </section>
 
+    <!-- Main Page Content -->
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
 
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <p class="grey-text text-lighten-4">This site is for educational purposes only.</p>
+                    <ul class="footer-link">
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Follow Us On</h5>
+                    <ul class="footer-social-media">
+                        <li>
+                            <a class="grey-text text-lighten-3" href="https://en-gb.facebook.com/" target="_blank"
+                                aria-label="Facebook Page">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-lighten-3" href="https://twitter.com/?lang=en-gb" target="_blank"
+                                aria-label="Twitter Page">
+                                <i class="fab fa-twitter-square"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-lighten-3" href="https://www.instagram.com/" target="_blank"
+                                aria-label="Instagram Page">
+                                <i class="fab fa-instagram-square"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

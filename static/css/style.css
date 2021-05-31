@@ -2,6 +2,13 @@
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: #101E30;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 h1,
@@ -30,6 +37,27 @@ nav .brand-logo {
 nav li a {
     color: #DDDDDD;
     font-weight: 400;
+}
+
+/* -------------- Footer ---------- */
+.page-footer {
+    background-color: #4078C0;
+    color: #DDDDDD;
+    padding-top: 10px;
+}
+
+.footer-social-media li {
+    display: inline-block;
+    padding-right: 20px;
+    font-size: 1rem;
+}
+
+.footer-social-media li a i {
+    font-size: 2rem;
+}
+
+.footer-link li a {
+    color: #DDDDDD;
 }
 
 .modal {
