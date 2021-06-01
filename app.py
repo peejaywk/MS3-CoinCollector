@@ -220,6 +220,23 @@ def add_user_coin(coin_id):
     return redirect(url_for("coin_list"))
 
 
+@app.route("/edit_user_coin/<user_coin_id>", methods=["GET", "POST"])
+def edit_user_coin(user_coin_id):
+    if request.method == "POST":
+        user_coin = mongo.db.coins.find_one({"_id": ObjectId(user_coin_id)})
+
+        update_data = {"$set": {
+            "date_found": request.form.get("date-found"),
+            "notes": request.form.get("notes"),
+        }}
+
+        mongo.db.coins.update_many(user_coin, update_data)
+        flash("Entry Successfully Updated")
+        return redirect(url_for("get_coins"))
+
+    return redirect(url_for("get_coins"))
+
+
 @app.route("/delete_user_coin/<user_coin_id>")
 def delete_user_coin(user_coin_id):
     print(user_coin_id)

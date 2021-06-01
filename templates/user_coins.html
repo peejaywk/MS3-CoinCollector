@@ -43,7 +43,7 @@
                     <table class="user_coin_table">
                         <tbody>
                             <tr>
-                                <td rowspan="4" class="coin-table-img"><img src="{{ coin.coin_data.reverse_image }}"
+                                <td rowspan="6" class="coin-table-img"><img src="{{ coin.coin_data.reverse_image }}"
                                         alt="" class="square coin-image">
                                 </td>
                                 <td>
@@ -75,6 +75,22 @@
                                 </td>
                                 <td>
                                     <p class="td-text">{{ coin.coin_data.description }} </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="td-text">Date Found:</p>
+                                </td>
+                                <td>
+                                    <p class="td-text">{{ coin.date_found }} </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="td-text">User Notes:</p>
+                                </td>
+                                <td>
+                                    <p class="td-text">{{ coin.notes }} </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -126,21 +142,48 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Edit Modal Structure -->
             <div id="edit_{{coin._id}}" class="modal modal-style">
-                <div class="modal-content">
-                    <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
-                        {{ coin.coin_data.issue }}</h5>
-                    <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
-                    <p>Please confirm deletion of the above coin from your collection.</p>
-                </div>
+                <form method="POST" action="{{ url_for('edit_user_coin', user_coin_id=coin._id) }}">
+                    <div class="modal-content">
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <h5>{{ coin.year }} - {{ coin.denomination }} -
+                                    {{ coin.issue }}</h5>
+                            </div>
+                            <div class="col s12">
+                                <div class="center-align">
+                                    <img class="activator coin-image" src="{{ coin.reverse_image }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 input-field">
+                                <input id="date-found" name="date-found" type="text" class="datepicker validate"
+                                    required>
+                                <label for="date-found">Date Found</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 input-field">
+                                <input id="notes" name="notes" type="text" class="validate">
+                                <label for="notes">Notes</label>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="modal-footer modal-footer-style">
-                    <!-- <a href="{{ url_for('delete_user_coin', user_coin_id=coin._id)}}"
-                    class="modal-close waves-effect waves-green btn-flat left">Confirm</a> -->
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat left">Cancel</a>
-                </div>
+                    <div class="modal-footer modal-footer-style">
+                        <div class="row">
+                            <div class="col s6">
+                                <button type="submit" class="btn-small green lighten-1 right">Edit</button>
+                            </div>
+                            <div class="col s6">
+                                <a href="#!" class="modal-close btn-small red lighten-1 left">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             {% endfor %}
         </ul>
