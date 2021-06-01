@@ -211,7 +211,7 @@ def add_user_coin(coin_id):
             "user_id": ObjectId(user_id),
             "coin_id": ObjectId(coin_id),
             "date_found": request.form.get("date-found"),
-            "notes": request.form.get("notes"),
+            "notes": request.form.get("notes")
         }
         mongo.db.coins.insert_one(coin)
         flash("Coin added to your collection.")
@@ -224,10 +224,10 @@ def add_user_coin(coin_id):
 def edit_user_coin(user_coin_id):
     if request.method == "POST":
         user_coin = mongo.db.coins.find_one({"_id": ObjectId(user_coin_id)})
-
+        
         update_data = {"$set": {
             "date_found": request.form.get("date-found"),
-            "notes": request.form.get("notes"),
+            "notes": request.form.get("notes")
         }}
 
         mongo.db.coins.update_many(user_coin, update_data)
