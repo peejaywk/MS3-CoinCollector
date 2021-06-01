@@ -70,9 +70,15 @@ nav li a {
     padding: 10px;
 }
 
-/* .modal {
-    max-width: 400px !important;
-} */
+.modal-style {
+    background-color: #101E30 !important;
+    border: 1px solid #DDDDDD !important;
+}
+
+.modal-footer-style {
+    background-color: #101E30 !important;
+    border-top: 1px solid #2F2838 !important;
+}
 
 .login-panel,
 .register-panel {
@@ -196,7 +202,6 @@ input:-webkit-autofill {
 .pagination-page-info {
     padding: .6em;
     padding-left: 0;
-    width: 40em;
     margin: .5em;
     margin-left: 0;
     font-size: 12px;

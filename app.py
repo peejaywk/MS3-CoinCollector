@@ -210,7 +210,7 @@ def add_user_coin(coin_id):
         coin = {
             "user_id": ObjectId(user_id),
             "coin_id": ObjectId(coin_id),
-            "date_found": "date",
+            "date_found": request.form.get("date-found"),
             "notes": request.form.get("notes"),
         }
         mongo.db.coins.insert_one(coin)
