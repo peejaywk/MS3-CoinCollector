@@ -103,6 +103,9 @@ def get_coins():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if "user" in session:
+        flash("You are already logged in!")
+        return redirect(url_for("get_coins"))
     if request.method == "POST":
         # check if email address already exists in db
         existing_user = mongo.db.users.find_one(
@@ -121,11 +124,17 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        # put the new user into 'session' cookie
-        session["user"] = request.form.get("email").lower()
-        flash("Registration successful!")
-        # return redirect(url_for("profile", username=session["user"]))
-        return redirect(url_for("get_coins"))
+        # Check if the new user was saved in the database
+        user_in_db = mongo.db.users.find_one({"email": request.form.get("email").lower()})
+        if user_in_db:
+            # put the new user into 'session' cookie
+            session["user"] = request.form.get("email").lower()
+            session["admin"] = False
+            flash("Registration successful!")
+            return redirect(url_for("get_coins"))
+        else:
+            flash("There was a problem creating your account")
+            return redirect(url_for("register"))
 
     return render_template("register.html")
 
@@ -135,11 +144,11 @@ def login():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
-
         if existing_user:
             # ensure hased password matches user input
             if check_password_hash(existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email").lower()
+                session["admin"] = existing_user["admin"]
                 flash("Welcome, {}".format(
                     existing_user["fname"].capitalize()))
                 return redirect(url_for("get_coins"))
@@ -161,6 +170,7 @@ def logout():
     # remove user from session cookies
     flash("You have been logged out")
     session.pop("user")
+    session.pop("admin")
     return redirect(url_for("get_coins"))
 
 

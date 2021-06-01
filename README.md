@@ -178,3 +178,4 @@ https://stackoverflow.com/questions/2781549/removing-input-background-colour-for
 * [British Fifty Pence 2015 Obverse](https://en.wikipedia.org/w/index.php?curid=45261115)
 * [Flask Pagination - Stackoverflow](https://stackoverflow.com/questions/66734992/flask-paginate-per-page-not-changing-the-amount-of-visible-items)
 * [Flask Pagination - GitHub](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)
+* [Flask User Authentication](https://github.com/MiroslavSvec/DCD_lead/blob/user-auth/app.py) - Example code to register/authenticate a user using Flask.

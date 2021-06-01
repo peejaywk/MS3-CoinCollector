@@ -48,10 +48,12 @@
                     <a href="{{ url_for('add_user_coin', coin_id=coin._id) }}"
                         class="secondary-content btn-small green lighten-1 left">Add</a>
                 </div>
+                {% if session.admin %}
                 <div class="col s6">
                     <a href="{{ url_for('edit_coin', coin_id=coin._id) }}"
                         class="secondary-content btn-small orange lighten-1 right">Edit</a>
                 </div>
+                {% endif %}
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ coin.issue }}<i
