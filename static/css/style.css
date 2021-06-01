@@ -70,9 +70,9 @@ nav li a {
     padding: 10px;
 }
 
-.modal {
+/* .modal {
     max-width: 400px !important;
-}
+} */
 
 .login-panel,
 .register-panel {
@@ -223,5 +223,11 @@ input:-webkit-autofill {
         -webkit-align-items: center;
         -ms-flex-align: center;
         align-items: center;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .modal {
+        width: 80%;
     }
 }

@@ -125,7 +125,8 @@ def register():
         mongo.db.users.insert_one(register)
 
         # Check if the new user was saved in the database
-        user_in_db = mongo.db.users.find_one({"email": request.form.get("email").lower()})
+        user_in_db = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
         if user_in_db:
             # put the new user into 'session' cookie
             session["user"] = request.form.get("email").lower()
@@ -199,20 +200,23 @@ def coin_list():
     return redirect(url_for("login"))
 
 
-@app.route("/add_user_coin/<coin_id>")
+@app.route("/add_user_coin/<coin_id>", methods=["GET", "POST"])
 def add_user_coin(coin_id):
-    # Find the current session user in the db and retrieve the users ObjectId
-    user_id = mongo.db.users.find_one(
-        {"email": session["user"]})["_id"]
+    if request.method == "POST":
+        # Find the current session user in the db and retrieve the users ObjectId
+        user_id = mongo.db.users.find_one(
+            {"email": session["user"]})["_id"]
 
-    coin = {
-        "user_id": ObjectId(user_id),
-        "coin_id": ObjectId(coin_id),
-        "date_found": "date",
-        "notes": "user notes"
-    }
-    mongo.db.coins.insert_one(coin)
-    flash("Coin added to your collection.")
+        coin = {
+            "user_id": ObjectId(user_id),
+            "coin_id": ObjectId(coin_id),
+            "date_found": "date",
+            "notes": request.form.get("notes"),
+        }
+        mongo.db.coins.insert_one(coin)
+        flash("Coin added to your collection.")
+        return redirect(url_for("coin_list"))
+
     return redirect(url_for("coin_list"))
 
 
