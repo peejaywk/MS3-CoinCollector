@@ -19,7 +19,8 @@
                 <label for="query">Search Coins</label>
             </div>
             <div class="col s12 l4">
-                <a href="{{ url_for('coin_list') }}" class="red btn-small">Reset</a>
+
+                <a href="{{ url_for('coin_list') }}" class="red btn-small"><i class="fas fa-redo-alt left"></i>Reset</a>
                 <button type="submit" class="light-blue darken-1 btn-small">
                     <i class="fas fa-search left"></i>Search
                 </button>
@@ -58,7 +59,53 @@
                 <span class="card-title grey-text text-darken-4">{{ coin.issue }}<i
                         class="fas fa-times right"></i></span>
                 <p>{{ coin.description }}</p>
-                <p>Edge Inscription: {{ coin.edge }}</p>
+                <table>
+                    <tr>
+                        <td class="td-text-heading">Year</td>
+                        <td class="td-text">{{ coin.year }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">General Circulation</td>
+                        <td class="td-text">{{ coin.circulation }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Edge Inscription</td>
+                        <td class="td-text">{{ coin.edge }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Mintage</td>
+                        <td class="td-text">{{ coin.mintage }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Material</td>
+                        <td class="td-text">{{ coin.material }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Thickness</td>
+                        <td class="td-text">{{ coin.thickness }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Weight</td>
+                        <td class="td-text">{{ coin.weight }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Diameter</td>
+                        <td class="td-text">{{ coin.diameter }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Obverse Designer</td>
+                        <td class="td-text">{{ coin.obverse_designer }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Reverse Designer</td>
+                        <td class="td-text">{{ coin.reverse_designer }}</td>
+                    </tr>
+                </table>
+                <div class="col s12">
+                    <div class="center-align">
+                        <img class="activator coin-image" src="{{ coin.obverse_image }}">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

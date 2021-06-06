@@ -60,6 +60,22 @@ nav li a {
     color: #DDDDDD;
 }
 
+.flash-msg {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.td-text-heading {
+    color: #DDDDDD;
+    
+}
+
+.td-text {
+    color: #DDDDDD;
+    font-size: 14px;
+    font-weight: 300;
+}
+
 /* ---------- Search Panel ---------- */
 .search-panel {
     background-color: rgba(0, 0, 0, 0.2);
