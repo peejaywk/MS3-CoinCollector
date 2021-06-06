@@ -57,6 +57,8 @@
                 <span class="card-title grey-text text-darken-4">{{ coin.coin_data.issue }}<i
                         class="fas fa-times right"></i></span>
                 <p>{{ coin.coin_data.description }}</p>
+                <p>Found {{ coin.date_found }}</p>
+                <p>{{ coin.notes }}</p>
                 <table>
                     <tr>
                         <td class="td-text-heading">Year</td>
@@ -141,7 +143,7 @@
             <div class="modal-footer modal-footer-style">
                 <div class="row">
                     <div class="col s6">
-                        <button type="submit" class="btn-small green lighten-1 right">Edit</button>
+                        <button type="submit" class="btn-small green lighten-1 right">Save</button>
                     </div>
                     <div class="col s6">
                         <a href="#!" class="modal-close btn-small red lighten-1 left">Cancel</a>
