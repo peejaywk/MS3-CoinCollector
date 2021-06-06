@@ -224,7 +224,7 @@ def add_user_coin(coin_id):
 def edit_user_coin(user_coin_id):
     if request.method == "POST":
         user_coin = mongo.db.coins.find_one({"_id": ObjectId(user_coin_id)})
-        
+
         update_data = {"$set": {
             "date_found": request.form.get("date-found"),
             "notes": request.form.get("notes")
@@ -239,7 +239,6 @@ def edit_user_coin(user_coin_id):
 
 @app.route("/delete_user_coin/<user_coin_id>")
 def delete_user_coin(user_coin_id):
-    print(user_coin_id)
     mongo.db.coins.remove({"_id": ObjectId(user_coin_id)})
     flash("Coin Deleted From Collection")
     return redirect(url_for("get_coins"))
@@ -304,6 +303,30 @@ def add_coin():
         return render_template("add_coin.html", denominations=denominations)
 
     return render_template("add_coin.html", denominations=denominations)
+
+
+@app.route("/delete_coin/<coin_id>")
+def delete_coin(coin_id):
+    # Find all users who have the coin marked for deletion and
+    # create a list containing all the Object ID's
+    user_coin_data = list(mongo.db.coins.find({"coin_id": ObjectId(coin_id)}, {"_id": 1}))
+
+    # Extract only the value from the key:value pair
+    user_coin_ids = []
+    for user_coin in user_coin_data:
+        user_coin_ids.append(user_coin["_id"])
+
+    # Delete all the user coin entries
+    user_result = mongo.db.coins.delete_many({"_id": {"$in": user_coin_ids}})
+
+    # Delete the coin from the database
+    coin_result = mongo.db.circulation.delete_one({"_id": ObjectId(coin_id)})
+
+    print(user_result.deleted_count)
+
+    flash("Deleted, {} instance(s) of the coin".format(user_result.deleted_count))
+
+    return redirect(url_for("coin_list"))
 
 
 @app.route("/edit_coin/<coin_id>", methods=["GET", "POST"])
