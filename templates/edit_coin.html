@@ -116,9 +116,12 @@
         </div>
         <!-- Submit Form -->
         <div class="row">
-            <button type="submit" class="col s12 btn-large light-blue darken-4">
-                Upload <i class="fas fa-sign-in-alt"></i>
-            </button>
+            <div class="add-coin-btn">
+                <button type="submit" class="col btn-large green lighten-1">Upload</button>
+            </div>
+            <div class="add-coin-btn">
+                <a href="{{ url_for('coin_list') }}" class="btn-large red lighten-1 left">Cancel</a>
+            </div>
         </div>
     </form>
 </div>

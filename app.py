@@ -367,7 +367,6 @@ def edit_coin(coin_id):
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.args.get("query")
-    print(query)
     coins = list(mongo.db.circulation.find({"$text": {"$search": query}}))
 
     page = int(request.args.get('page', 1))
@@ -377,7 +376,7 @@ def search():
     pagination_coins = paginate_coins(
         coins, offset=offset, per_page=per_page)
     pagination = Pagination(page=page, per_page=per_page, total=len(coins))
-    return render_template("coin_list.html", coins=pagination_coins, pagination=pagination, query=query)
+    return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
 
 
 if __name__ == "__main__":
