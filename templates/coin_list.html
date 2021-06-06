@@ -46,22 +46,22 @@
             <div class="card-action">
                 
                 {% if session.admin %}
-                <div class="col s4">
+                <div class="col s4 btn-wrapper">
                     <a href="#{{coin._id}}"
                         class="secondary-content btn-small green lighten-1 modal-trigger ">Add</a>
                 </div>
-                <div class="col s4">
+                <div class="col s4 btn-wrapper">
                     <a href="{{ url_for('edit_coin', coin_id=coin._id) }}"
                         class="secondary-content btn-small orange lighten-1">Edit</a>
                 </div>
-                <div class="col s4">
-                    <a href="{{ url_for('delete_coin', coin_id=coin._id) }}"
-                        class="secondary-content btn-small red lighten-1">Delete</a>
+                <div class="col s4 btn-wrapper">
+                    <a href="#delete_{{coin._id}}"
+                        class="secondary-content btn-small red lighten-1 modal-trigger">Delete</a>
                 </div>
                 {% else %}
-                <div class="col s12">
+                <div class="col s12 btn-wrapper">
                     <a href="#{{coin._id}}"
-                        class="secondary-content btn-small green lighten-1 modal-trigger center-align">Add</a>
+                        class="secondary-content btn-small green lighten-1 modal-trigger">Add</a>
                 </div>
                 {% endif %}
             </div>
@@ -162,6 +162,47 @@
             </div>
         </form>
     </div>
+
+    <!-- Delete Modal Structure -->
+    <div id="delete_{{coin._id}}" class="modal modal-style">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h5>{{ coin.year }} - {{ coin.denomination }} -
+                        {{ coin.issue }}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <img class="activator coin-image" src="{{ coin.reverse_image }}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p>Please confirm deletion of the above coin from the database.</p>
+                    <p>NOTE: THIS WILL ALSO REMOVE THE COIN FROM USER COLLECTIONS!</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-footer modal-footer-style">
+            <div class="container">
+                <div class="row">
+                    <div class="col s6">
+                        <a href="{{ url_for('delete_coin', coin_id=coin._id) }}"
+                            class="modal-close waves-effect waves-green btn-small right red lighten-1">Confirm</a>
+                    </div>
+                    <div class="col s6">
+                        <a href="#!"
+                            class="modal-close waves-effect waves-green btn-small left green lighten-1">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
     {% endfor %}
 </div>
 {{ pagination.info }}

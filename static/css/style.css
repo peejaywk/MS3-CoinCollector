@@ -76,6 +76,11 @@ nav li a {
     font-weight: 300;
 }
 
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 /* ---------- Search Panel ---------- */
 .search-panel {
     background-color: rgba(0, 0, 0, 0.2);
