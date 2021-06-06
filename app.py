@@ -96,7 +96,15 @@ def get_coins():
             user_coin['coin_data'] = coin_data
             coins.append(user_coin)
 
-        return render_template("user_coins.html", coins=coins)
+        page = int(request.args.get('page', 1))
+        per_page = 6
+        offset = (page - 1) * per_page
+
+        pagination_coins = paginate_coins(
+            coins, offset=offset, per_page=per_page)
+        pagination = Pagination(page=page, per_page=per_page, total=len(coins))
+
+        return render_template("user_coins.html", coins=pagination_coins, pagination=pagination)
 
     return render_template("user_coins.html")
 
