@@ -5,13 +5,16 @@ $(document).ready(function () {
     $("select").formSelect();
     $('.modal').modal();
     $('.datepicker').datepicker({
-          format: "dd mmmm, yyyy",
-          yearRange: 3,
-          autoClose: true,
-          i18n: {
-              done: "Select"
-          }
-      });
+        format: "dd mmmm, yyyy",
+        yearRange: 3,
+        autoClose: true,
+        i18n: {
+            done: "Select"
+        }
+    });
+
+
+
 
     // Code used to validate the materialize select items
     // CREDIT: Code Institute Flask mini project
@@ -56,3 +59,8 @@ $(document).ready(function () {
         });
     }
 });
+
+// Delete the Flash message when the user clicks the close icon.
+function delete_flash(flash) {
+    $(flash).parent().remove()
+}

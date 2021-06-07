@@ -60,9 +60,22 @@ nav li a {
     color: #DDDDDD;
 }
 
+/* ---------- Flash Message ---------- */
 .flash-msg {
     padding-top: 4px;
     padding-bottom: 4px;
+}
+
+.close-msg {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 6px;
+}
+
+.close-msg:hover,
+.close-msg:focus {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .td-text-heading {
@@ -84,6 +97,10 @@ nav li a {
 /* ---------- Contact Page ---------- */
 .contact-textarea {
     height: 10rem;
+    color: #DDDDDD;
+}
+
+.form-text {
     color: #DDDDDD;
 }
 

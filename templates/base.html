@@ -41,9 +41,9 @@
                 <li><a href="{{ url_for('register') }}">Register</a></li>
                 {% endif %}
                 {% if session.user %}
-                    {% if session.admin %}
-                    <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
-                    {% endif %}
+                {% if session.admin %}
+                <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
+                {% endif %}
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
@@ -65,9 +65,9 @@
         <li><a href="{{ url_for('register') }}">Register</a></li>
         {% endif %}
         {% if session.user %}
-            {% if session.admin %}
-                <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
-            {% endif %}
+        {% if session.admin %}
+        <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
+        {% endif %}
         <li><a href="{{ url_for('logout') }}">Logout</a></li>
         {% endif %}
         <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
@@ -79,7 +79,8 @@
         {% if messages %}
         {% for message in messages %}
         <div class="row flashes">
-            <h5 class="light-blue lighten-4 center-align flash-msg">{{ message }}</h5>
+            <h5 class="light-blue lighten-4 center-align flash-msg">{{ message }} <i
+                    class="fas fa-window-close right close-msg" onclick=delete_flash(this)></i></h5>
         </div>
         {% endfor %}
         {% endif %}
@@ -99,7 +100,7 @@
                 <div class="col l6 s12">
                     <p class="grey-text text-lighten-4">This site is for educational purposes only.</p>
                     <ul class="footer-link">
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col l4 offset-l2 s12">
