@@ -5,7 +5,7 @@
     <div class="col s12">
         <h4>Coin List</h4>
         <p>Below are the coins currently listed in the database for collection. Click on a coin for more details and to
-            add to your collection please click on the 'Add' button.
+            copy to your collection please click on the 'Copy' button.
         </p>
     </div>
 </div>
@@ -47,14 +47,14 @@
             <div class="card-action">
 
                 {% if session.admin %}
-                <div class="col s4 btn-wrapper">
+                <!-- <div class="col s4 btn-wrapper">
                     <a href="#{{coin._id}}" class="secondary-content btn-small green lighten-1 modal-trigger ">Copy</a>
-                </div>
-                <div class="col s4 btn-wrapper">
+                </div> -->
+                <div class="col s6 btn-wrapper">
                     <a href="{{ url_for('edit_coin', coin_id=coin._id) }}"
                         class="secondary-content btn-small orange lighten-1">Edit</a>
                 </div>
-                <div class="col s4 btn-wrapper">
+                <div class="col s6 btn-wrapper">
                     <a href="#delete_{{coin._id}}"
                         class="secondary-content btn-small red lighten-1 modal-trigger">Delete</a>
                 </div>
