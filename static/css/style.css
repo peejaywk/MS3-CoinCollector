@@ -81,6 +81,12 @@ nav li a {
     justify-content: center;
 }
 
+/* ---------- Contact Page ---------- */
+.contact-textarea {
+    height: 10rem;
+    color: #DDDDDD;
+}
+
 /* ---------- Search Panel ---------- */
 .search-panel {
     background-color: rgba(0, 0, 0, 0.2);

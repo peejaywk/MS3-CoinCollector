@@ -317,7 +317,8 @@ def add_coin():
 def delete_coin(coin_id):
     # Find all users who have the coin marked for deletion and
     # create a list containing all the Object ID's
-    user_coin_data = list(mongo.db.coins.find({"coin_id": ObjectId(coin_id)}, {"_id": 1}))
+    user_coin_data = list(mongo.db.coins.find(
+        {"coin_id": ObjectId(coin_id)}, {"_id": 1}))
 
     # Extract only the value from the key:value pair
     user_coin_ids = []
@@ -408,6 +409,11 @@ def search():
         coins, offset=offset, per_page=per_page)
     pagination = Pagination(page=page, per_page=per_page, total=len(coins))
     return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 
 if __name__ == "__main__":

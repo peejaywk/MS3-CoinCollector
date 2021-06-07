@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12">
+        <h4 class="center-align">Contact Us</h4>
+        <p>If you would like to report any problems with the website or suggest improvements then please use
+            the contact form below. Also use this form if you would like a particular coin adding to the website.
+            We will get back to you as soon as possible.
+        </p>
+    </div>
+</div>
+
+<!-- Contact Form -->
+<form class="needs-validation" onsubmit="return sendMail(this);">
+    <div class="row">
+        <div class="col s12 l6">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+        </div>
+        <div class="col s12 l6">
+            <label for="emailaddress">Email Address</label>
+            <input type="email" name="emailaddress" id="emailaddress" class="form-control" placeholder="Email Address"
+                required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 l6">
+            <label for="contactnumber">Contact Number</label>
+            <input type="text" name="contactnumber" id="contactnumber" class="form-control"
+                placeholder="Contact Number">
+        </div>
+        <div class="col s12 l6">
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <label for="message">Message</label>
+            <textarea class="contact-textarea" name="message" id="message" rows="10" placeholder="Type your message here." required></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 btn-wrapper">
+            <button id="send-button" class="waves-effect waves-light btn-large green lighten-1" type="submit">Send</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
