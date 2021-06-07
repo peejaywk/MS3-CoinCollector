@@ -114,6 +114,10 @@ nav li a {
     padding: 10px;
 }
 
+.search-btn {
+    margin: 4px;
+}
+
 .modal-style {
     background-color: #101E30 !important;
     border: 1px solid #DDDDDD !important;

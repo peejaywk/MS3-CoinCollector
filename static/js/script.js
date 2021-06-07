@@ -8,6 +8,7 @@ $(document).ready(function () {
         format: "dd mmmm, yyyy",
         yearRange: 3,
         autoClose: true,
+        maxDate: new Date(), // set maximum date to "today"
         i18n: {
             done: "Select"
         }
