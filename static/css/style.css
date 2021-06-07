@@ -254,6 +254,12 @@ input:-webkit-autofill {
     margin-left: 0;
     font-size: 12px;
     color: #DDDDDD;
+
+    display: inline-block;
+}
+
+.pagination {
+    display: inline-block;
 }
 
 .pagination li a {

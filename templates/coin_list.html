@@ -20,7 +20,8 @@
             </div>
             <div class="col s12 l4">
 
-                <a href="{{ url_for('coin_list') }}" class="red btn-small search-btn"><i class="fas fa-redo-alt left"></i>Reset</a>
+                <a href="{{ url_for('coin_list') }}" class="red btn-small search-btn"><i
+                        class="fas fa-redo-alt left"></i>Reset</a>
                 <button type="submit" class="light-blue darken-1 btn-small search-btn">
                     <i class="fas fa-search left"></i>Search
                 </button>
@@ -44,11 +45,10 @@
             </div>
 
             <div class="card-action">
-                
+
                 {% if session.admin %}
                 <div class="col s4 btn-wrapper">
-                    <a href="#{{coin._id}}"
-                        class="secondary-content btn-small green lighten-1 modal-trigger ">Add</a>
+                    <a href="#{{coin._id}}" class="secondary-content btn-small green lighten-1 modal-trigger ">Copy</a>
                 </div>
                 <div class="col s4 btn-wrapper">
                     <a href="{{ url_for('edit_coin', coin_id=coin._id) }}"
@@ -60,8 +60,8 @@
                 </div>
                 {% else %}
                 <div class="col s12 btn-wrapper">
-                    <a href="#{{coin._id}}"
-                        class="secondary-content btn-small green lighten-1 modal-trigger">Add</a>
+                    <a href="#{{coin._id}}" class="secondary-content btn-small green lighten-1 modal-trigger">Copy To
+                        Collection</a>
                 </div>
                 {% endif %}
             </div>
@@ -202,9 +202,13 @@
         </div>
     </div>
 
-    
+
     {% endfor %}
 </div>
-{{ pagination.info }}
-{{ pagination.links }}
+<div class="row">
+    <div class="col s12 center-align">
+        {{ pagination.links }}
+        {{ pagination.info }}
+    </div>
+</div>
 {% endblock %}
