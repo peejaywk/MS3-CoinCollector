@@ -6,6 +6,7 @@ from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args, get_page_parameter
+from flask_mail import Mail, Message
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -14,6 +15,23 @@ if os.path.exists("env.py"):
 
 # Create instance of Flask
 app = Flask(__name__)
+
+# Mail Settings
+mail_settings = {
+    "MAIL_SERVER": os.environ.get("MAIL_SERVER"),
+    "MAIL_PORT": os.environ.get("MAIL_PORT"),
+    "MAIL_USE_TLS": False,
+    "MAIL_USE_SSL": os.environ.get("MAIL_USE_SSL"),
+    "MAIL_USERNAME": os.environ.get("MAIL_USERNAME"),
+    "MAIL_PASSWORD": os.environ.get("MAIL_PASSWORD"),
+    "SECURITY_EMAIL_SENDER": os.environ.get("SECURITY_EMAIL_SENDER")
+}
+
+# Update application settings
+app.config.update(mail_settings)
+
+# Create instance of Flask Mail
+mail = Mail(app)
 
 # Configure connection to the MongoDB
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -403,8 +421,19 @@ def search():
     return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        with app.app_context():
+            msg = Message(subject="New Email From Coin Collector Contact Form")
+            msg.sender = request.form.get("emailaddress")
+            msg.recipients = [os.environ.get("MAIL_USERNAME")]
+            message = request.form.get("message")
+            msg.body = f"Email From: {msg.sender} \nMessage:{message}"
+            mail.send(msg)
+            flash("Message Sent Successfully!")
+            return redirect(url_for("contact"))
+    
     return render_template("contact.html")
 
 

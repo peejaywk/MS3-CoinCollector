@@ -12,7 +12,7 @@
 </div>
 
 <!-- Contact Form -->
-<form class="needs-validation" onsubmit="return sendMail(this);">
+<form method="POST" action="{{ url_for('contact') }}">
     <div class="row">
         <div class="col s12 l6">
             <label for="name">Name</label>
