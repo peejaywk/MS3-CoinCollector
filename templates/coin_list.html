@@ -47,9 +47,6 @@
             <div class="card-action">
 
                 {% if session.admin %}
-                <!-- <div class="col s4 btn-wrapper">
-                    <a href="#{{coin._id}}" class="secondary-content btn-small green lighten-1 modal-trigger ">Copy</a>
-                </div> -->
                 <div class="col s6 btn-wrapper">
                     <a href="{{ url_for('edit_coin', coin_id=coin._id) }}"
                         class="secondary-content btn-small orange lighten-1">Edit</a>
@@ -153,7 +150,7 @@
             <div class="modal-footer modal-footer-style">
                 <div class="row">
                     <div class="col s6">
-                        <button type="submit" class="btn-small green lighten-1 right">Add</button>
+                        <button type="submit" class="btn-small green lighten-1 right">Copy</button>
                     </div>
                     <div class="col s6">
                         <a href="#!" class="modal-close btn-small red lighten-1 left">Cancel</a>

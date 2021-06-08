@@ -96,14 +96,9 @@ def get_coins():
             user_coin['coin_data'] = coin_data
             coins.append(user_coin)
 
-        page = int(request.args.get('page', 1))
         per_page = 6
-        offset = (page - 1) * per_page
-
-        pagination_coins = paginate_coins(
-            coins, offset=offset, per_page=per_page)
-        pagination = Pagination(page=page, per_page=per_page, total=len(coins))
-
+        pagination_coins = paginate_coins(coins, per_page)
+        pagination = paginate_args(coins, per_page)
         return render_template("user_coins.html", coins=pagination_coins, pagination=pagination)
 
     return render_template("user_coins.html")
@@ -183,26 +178,26 @@ def logout():
     return redirect(url_for("get_coins"))
 
 
-def paginate_coins(coins, offset, per_page):
+def paginate_coins(coins, per_page):
+    page = int(request.args.get('page', 1))
+    offset = (page - 1) * per_page
     return coins[offset: offset + per_page]
+
+
+def paginate_args(coins, per_page):
+    page = int(request.args.get('page', 1))
+    return Pagination(page=page, per_page=per_page, total=len(coins))
 
 
 @app.route("/coin_list")
 def coin_list():
-
     # Check that the user is logged in before displaying the coin list
     # If not redirect to the login page.
     if session.get('user'):
-
         coins = list(mongo.db.circulation.find())
-
-        page = int(request.args.get('page', 1))
         per_page = 6
-        offset = (page - 1) * per_page
-
-        pagination_coins = paginate_coins(
-            coins, offset=offset, per_page=per_page)
-        pagination = Pagination(page=page, per_page=per_page, total=len(coins))
+        pagination_coins = paginate_coins(coins, per_page)
+        pagination = paginate_args(coins, per_page)
         return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
 
     return redirect(url_for("login"))
@@ -222,6 +217,7 @@ def add_user_coin(coin_id):
             "notes": request.form.get("notes")
         }
         mongo.db.coins.insert_one(coin)
+
         flash("Coin added to your collection.")
         return redirect(url_for("coin_list"))
 
@@ -401,13 +397,9 @@ def search():
     query = request.args.get("query")
     coins = list(mongo.db.circulation.find({"$text": {"$search": query}}))
 
-    page = int(request.args.get('page', 1))
     per_page = 6
-    offset = (page - 1) * per_page
-
-    pagination_coins = paginate_coins(
-        coins, offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=len(coins))
+    pagination_coins = paginate_coins(coins, per_page)
+    pagination = paginate_args(coins, per_page)
     return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
 
 
