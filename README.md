@@ -1,7 +1,7 @@
 # Coin Collector
 Coin Collector is a website for people who collect coins that are in everyday circulation within the UK. These could be coins found from the change in your 
 pocket to coins traded / purchased on online auction sites. The site maintains a database of coins currently in circulation within the UK and allows the user 
-to record what coins they have in their collection. 
+to record what coins they have in their collection. Users can be granted admin access if they would like to contribute / add coins to the database.
 
 *NOTE: The initial release of the website will focus on the UK fifty pence piece and two pound coin as these are the most popular coins for collectors as 
 they have had many variations on design over the years.*

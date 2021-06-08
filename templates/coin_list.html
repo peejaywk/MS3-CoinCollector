@@ -56,9 +56,12 @@
                         class="secondary-content btn-small red lighten-1 modal-trigger">Delete</a>
                 </div>
                 {% else %}
-                <div class="col s12 btn-wrapper">
-                    <a href="#{{coin._id}}" class="secondary-content btn-small green lighten-1 modal-trigger">Copy To
-                        Collection</a>
+                <div class="col s6 btn-wrapper">
+                    <a href="{{ url_for('add_wishlist', coin_id=coin._id) }}"
+                        class="secondary-content btn-small green lighten-1 modal-trigger">+Wishlist</a>
+                </div>
+                <div class="col s6 btn-wrapper">
+                    <a href="#{{coin._id}}" class="secondary-content btn-small green lighten-1 modal-trigger">Copy</a>
                 </div>
                 {% endif %}
             </div>

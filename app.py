@@ -221,6 +221,61 @@ def coin_list():
     return redirect(url_for("login"))
 
 
+@app.route("/wishlist")
+def wishlist():
+    if session.get('user'):
+        # Find the current session user in the db and retrieve the
+        # users ObjectId
+        user_id = mongo.db.users.find_one(
+            {"email": session["user"]})["_id"]
+
+        coin_ids = []
+        # Find all entries that match the current user and add to list
+        for coin in mongo.db.wishlists.find({"user_id": ObjectId(user_id)}):
+            coin_ids.append((coin["_id"], coin["coin_id"]))
+        
+        coins = []
+        # Gather all data into one dictionary ready for rendering.
+        for id, coin in coin_ids:
+            # Find the coin data from the circulation collection
+            coin_data = mongo.db.circulation.find_one({"_id": ObjectId(coin)})
+
+            # Find the users entry from the wishlist collection and add
+            # in the coin data.
+            user_coin = mongo.db.wishlists.find_one({"_id": id})
+            user_coin['coin_data'] = coin_data
+            coins.append(user_coin)
+
+        per_page = 6
+        pagination_coins = paginate_coins(coins, per_page)
+        pagination = paginate_args(coins, per_page)
+        return render_template("wishlist.html", wishlist_coins=pagination_coins, pagination=pagination)
+
+    return render_template("wishlist.html")
+
+
+@app.route("/add_wishlist/<coin_id>")
+def add_wishlist(coin_id):
+    # Find the current session user in the db and retrieve the users ObjectId
+    user_id = mongo.db.users.find_one(
+        {"email": session["user"]})["_id"]
+
+    wishlist_coin = {
+        "user_id": ObjectId(user_id),
+        "coin_id": ObjectId(coin_id)
+    }
+    mongo.db.wishlists.insert_one(wishlist_coin)
+    flash("Coin added to your wish list.")
+    return redirect(url_for("coin_list"))
+
+
+@app.route("/delete_wishlist_coin/<wishlist_coin_id>")
+def delete_wishlist_coin(wishlist_coin_id):
+    mongo.db.wishlists.remove({"_id": ObjectId(wishlist_coin_id)})
+    flash("Coin Deleted From Wish List")
+    return redirect(url_for("wishlist"))
+
+
 @app.route("/add_user_coin/<coin_id>", methods=["GET", "POST"])
 def add_user_coin(coin_id):
     if request.method == "POST":
@@ -433,7 +488,7 @@ def contact():
             mail.send(msg)
             flash("Message Sent Successfully!")
             return redirect(url_for("contact"))
-    
+
     return render_template("contact.html")
 
 
