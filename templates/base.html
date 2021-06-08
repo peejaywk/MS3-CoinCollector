@@ -29,7 +29,9 @@
             <a href="#" data-target="mobile-nav" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
                 {% if session.user %}
-                <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
+                    {% if not session.admin %}
+                        <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
+                    {% endif %}
                 {% else %}
                 <li><a href="{{ url_for('get_coins') }}">Home</a></li>
                 {% endif %}
@@ -53,7 +55,9 @@
 
     <ul class="sidenav" id="mobile-nav">
         {% if session.user %}
-        <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
+            {% if not session.admin %}
+                <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
+            {% endif %}
         {% else %}
         <li><a href="{{ url_for('get_coins') }}">Home</a></li>
         {% endif %}
@@ -99,6 +103,7 @@
             <div class="row">
                 <div class="col l6 s12">
                     <p class="grey-text text-lighten-4">This site is for educational purposes only.</p>
+                    <p class="grey-text text-lighten-4">All Images are copyright of The Royal Mint</p>
                     <ul class="footer-link">
                         <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
                     </ul>

@@ -24,10 +24,24 @@ p {
     color: #DDDDDD;
 }
 
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+/* ---------- Navbar & Sidenav ---------- */
 nav .brand-logo {
     color: #DDDDDD;
     margin-left: 25px;
     font-size: 2rem
+}
+
+.sidenav {
+    background-color: #4078C0;
+}
+
+.sidenav li a {
+    color: #DDDDDD;
 }
 
 .nav-wrapper {
@@ -78,6 +92,7 @@ nav li a {
   cursor: pointer;
 }
 
+/* ---------- Tables ---------- */
 .td-text-heading {
     color: #DDDDDD;
     
@@ -87,11 +102,6 @@ nav li a {
     color: #DDDDDD;
     font-size: 14px;
     font-weight: 300;
-}
-
-.btn-wrapper {
-    display: flex;
-    justify-content: center;
 }
 
 /* ---------- Contact Page ---------- */
@@ -118,6 +128,7 @@ nav li a {
     margin: 4px;
 }
 
+/* ---------- Modals ---------- */
 .modal-style {
     background-color: #101E30 !important;
     border: 1px solid #DDDDDD !important;
@@ -128,12 +139,14 @@ nav li a {
     border-top: 1px solid #2F2838 !important;
 }
 
+/* ----------- Login / Register Panel ---------- */
 .login-panel,
 .register-panel {
     background-color: #101E30 !important;
     border: 1px solid #DDDDDD;
 }
 
+/* ---------- Coin Card ---------- */
 .coin-card {
     border: 1px solid #DDDDDD;
     border-radius: 2%;
