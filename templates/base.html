@@ -31,7 +31,7 @@
                 {% if session.user %}
                     {% if not session.admin %}
                         <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
-                        <li><a href="{{ url_for('wishlist') }}">My Wish List</a></li>
+                        <li><a href="{{ url_for('wishlist') }}">My Wishlist</a></li>
                     {% endif %}
                 {% else %}
                 <li><a href="{{ url_for('get_coins') }}">Home</a></li>
@@ -58,7 +58,7 @@
         {% if session.user %}
             {% if not session.admin %}
                 <li><a href="{{ url_for('get_coins') }}">My Collection</a></li>
-                <li><a href="{{ url_for('wishlist') }}">My Wish List</a></li>
+                <li><a href="{{ url_for('wishlist') }}">My Wishlist</a></li>
             {% endif %}
         {% else %}
         <li><a href="{{ url_for('get_coins') }}">Home</a></li>

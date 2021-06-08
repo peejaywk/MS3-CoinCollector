@@ -58,10 +58,12 @@
                 {% else %}
                 <div class="col s6 btn-wrapper">
                     <a href="{{ url_for('add_wishlist', coin_id=coin._id) }}"
-                        class="secondary-content btn-small green lighten-1 modal-trigger">+Wishlist</a>
+                        class="tooltipped secondary-content btn-small green lighten-1 modal-trigger" data-position="top"
+                        data-tooltip="Add to Wishlist">+Wishlist</a>
                 </div>
                 <div class="col s6 btn-wrapper">
-                    <a href="#{{coin._id}}" class="secondary-content btn-small green lighten-1 modal-trigger">Copy</a>
+                    <a href="#{{coin._id}}" class="tooltipped secondary-content btn-small green lighten-1 modal-trigger"
+                        data-position="top" data-tooltip="Copy to Collection">Copy</a>
                 </div>
                 {% endif %}
             </div>
