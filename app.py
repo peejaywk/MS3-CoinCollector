@@ -58,6 +58,8 @@ s3 = boto3.client(
     aws_secret_access_key=S3_SECRET
 )
 
+CARDS_PER_PAGE = 6
+
 
 def upload_file_to_s3(file, acl="public-read"):
     """
@@ -89,13 +91,24 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+def paginate_coins(coins, per_page):
+    page = int(request.args.get('page', 1))
+    offset = (page - 1) * per_page
+    return coins[offset: offset + per_page]
+
+
+def paginate_args(coins, per_page):
+    page = int(request.args.get('page', 1))
+    return Pagination(page=page, per_page=per_page, total=len(coins))
+
+
 def get_page_from_url(url):
     """
     Extract page number from the url.
     Uses request referrer/regex to extract the page number from the
     URL.
     Returns the page number from the url
-    """ 
+    """
     regexp = '(?<=page=)([^&]*)(?=&)?'
     return re.findall(regexp, request.referrer)
 
@@ -103,6 +116,7 @@ def get_page_from_url(url):
 @app.route("/")
 @app.route("/get_coins", methods=["GET", "POST"])
 def get_coins():
+    # Check user is in session before proceeding with request
     if session.get('user'):
         # Find the current session user in the db and retrieve the
         # users ObjectId
@@ -126,9 +140,8 @@ def get_coins():
             user_coin['coin_data'] = coin_data
             coins.append(user_coin)
 
-        per_page = 6
-        pagination_coins = paginate_coins(coins, per_page)
-        pagination = paginate_args(coins, per_page)
+        pagination_coins = paginate_coins(coins, CARDS_PER_PAGE)
+        pagination = paginate_args(coins, CARDS_PER_PAGE)
         return render_template("user_coins.html", coins=pagination_coins, pagination=pagination)
 
     return render_template("user_coins.html")
@@ -208,29 +221,18 @@ def logout():
     return redirect(url_for("get_coins"))
 
 
-def paginate_coins(coins, per_page):
-    page = int(request.args.get('page', 1))
-    offset = (page - 1) * per_page
-    return coins[offset: offset + per_page]
-
-
-def paginate_args(coins, per_page):
-    page = int(request.args.get('page', 1))
-    return Pagination(page=page, per_page=per_page, total=len(coins))
-
-
 @app.route("/coin_list")
 def coin_list():
     # Check that the user is logged in before displaying the coin list
     # If not redirect to the login page.
     if session.get('user'):
         coins = list(mongo.db.circulation.find())
-        per_page = 6
-        pagination_coins = paginate_coins(coins, per_page)
-        pagination = paginate_args(coins, per_page)
+        pagination_coins = paginate_coins(coins, CARDS_PER_PAGE)
+        pagination = paginate_args(coins, CARDS_PER_PAGE)
         return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
-
-    return redirect(url_for("login"))
+    else:
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
 
 
 @app.route("/wishlist")
@@ -258,239 +260,291 @@ def wishlist():
             user_coin['coin_data'] = coin_data
             coins.append(user_coin)
 
-        per_page = 6
-        pagination_coins = paginate_coins(coins, per_page)
-        pagination = paginate_args(coins, per_page)
+        pagination_coins = paginate_coins(coins, CARDS_PER_PAGE)
+        pagination = paginate_args(coins, CARDS_PER_PAGE)
 
         return render_template("wishlist.html", wishlist_coins=pagination_coins, pagination=pagination)
 
-    return redirect(url_for("login"))
+    else:
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
 
 
 @app.route("/add_wishlist/<coin_id>")
 def add_wishlist(coin_id):
-    # Find the current session user in the db and retrieve the users ObjectId
-    user_id = mongo.db.users.find_one(
-        {"email": session["user"]})["_id"]
-
-    wishlist_coin = {
-        "user_id": ObjectId(user_id),
-        "coin_id": ObjectId(coin_id)
-    }
-
-    # Add user & coin to the wishlist catalogue.
-    mongo.db.wishlists.insert_one(wishlist_coin)
-    flash("Coin added to your wish list.")
-
-    # Extract page number from the previous URL
-    # This will redirect the user back to the same page of the
-    # wish list. If they came from coin_list?/page=4 they will
-    # return to the same page
-    page = get_page_from_url(request.referrer)
-
-    return redirect(url_for("coin_list", page=page))
-
-
-@app.route("/delete_wishlist_coin/<wishlist_coin_id>")
-def delete_wishlist_coin(wishlist_coin_id):
-    mongo.db.wishlists.remove({"_id": ObjectId(wishlist_coin_id)})
-    flash("Coin Removed From Wish List")
-
-    # Extract page number from the previous URL
-    # This will redirect the user back to the same page of the
-    # wish list. If they came from wishlist?/page=4 they will
-    # return to the same page
-    page = get_page_from_url(request.referrer)
-
-    return redirect(url_for("wishlist", page=page))
-
-
-@app.route("/add_user_coin/<coin_id>", methods=["GET", "POST"])
-def add_user_coin(coin_id):
-    if request.method == "POST":
+    if session.get('user'):
         # Find the current session user in the db and retrieve the users ObjectId
         user_id = mongo.db.users.find_one(
             {"email": session["user"]})["_id"]
 
-        coin = {
+        wishlist_coin = {
             "user_id": ObjectId(user_id),
-            "coin_id": ObjectId(coin_id),
-            "date_found": request.form.get("date-found"),
-            "notes": request.form.get("notes")
+            "coin_id": ObjectId(coin_id)
         }
-        mongo.db.coins.insert_one(coin)
-        flash("Coin added to your collection.")
-        return redirect(url_for("coin_list"))
 
-    return redirect(url_for("coin_list"))
+        # Add user & coin to the wishlist catalogue.
+        mongo.db.wishlists.insert_one(wishlist_coin)
+        flash("Coin added to your wish list.")
+
+        # Extract page number from the previous URL
+        # This will redirect the user back to the same page of the
+        # wish list. If they came from coin_list?/page=4 they will
+        # return to the same page
+        page = get_page_from_url(request.referrer)
+
+        return redirect(url_for("coin_list", page=page))
+    else:
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
+
+
+@app.route("/delete_wishlist_coin/<wishlist_coin_id>")
+def delete_wishlist_coin(wishlist_coin_id):
+    if session.get('user'):
+        mongo.db.wishlists.remove({"_id": ObjectId(wishlist_coin_id)})
+        flash("Coin Removed From Wish List")
+
+        # Extract page number from the previous URL
+        # This will redirect the user back to the same page of the
+        # wish list. If they came from wishlist?/page=4 they will
+        # return to the same page
+        page = get_page_from_url(request.referrer)
+
+        return redirect(url_for("wishlist", page=page))
+    else:
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
+
+
+@app.route("/add_user_coin/<coin_id>", methods=["GET", "POST"])
+def add_user_coin(coin_id):
+    if session.get('user'):
+        if request.method == "POST":
+            # Find the current session user in the db and retrieve the users ObjectId
+            user_id = mongo.db.users.find_one(
+                {"email": session["user"]})["_id"]
+
+            coin = {
+                "user_id": ObjectId(user_id),
+                "coin_id": ObjectId(coin_id),
+                "date_found": request.form.get("date-found"),
+                "notes": request.form.get("notes")
+            }
+            mongo.db.coins.insert_one(coin)
+            flash("Coin added to your collection.")
+
+            # Extract page number from the previous URL
+            # This will redirect the user back to the same page of the
+            # wish list. If they came from coin_list?/page=4 they will
+            # return to the same page
+            page = get_page_from_url(request.referrer)
+            return redirect(url_for("coin_list", page=page))
+        else:
+            return redirect(url_for("coin_list"))
+    else:
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
 
 
 @app.route("/edit_user_coin/<user_coin_id>", methods=["GET", "POST"])
 def edit_user_coin(user_coin_id):
-    if request.method == "POST":
-        user_coin = mongo.db.coins.find_one({"_id": ObjectId(user_coin_id)})
+    if session.get('user'):
+        if request.method == "POST":
+            user_coin = mongo.db.coins.find_one(
+                {"_id": ObjectId(user_coin_id)})
 
-        update_data = {"$set": {
-            "date_found": request.form.get("date-found"),
-            "notes": request.form.get("notes")
-        }}
+            update_data = {"$set": {
+                "date_found": request.form.get("date-found"),
+                "notes": request.form.get("notes")
+            }}
 
-        mongo.db.coins.update_many(user_coin, update_data)
-        flash("Entry Successfully Updated")
-        return redirect(url_for("get_coins"))
-
-    return redirect(url_for("get_coins"))
+            mongo.db.coins.update_many(user_coin, update_data)
+            flash("Entry Successfully Updated")
+            return redirect(url_for("get_coins"))
+        else:
+            return redirect(url_for("get_coins"))
+    else:
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
 
 
 @app.route("/delete_user_coin/<user_coin_id>")
 def delete_user_coin(user_coin_id):
-    mongo.db.coins.remove({"_id": ObjectId(user_coin_id)})
-    flash("Coin Deleted From Collection")
-    return redirect(url_for("get_coins"))
+    if session.get('user'):
+        mongo.db.coins.remove({"_id": ObjectId(user_coin_id)})
+        flash("Coin Deleted From Collection")
+        return redirect(url_for("get_coins"))
+    else:
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
 
 
 @app.route("/add_coin", methods=["GET", "POST"])
 def add_coin():
-    # Request a list of denominations from Mongo for the form.
-    denominations = list(mongo.db.denominations.find().sort("name", 1))
+    if session.get('user'):
+        if session.get('admin'):
+            # Request a list of denominations from Mongo for the form.
+            denominations = list(mongo.db.denominations.find().sort("name", 1))
 
-    # Check to see if the user has selected files for upload
-    # Check for obverse image
-    print(request.files)
-    if "obverse_img_fname" not in request.files:
-        file_ob_url = ""
-    else:
-        file_ob = request.files["obverse_img_fname"]
-        if file_ob.filename == "":
-            file_ob_url = ""
+            # Check to see if the user has selected files for upload
+            # Check for obverse image
+            print(request.files)
+            if "obverse_img_fname" not in request.files:
+                file_ob_url = ""
+            else:
+                file_ob = request.files["obverse_img_fname"]
+                if file_ob.filename == "":
+                    file_ob_url = ""
+                else:
+                    if file_ob and allowed_file(file_ob.filename):
+                        file_ob.filename = secure_filename(file_ob.filename)
+                        output = upload_file_to_s3(file_ob)
+                        file_ob_url = str(output)
+
+            # Check for reverse image
+            if "reverse_img_fname" not in request.files:
+                file_rev_url = ""
+            else:
+                file_rev = request.files["reverse_img_fname"]
+                if file_rev.filename == "":
+                    file_rev_url = ""
+                else:
+                    if file_rev and allowed_file(file_rev.filename):
+                        file_rev.filename = secure_filename(file_rev.filename)
+                        output = upload_file_to_s3(file_rev)
+                        file_rev_url = str(output)
+
+            if request.method == "POST":
+                coin_data = {
+                    "denomination": request.form.get("denomination"),
+                    "year": request.form.get("year"),
+                    "issue": request.form.get("issue"),
+                    "description": request.form.get("description"),
+                    "circulation": request.form.get("circulation"),
+                    "edge": request.form.get("edge"),
+                    "mintage": request.form.get("mintage"),
+                    "material": request.form.get("material"),
+                    "thickness": request.form.get("thickness"),
+                    "weight": request.form.get("weight"),
+                    "diameter": request.form.get("diameter"),
+                    "obverse_designer": request.form.get("obverse_designer"),
+                    "reverse_designer": request.form.get("reverse_designer"),
+                    "obverse_image": file_ob_url,
+                    "reverse_image": file_rev_url,
+                    "date_added": date.today().strftime("%d %b %Y"),
+                    "date_edited": date.today().strftime("%d %b %Y")
+                }
+                mongo.db.circulation.insert_one(coin_data)
+                flash("Coin added to database.")
+
+                return render_template("add_coin.html", denominations=denominations)
+            else:
+                return render_template("add_coin.html", denominations=denominations)
         else:
-            if file_ob and allowed_file(file_ob.filename):
-                file_ob.filename = secure_filename(file_ob.filename)
-                output = upload_file_to_s3(file_ob)
-                file_ob_url = str(output)
-
-    # Check for reverse image
-    if "reverse_img_fname" not in request.files:
-        file_rev_url = ""
+            flash("You do not have the correct access to view this page")
+            return redirect(url_for("get_coins"))
     else:
-        file_rev = request.files["reverse_img_fname"]
-        if file_rev.filename == "":
-            file_rev_url = ""
-        else:
-            if file_rev and allowed_file(file_rev.filename):
-                file_rev.filename = secure_filename(file_rev.filename)
-                output = upload_file_to_s3(file_rev)
-                file_rev_url = str(output)
-
-    if request.method == "POST":
-        coin_data = {
-            "denomination": request.form.get("denomination"),
-            "year": request.form.get("year"),
-            "issue": request.form.get("issue"),
-            "description": request.form.get("description"),
-            "circulation": request.form.get("circulation"),
-            "edge": request.form.get("edge"),
-            "mintage": request.form.get("mintage"),
-            "material": request.form.get("material"),
-            "thickness": request.form.get("thickness"),
-            "weight": request.form.get("weight"),
-            "diameter": request.form.get("diameter"),
-            "obverse_designer": request.form.get("obverse_designer"),
-            "reverse_designer": request.form.get("reverse_designer"),
-            "obverse_image": file_ob_url,
-            "reverse_image": file_rev_url,
-            "date_added": date.today().strftime("%d %b %Y"),
-            "date_edited": date.today().strftime("%d %b %Y")
-        }
-        mongo.db.circulation.insert_one(coin_data)
-        flash("Coin added to database.")
-
-        return render_template("add_coin.html", denominations=denominations)
-
-    return render_template("add_coin.html", denominations=denominations)
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
 
 
 @app.route("/delete_coin/<coin_id>")
 def delete_coin(coin_id):
-    # Find all users who have the coin marked for deletion and
-    # create a list containing all the Object ID's
-    user_coin_data = list(mongo.db.coins.find(
-        {"coin_id": ObjectId(coin_id)}, {"_id": 1}))
+    if session.get('user'):
+        if session.get('admin'):
+            # Find all users who have the coin marked for deletion and
+            # create a list containing all the Object ID's
+            user_coin_data = list(mongo.db.coins.find(
+                {"coin_id": ObjectId(coin_id)}, {"_id": 1}))
 
-    # Extract only the value from the key:value pair
-    user_coin_ids = []
-    for user_coin in user_coin_data:
-        user_coin_ids.append(user_coin["_id"])
+            # Extract only the value from the key:value pair
+            user_coin_ids = []
+            for user_coin in user_coin_data:
+                user_coin_ids.append(user_coin["_id"])
 
-    # Delete all the user coin entries
-    user_result = mongo.db.coins.delete_many({"_id": {"$in": user_coin_ids}})
+            # Delete all the user coin entries
+            user_result = mongo.db.coins.delete_many(
+                {"_id": {"$in": user_coin_ids}})
 
-    # Delete the coin from the database
-    coin_result = mongo.db.circulation.delete_one({"_id": ObjectId(coin_id)})
+            # Delete the coin from the database
+            mongo.db.circulation.delete_one({"_id": ObjectId(coin_id)})
 
-    print(user_result.deleted_count)
+            flash("Deleted, {} instance(s) of the coin".format(
+                user_result.deleted_count))
 
-    flash("Deleted, {} instance(s) of the coin".format(user_result.deleted_count))
-
-    return redirect(url_for("coin_list"))
+            return redirect(url_for("coin_list"))
+        else:
+            flash("You do not have the correct access to view this page")
+            return redirect(url_for("get_coins"))
+    else:
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
 
 
 @app.route("/edit_coin/<coin_id>", methods=["GET", "POST"])
 def edit_coin(coin_id):
-    # Request a list of denominations from Mongo for the form.
-    denominations = list(mongo.db.denominations.find().sort("name", 1))
+    if session.get('user'):
+        if session.get('admin'):
+            # Request a list of denominations from Mongo for the form.
+            denominations = list(mongo.db.denominations.find().sort("name", 1))
 
-    # Request data for the coin being edited
-    coin = mongo.db.circulation.find_one({"_id": ObjectId(coin_id)})
+            # Request data for the coin being edited
+            coin = mongo.db.circulation.find_one({"_id": ObjectId(coin_id)})
 
-    # Check if user has added new obverse image for upload.
-    if "obverse_img_fname" in request.files:
-        if request.files["obverse_img_fname"].filename == "":
-            file_ob_url = coin["obverse_image"]
+            # Check if user has added new obverse image for upload.
+            if "obverse_img_fname" in request.files:
+                if request.files["obverse_img_fname"].filename == "":
+                    file_ob_url = coin["obverse_image"]
+                else:
+                    file_ob = request.files["obverse_img_fname"]
+                    if file_ob and allowed_file(file_ob.filename):
+                        file_ob.filename = secure_filename(file_ob.filename)
+                        output = upload_file_to_s3(file_ob)
+                        file_ob_url = str(output)
+
+            # Check if user has added new reverse image for upload.
+            if "reverse_img_fname" in request.files:
+                if request.files["reverse_img_fname"].filename == "":
+                    file_rev_url = coin["reverse_image"]
+                else:
+                    file_rev = request.files["reverse_img_fname"]
+                    if file_rev and allowed_file(file_rev.filename):
+                        file_rev.filename = secure_filename(file_rev.filename)
+                        output = upload_file_to_s3(file_rev)
+                        file_rev_url = str(output)
+
+            if request.method == "POST":
+                coin_data = {
+                    "denomination": request.form.get("denomination"),
+                    "year": request.form.get("year"),
+                    "issue": request.form.get("issue"),
+                    "description": request.form.get("description"),
+                    "circulation": request.form.get("circulation"),
+                    "edge": request.form.get("edge"),
+                    "mintage": request.form.get("mintage"),
+                    "material": request.form.get("material"),
+                    "thickness": request.form.get("thickness"),
+                    "weight": request.form.get("weight"),
+                    "diameter": request.form.get("diameter"),
+                    "obverse_designer": request.form.get("obverse_designer"),
+                    "reverse_designer": request.form.get("reverse_designer"),
+                    "obverse_image": file_ob_url,
+                    "reverse_image": file_rev_url,
+                    "date_added": coin["date_added"],
+                    "date_edited": date.today().strftime("%d %b %Y"),
+                }
+                print(coin_data)
+                mongo.db.circulation.update({"_id": ObjectId(coin_id)}, coin_data)
+                flash("Coin Successfully Updated")
+                return redirect(url_for("coin_list"))
+            else:
+                return render_template("edit_coin.html", coin=coin, denominations=denominations)
         else:
-            file_ob = request.files["obverse_img_fname"]
-            if file_ob and allowed_file(file_ob.filename):
-                file_ob.filename = secure_filename(file_ob.filename)
-                output = upload_file_to_s3(file_ob)
-                file_ob_url = str(output)
-
-    # Check if user has added new reverse image for upload.
-    if "reverse_img_fname" in request.files:
-        if request.files["reverse_img_fname"].filename == "":
-            file_rev_url = coin["reverse_image"]
-        else:
-            file_rev = request.files["reverse_img_fname"]
-            if file_rev and allowed_file(file_rev.filename):
-                file_rev.filename = secure_filename(file_rev.filename)
-                output = upload_file_to_s3(file_rev)
-                file_rev_url = str(output)
-
-    if request.method == "POST":
-        coin_data = {
-            "denomination": request.form.get("denomination"),
-            "year": request.form.get("year"),
-            "issue": request.form.get("issue"),
-            "description": request.form.get("description"),
-            "circulation": request.form.get("circulation"),
-            "edge": request.form.get("edge"),
-            "mintage": request.form.get("mintage"),
-            "material": request.form.get("material"),
-            "thickness": request.form.get("thickness"),
-            "weight": request.form.get("weight"),
-            "diameter": request.form.get("diameter"),
-            "obverse_designer": request.form.get("obverse_designer"),
-            "reverse_designer": request.form.get("reverse_designer"),
-            "obverse_image": file_ob_url,
-            "reverse_image": file_rev_url,
-            "date_added": coin["date_added"],
-            "date_edited": date.today().strftime("%d %b %Y"),
-        }
-        print(coin_data)
-        mongo.db.circulation.update({"_id": ObjectId(coin_id)}, coin_data)
-        flash("Coin Successfully Updated")
-        return redirect(url_for("coin_list"))
-
-    return render_template("edit_coin.html", coin=coin, denominations=denominations)
+            flash("You do not have the correct access to view this page")
+            return redirect(url_for("get_coins"))
+    else:
+        flash("Please Log In or Register to access the site")
+        return redirect(url_for("login"))
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -498,9 +552,8 @@ def search():
     query = request.args.get("query")
     coins = list(mongo.db.circulation.find({"$text": {"$search": query}}))
 
-    per_page = 6
-    pagination_coins = paginate_coins(coins, per_page)
-    pagination = paginate_args(coins, per_page)
+    pagination_coins = paginate_coins(coins, CARDS_PER_PAGE)
+    pagination = paginate_args(coins, CARDS_PER_PAGE)
     return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
 
 
