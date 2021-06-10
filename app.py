@@ -10,6 +10,7 @@ from flask_mail import Mail, Message
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+import re
 if os.path.exists("env.py"):
     import env
 
@@ -249,9 +250,10 @@ def wishlist():
         per_page = 6
         pagination_coins = paginate_coins(coins, per_page)
         pagination = paginate_args(coins, per_page)
+        
         return render_template("wishlist.html", wishlist_coins=pagination_coins, pagination=pagination)
 
-    return render_template("wishlist.html")
+    return redirect(url_for("login"))
 
 
 @app.route("/add_wishlist/<coin_id>")
@@ -264,9 +266,20 @@ def add_wishlist(coin_id):
         "user_id": ObjectId(user_id),
         "coin_id": ObjectId(coin_id)
     }
+
+    # Add user & coin to the wishlist catalogue.
     mongo.db.wishlists.insert_one(wishlist_coin)
     flash("Coin added to your wish list.")
-    return redirect(url_for("coin_list"))
+
+    # Use request referrer/regex to extract the page number from the
+    # URL the request came from.
+    # This will redirect the user back to the same page of the
+    # coin list. If they came from coil_list?/page=4 they will
+    # return to the same page
+    regexp = '(?<=page=)([^&]*)(?=&)?'
+    page = re.findall(regexp, request.referrer)
+
+    return redirect(url_for("coin_list", page=page))
 
 
 @app.route("/delete_wishlist_coin/<wishlist_coin_id>")
@@ -290,7 +303,6 @@ def add_user_coin(coin_id):
             "notes": request.form.get("notes")
         }
         mongo.db.coins.insert_one(coin)
-
         flash("Coin added to your collection.")
         return redirect(url_for("coin_list"))
 
