@@ -89,6 +89,17 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+def get_page_from_url(url):
+    """
+    Extract page number from the url.
+    Uses request referrer/regex to extract the page number from the
+    URL.
+    Returns the page number from the url
+    """ 
+    regexp = '(?<=page=)([^&]*)(?=&)?'
+    return re.findall(regexp, request.referrer)
+
+
 @app.route("/")
 @app.route("/get_coins", methods=["GET", "POST"])
 def get_coins():
@@ -234,7 +245,7 @@ def wishlist():
         # Find all entries that match the current user and add to list
         for coin in mongo.db.wishlists.find({"user_id": ObjectId(user_id)}):
             coin_ids.append((coin["_id"], coin["coin_id"]))
-        
+
         coins = []
         # Gather all data into one dictionary ready for rendering.
         for id, coin in coin_ids:
@@ -250,7 +261,7 @@ def wishlist():
         per_page = 6
         pagination_coins = paginate_coins(coins, per_page)
         pagination = paginate_args(coins, per_page)
-        
+
         return render_template("wishlist.html", wishlist_coins=pagination_coins, pagination=pagination)
 
     return redirect(url_for("login"))
@@ -271,13 +282,11 @@ def add_wishlist(coin_id):
     mongo.db.wishlists.insert_one(wishlist_coin)
     flash("Coin added to your wish list.")
 
-    # Use request referrer/regex to extract the page number from the
-    # URL the request came from.
+    # Extract page number from the previous URL
     # This will redirect the user back to the same page of the
-    # coin list. If they came from coil_list?/page=4 they will
+    # wish list. If they came from coin_list?/page=4 they will
     # return to the same page
-    regexp = '(?<=page=)([^&]*)(?=&)?'
-    page = re.findall(regexp, request.referrer)
+    page = get_page_from_url(request.referrer)
 
     return redirect(url_for("coin_list", page=page))
 
@@ -285,8 +294,15 @@ def add_wishlist(coin_id):
 @app.route("/delete_wishlist_coin/<wishlist_coin_id>")
 def delete_wishlist_coin(wishlist_coin_id):
     mongo.db.wishlists.remove({"_id": ObjectId(wishlist_coin_id)})
-    flash("Coin Deleted From Wish List")
-    return redirect(url_for("wishlist"))
+    flash("Coin Removed From Wish List")
+
+    # Extract page number from the previous URL
+    # This will redirect the user back to the same page of the
+    # wish list. If they came from wishlist?/page=4 they will
+    # return to the same page
+    page = get_page_from_url(request.referrer)
+
+    return redirect(url_for("wishlist", page=page))
 
 
 @app.route("/add_user_coin/<coin_id>", methods=["GET", "POST"])
