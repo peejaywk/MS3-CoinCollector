@@ -185,3 +185,4 @@ in the correct search term.
 * [Flask Pagination - GitHub](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)
 * [Flask User Authentication](https://github.com/MiroslavSvec/DCD_lead/blob/user-auth/app.py) - Example code to register/authenticate a user using Flask.
 * [Flask-Mail Setup](https://code-institute-room.slack.com/archives/C7JQY2RHC/p1611678109168400) - Slack post by Karina on how to setup Flask-Mail
+* [Flask Referrer](https://code-institute-room.slack.com/archives/C7JQY2RHC/p1623169621486800) - BenKav_lead assistance in helping with redirecting users back to the page they came from
