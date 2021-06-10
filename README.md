@@ -17,9 +17,17 @@ The main aims of the website are:
 
 [User Experience (UX)](#userexperience)
 
+[Database Design](#database)
+
 [Features](#features)
 
 [Technologies Used](#technologies)
+
+[Testing](#testing)
+
+[Bugs/Issues](#bug)
+
+[Deployment](#deployment)
 
 [Credits](#credits)
 
@@ -63,6 +71,16 @@ Initial design ideas were captured using [Balsamiq](https://balsamiq.com/) - the
 * [Admin Page](/assets/wireframes/005-AdminPage-v2.png)
 * [Admin Add/Edit Coin](/assets/wireframes/006-Admin-Add_EditCoin-v1.png)
 * [Contact Us Page](/assets/wireframes/007-ContactPage-v1.png)
+
+<a name="database"></a>
+## Database Design
+
+The website uses [MongoDB](https://www.mongodb.com/) as the backend database. The database for this site consists of five collections. The relationships between these collections
+are documented in the tables below and also illustrated graphically in the pdf diagram linked below. The design of the database went through several itterations and these can be 
+found in the /assets/documetation folder of the repository.
+
+* [Database Diagram](/assets/documentation/DatabaseStructurev4.pdf)
+
 
 <a name="features"></a>
 ## Features
@@ -130,6 +148,7 @@ Initial design ideas were captured using [Balsamiq](https://balsamiq.com/) - the
 * [Materialize 1.0.0](https://materializecss.com/). Responsive front-end framework.
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/). Lightweight web application framework.
 * [Heroku](https://www.heroku.com/). Heroku is used as the deployment platform for the website.
+* [MongoDB](https://www.mongodb.com/). Non-relational database.
 * [GitPod](https://gitpod.io/) was use as the development environment.
 * [GitHub](https://github.com/) was used for configuration control and to host the website.
 * [Font Awesome](https://fontawesome.com/) provided the social media icons and the icons for the concerts and set list sections.
