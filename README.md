@@ -261,9 +261,10 @@ classes provided by Mterialize. The custom colours used to style the rest of the
 * [JS Lint](https://jslint.com/). Javascript code quality tool.
 * Amazon AWS
 
+<a name="testing"></a>
+## Testing
 
-
-
+See [testing.md](/assets/documentation/testing.md) for the testing documentation.
 
 
 Setting up GitPod environment
