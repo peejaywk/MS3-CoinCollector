@@ -26,7 +26,7 @@ Google Lighthouse will be used to check the Peformance, Accessibility, Best Prac
     from their collections.
 * *"As a user, I want to be able to add new coins to my collection as and when I find them"*
     * The user can add any coin from the 'coin_list' page to their collection by clicking on the 'Copy' button inside the card for that coin.
-    See [image](images/add_coin.pngS)
+    See [image](images/add_coin.png) for details.
 * *"As a user, when adding new coins to my collection I want the ability to select the coin from a pre-defined list"*
     * 
 * *"As a user, I want to be able to edit a coin entry in my database"*
