@@ -201,6 +201,10 @@ td {
     fill: #DDDDDD;
 }
 
+select {
+    border: 1px solid #101E30 !important;
+}
+
 /* label underline focus color */
 .coin-input input[type=text]:focus {
     border-bottom: 1px solid #DDDDDD;
