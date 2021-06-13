@@ -185,8 +185,8 @@ name | String | Name of the coin denomination (eg. Fifty Pence)
     * Custom Notes can also be added to the entry.
     * The form will be validated once the Save button has been clicked and if successful the data will be submitted to the database. The user will be returned to the Home Page on completeion.
     * To cancel the entry a Cancel button is provided. This will redirect the user back to the Home Page
-* Admin Page
-    * The Admin Page will list all of the coins currently in the database. 
+* Admin Page (see note below)
+    * The Admin Page will list all of the coins currently in the database
     * The page will display a table for each denomination of coin
     * For each entry in the table the admin user will be able to edit or delete that entry using the buttons at the end of the row.
     * The admin user can add coins to the database by clicking on the 'Add New Coin To Database' button at the top of the page
@@ -201,6 +201,47 @@ name | String | Name of the coin denomination (eg. Fifty Pence)
     * The contact form will be below the text and will ask for the users contact details and a description of their enquiry.
     * Below the form will be a submit button.
     * This page can be accessed by clicking on the 'Contact' link in the footer or header.
+
+NOTE: It was decided to remove the dedicated admin page as other pages could be reused but with different buttons being rendered for when an administrator is logged in.
+
+### Frontend Design
+The [Materialize](https://materializecss.com/) framework was used to implement the frontend of the website to give a responsive design that provides a good UX across all
+devices and screen sizes.
+
+### User Registration/Authentication
+To use the website users must register an account providing their name, email address and password. The password is hashed before being written to the database. To login the 
+user must enter their email address and password.
+NOTE: If a user requires administrator access this must be granted by the website owner.
+
+### Database Interactions
+* Regular users can view/search all the coins in the database.
+* Regular users can select a coin to add to their collection with custom notes and a 'found' date.
+* Regular users can edit any coin in their collection to modify the custom notes or 'found' date.
+* Regular users can remove a coin from their collection.
+* Regular users can select a coin to be added to their wish list.
+* Regular usres can remove a coin from their wishlist.
+* Admin users can view/search all the coins in the database.
+* Admin users can add a new coin to the database.
+* Admin users can edit a coin in the database.
+* Admin users can delete a coin from the database.
+
+### Colour Palette
+A dark theme was chosen for the website to complement the bright silver/gold colours of the coins that will be displayed. All buttons on the site use the built-in colour
+classes provided by Mterialize. The custom colours used to style the rest of the site are detailed below:
+
+* ![#101E30](https://via.placeholder.com/15/101E30/000000?text=+) #101E30
+    * Background
+    * Modal Background
+* ![#DDDDDD](https://via.placeholder.com/15/dddddd/000000?text=+) #DDDDDD
+    * Paragraph Text
+    * Nav Links
+    * Table Text
+* ![#4078C0](https://via.placeholder.com/15/4078C0/000000?text=+) #4078C0       
+    * Headings
+    * Nav Background
+    * Footer Background
+    * Card Reveal
+* Buttons use the built in Materialize colours
 
 <a name="technologies"></a>
 
