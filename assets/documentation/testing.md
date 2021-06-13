@@ -51,3 +51,32 @@ Google Lighthouse will be used to check the Peformance, Accessibility, Best Prac
     See [image](images/user_custom_notes.png) for details.
 * *"As a user, I want to be able to follow the website on social media to keep up to date on any changes to the website"*
     * Social media links are listed in the footer - these are visible on all pages.
+
+#### Returning Users
+* *"As a returning user, I would like to be able to login to the site so I can easily see / update my collection"*
+    * All coin user coin collections are stored in the backend database allowing users to log back into the site using the details they
+    provided during registration.
+
+#### Website Owner
+* *"As the owner, I want the ability to add new coins to the database"*
+    * The owner/admin can add coins via the 'Add Coin' page. This page is only visible to users who have been granted administrator privileges. Navigating
+    to the 'Add Coin' page displays a form for the admin to complete. See [image](images/admin_add_coin.png) for details.
+* *"As the owner, I want the ability to edit coins and users in the database"*
+    * The owner/admin can edit any coin via the 'Coin List' page by clicking on the 'Edit' button inside the card. This will take the admin/owner to
+    a similar form used for adding coins but with all the data pre-populated ready for editting. 
+    These are shown in the following images. ([Edit Button](images/admin_edit_delete.png) & [Edit Form](images/admin_edit_coin.png)).
+* *"As the owner, I want the ability to delete coins and users in the database"*
+    * The owner/admin can delete any coin via the 'Coin List' page by clicking on the 'Delete' button inside the card. This will open up a modal
+    window prompting the user to confirm deletion of the coin from the database.
+    These are shown in the following images. ([Delete Button](images/admin_edit_delete.png) & [Delete Modal](images/admin_delete_modal.png)).
+* *"As the owner, I want the ability to give other users administrator privileges to help with maintaining the site"*
+    * Currently the only way to give administrator privileges is to set *admin=True* in MongoDB for any users who need administrator access. 
+* *"As the owner, I want to display data in a clear and informative way that works on any platform."*
+    * The frontend of the website has been implemented using the [Materialize](https://materializecss.com/) framework. This provides all the tools
+    required to implement a website that is responsive and works across all different platforms. All coins are presented to the user using Materialize
+    cards which display a clear image of the coin and also allow the user the view more detailed information by using the card-reveal propertiy of the card.
+* *"As the owner, I want the ability to expand the website in the future to add more coins to the database."*
+    * The website uses [MongoDB](https://www.mongodb.com/) as the backend database which can manage large data structures far beyond the requirements of this project.
+* *"As the owner, I want the website to be responsive in design and work across all devices from desktops to mobile phones."*
+    * The frontend of the website has been implemented using the [Materialize](https://materializecss.com/) framework. This provides all the tools
+    required to implement a website that is responsive and works across all different platforms from desktops to mobiles.
