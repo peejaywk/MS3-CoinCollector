@@ -83,8 +83,8 @@ Google Lighthouse will be used to check the Peformance, Accessibility, Best Prac
 
 ## Functional/Features Testing
 
-Test-001
-Responsive Design - Test responsiveness of website on different browsers
+### Test-001 : Responsive Design
+Test responsiveness of website on different browsers.
 
 1. Open Chrome browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/
 2. Open the developer tools for the browser being used for these tests.
@@ -126,3 +126,27 @@ Responsive Design - Test responsiveness of website on different browsers
 
 All the forms / cards displayed correctly on all the browser listed above and at all screen sizes. The tests were also perofrmed on a Samsung Galaxy S8
 using the Chrome and Opera browsers with no issues found. No testing has been performed on Apple mobiles or tablets due to lack of access to the devices.
+
+### Test-002 : Navigation Bar
+Test navigation bar links function correctly and that the correct links are displayed for admin and non admin users.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/. Logout of the site if logged in.
+2. With the user logged out check that the following menu options appear in the nav bar:
+    * Coin Collector, Home, Login, Register & Contact Us
+3. Click each menu option in turn and check that you are taken to the correct page.
+4. Login as a regular non admin user and check that the following menu options appear in the nav bar:
+    * Coin Collector, My Collection, My Wishlist, Coin List, Logout & Contact Us
+5. Click each menu option in turn and check that you are taken to the correct page. Clicking the Logout option should log you out of the website.
+6. Login in using an administrator account and check that the following options appear in the nav bar:
+    * Coin Collector, Coin List, Add Coin, Logout & Contact Us
+7. Click each menu option in turn and check that you are taken to the correct page. Clicking the Logout option should log you out of the website.
+8. Repeat the above steps using Firefox, Opera, Edge & Safari browsers.
+9. Repeat the above steps using a mobile device if possible.
+10. Repeat the above tests with a screen size of <=992 pixles and check that all the menu options collapse into the hamburger icon. NOTE: The 
+Coin Collector menu item should not form part of the hamburger menu and should remain located at the top left of the screen.
+
+    * **Test Results: PASS**
+
+    All the navigation links function correctly and link to the correct pages. For screen sizes <=992 pixels the navigation links
+    collapse into the hamburger menu and function correclty. Tests performed using  Chrome, Firefox, Opera, Edge & Safari desktop browsers.
+    Repeated tests using a Samsung Galaxy S8 mobile device with no issues.
