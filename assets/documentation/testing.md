@@ -118,11 +118,11 @@ Responsive Design - Test responsiveness of website on different browsers
 26. For screen sizes <=992 pixels check that the coin cards are rendered correctly (see [My Wishlist S](images/Test001_mywishlist_s.png)).
 27. Repeat the above steps using Firefox, Opera, Edge & Safari browsers.
 
-**Test Results (Chrome Browser): PASS**
-**Test Results (Firefox Browser): PASS**
-**Test Results (Opera Browser): PASS**
-**Test Results (Edge Browser): PASS**
-**Test Results (Safari Browser): PASS**
+    * **Test Results (Chrome Browser): PASS**
+    * **Test Results (Firefox Browser): PASS**
+    * **Test Results (Opera Browser): PASS**
+    * **Test Results (Edge Browser): PASS**
+    * **Test Results (Safari Browser): PASS**
 
 All the forms / cards displayed correctly on all the browser listed above and at all screen sizes. The tests were also perofrmed on a Samsung Galaxy S8
 using the Chrome and Opera browsers with no issues found. No testing has been performed on Apple mobiles or tablets due to lack of access to the devices.
