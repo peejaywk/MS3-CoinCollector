@@ -11,8 +11,8 @@ The code (HTML/CSS/JS/Python) must also satisfy the requirements of the online v
 
 Google Lighthouse will be used to check the Peformance, Accessibility, Best Practices and Search Engine Optimisation of the website.
 
-### User Story Testing
-#### New Users
+## User Story Testing
+### New Users
 * *"As a user, I want a clear layout so I can easily navigate the site on all platforms."*
     * The frontend of the website has been implemented using the [Materialize](https://materializecss.com/) framework. This provides all the tools
     required to implement a website that is responsive and works across all different platforms. All coins are presented to the user using Materialize
@@ -52,12 +52,12 @@ Google Lighthouse will be used to check the Peformance, Accessibility, Best Prac
 * *"As a user, I want to be able to follow the website on social media to keep up to date on any changes to the website"*
     * Social media links are listed in the footer - these are visible on all pages.
 
-#### Returning Users
+### Returning Users
 * *"As a returning user, I would like to be able to login to the site so I can easily see / update my collection"*
     * All coin user coin collections are stored in the backend database allowing users to log back into the site using the details they
     provided during registration.
 
-#### Website Owner
+### Website Owner
 * *"As the owner, I want the ability to add new coins to the database"*
     * The owner/admin can add coins via the 'Add Coin' page. This page is only visible to users who have been granted administrator privileges. Navigating
     to the 'Add Coin' page displays a form for the admin to complete. See [image](images/admin_add_coin.png) for details.
