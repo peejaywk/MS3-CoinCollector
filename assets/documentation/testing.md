@@ -130,23 +130,78 @@ using the Chrome and Opera browsers with no issues found. No testing has been pe
 ### Test-002 : Navigation Bar
 Test navigation bar links function correctly and that the correct links are displayed for admin and non admin users.
 
-1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/. Logout of the site if logged in.
-2. With the user logged out check that the following menu options appear in the nav bar:
+1. Open Chrome browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/. Logout of the site if logged in.
+2. Check that the nav bar is fixed to the top of the browser window when scrolling down.
+3. With the user logged out check that the following menu options appear in the nav bar:
     * Coin Collector, Home, Login, Register & Contact Us
-3. Click each menu option in turn and check that you are taken to the correct page.
-4. Login as a regular non admin user and check that the following menu options appear in the nav bar:
+4. Click each menu option in turn and check that you are taken to the correct page.
+5. Login as a regular non admin user and check that the following menu options appear in the nav bar:
     * Coin Collector, My Collection, My Wishlist, Coin List, Logout & Contact Us
-5. Click each menu option in turn and check that you are taken to the correct page. Clicking the Logout option should log you out of the website.
-6. Login in using an administrator account and check that the following options appear in the nav bar:
+6. Click each menu option in turn and check that you are taken to the correct page. Clicking the Logout option should log you out of the website.
+7. Login in using an administrator account and check that the following options appear in the nav bar:
     * Coin Collector, Coin List, Add Coin, Logout & Contact Us
-7. Click each menu option in turn and check that you are taken to the correct page. Clicking the Logout option should log you out of the website.
-8. Repeat the above steps using Firefox, Opera, Edge & Safari browsers.
-9. Repeat the above steps using a mobile device if possible.
-10. Repeat the above tests with a screen size of <=992 pixles and check that all the menu options collapse into the hamburger icon. NOTE: The 
+8. Click each menu option in turn and check that you are taken to the correct page. Clicking the Logout option should log you out of the website.
+9. Repeat the above steps using Firefox, Opera, Edge & Safari browsers.
+10. Repeat the above steps using a mobile device if possible.
+11. Repeat the above tests with a screen size of <=992 pixles and check that all the menu options collapse into the hamburger icon. NOTE: The 
 Coin Collector menu item should not form part of the hamburger menu and should remain located at the top left of the screen.
 
     * **Test Results: PASS**
 
     All the navigation links function correctly and link to the correct pages. For screen sizes <=992 pixels the navigation links
-    collapse into the hamburger menu and function correclty. Tests performed using  Chrome, Firefox, Opera, Edge & Safari desktop browsers.
+    collapse into the hamburger menu and function correclty. The nav bar also remains fixed to the top of the page. 
+    
+    Tests performed using  Chrome, Firefox, Opera, Edge & Safari desktop browsers.
     Repeated tests using a Samsung Galaxy S8 mobile device with no issues.
+
+### Test-003 : Footer
+Test footer links function correctly and that the Materialize sticky footer is also functioning.
+
+1. Open Chrome browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Check that the footer remains at the bottom of the screen even when very little content is present.
+3. Check that the footer scrolls down when more content is added to the page. May need to navigate to the Add Coin page to test this.
+4. Click on the Contact Us link and conform that the Contact Us page is loaded.
+5. Click on each social media link and verify it opens up the correct page in a new browser tab.
+6. Repeat the above steps using Firefox, Opera, Edge & Safari browsers.
+7. Repeat the above steps using a mobile device if possible.
+
+    * **Test Results: PASS**
+
+    The footer is located at the bottom of the screen when little content is present and scrolls down when more content is added. The Contact Us option
+    links to the correct page and all social media links are working and link to the correct pages, opening in a new tab.
+
+    Tests performed using  Chrome, Firefox, Opera, Edge & Safari desktop browsers.
+    Repeated tests using a Samsung Galaxy S8 mobile device with no issues.
+
+### Test-004 : User Registration
+Test the form validation functions correctly and that duplicate users are detected and reported back. Also check that the user is correctly added to 
+the database.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Click on the Register button of the Register option in the nav bar.
+3. Check that the form validation is functioning correctly by entering a first name, last name, email and password that are invalid. Confirm that
+the issue with a particular filed is reported back to the user.
+4. Check that submitting an email that has been previously registered reloads the register page with the flash message "Email already registered.".
+5. On successful registration confirm that the user is redirected back to their coin list page with the flash message "Registration successful!".
+6. On successful registration confirm that the user entry has been added to the Users collection in MongoDB and that the admin flag has been set to the default of 'False'.
+
+#### Test Notes
+
+During testing of the form validation an error was found with the helper text over laying each other (see [image](images/Test004_register_error.png)).
+To reslove this the helper text underneath the password input was moved into the input field (see [image](images/Test004_register_error_fix.png)).
+    
+[Change](https://github.com/peejaywk/MS3-CoinCollector/commit/5e90278460d7094a165d7048edf6f510e238e2a8) commited and all tests repeated on deployed site.
+
+* **Test Results: PASS**
+All the form validation functions correclty and reports back to the user any issues when invalid information is entered. On entering a duplicate email
+address the correct flash message is displayed and the the user is redirected back to the registration page. On successful registration the correct flash
+message is displayed on blank user coin page and the correct entry appears in the Users collection in MongoDB.
+
+Tested using Google Chrome on Windows desktop.
+
+
+
+
+### Test-005 : User Login
+
+### Test-006 : User Logout
