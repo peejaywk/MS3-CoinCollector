@@ -450,5 +450,7 @@ cleared the form and displayed the correct message at the top of the screen.
 The email was sent successfully to the websites email account. The submitted form can be seen [here](images/Test016_completed_form.png) and the received
 email [here](images/Test016_email.png).
 
+**NOTE:** The website does not send an acknowledgement email back to the user confirming receipt of the message. This could be added in the future.
+
 #### Test Result
 * **PASS**
