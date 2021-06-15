@@ -427,3 +427,28 @@ Modified the app.py file to find all instances of the deleted coin in the wishli
 
 #### Test Results
 * **PASS (after modification to app.py)**
+
+### Test-016: Contact Us Form
+Test to confirm the form validation is functioning correctly and that on completion of the form an email is sent to the websites email address containing
+the details of the query.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using a non admin account.
+3. Navigate to the Contact Us page using the link in the nav bar or footer.
+4. Check the form validation is functioning correclty and it prompts you to complete all the required fields and enter a valid email address. The required fields are:
+    * Name
+    * Email Address
+    * Subject
+    * Message
+5. Confirm that the flash message "Message Sent Successfully!" is displayed at the top of the screen after clicking the Send button and that the form is cleared.
+6. Confirm that an email is sent to the websites email address containing the details of the contact form.
+
+#### Test Notes
+The form validation functioned correclty and prompted the user to complete all required fields with a valid email address. Clicking the Send button
+cleared the form and displayed the correct message at the top of the screen.
+
+The email was sent successfully to the websites email account. The submitted form can be seen [here](images/Test016_completed_form.png) and the received
+email [here](images/Test016_email.png).
+
+#### Test Result
+* **PASS**
