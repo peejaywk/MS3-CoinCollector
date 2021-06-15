@@ -359,3 +359,71 @@ flash message was displayed at the top of the screen.
 
 #### Test Result
 * **PASS**
+
+### Test-013: Add New Coin to Database
+Test to confirm that a new coin can be added to the database.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using an administrator account.
+3. Navigate to the Add Coin page using the link in the nav bar.
+4. Complete all field on the form adding images for the obverse and reverse of the coin.
+5. Confirm that the form validation is working for the required fileds (Denomination, Year, Issue, Description and Circulation).
+6. On completion of the form click the Upload button. This will upload the text to Mongo and the images to an Amazon Bucket.
+7. Confirm that the flash message "Coin added to database" is displayed at the top of the screen.
+8. Navigate to the Coin List page using the link in the nav bar.
+9. Confirm that the coin is visible in the list and that all the infomration and images are correct.
+
+#### Test Notes
+All form validation is working prompting the user to complete all required fields. On clicking the Upload button the correct flash message
+is displayed at the top of the screen. The coin was successfully added to the Coin List page and all the text was correct. The images were
+successfully downloaded from the Amazon Bucket and clearly rendered in the card.
+
+#### Test Result
+* **PASS**
+
+### Test-014: Edit Coin in Database
+Test to confirm that an existing coin in the database can be editted.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using an administrator account.
+3. Navigate to the Coin List page using the link in the nav bar.
+4. Click the Edit button for a coin and confirm the correct details are loaded into the edit coin form.
+5. Edit the details for the coin and click upload when complete. Confirm that the flash messge "Coin Successfully Updated" is displayed at the top of the screen.
+6. Return to the Coin List page and confirm that the details for the coin have been changed.
+
+#### Test Notes
+Clicking on the Edit button opened up a new page displaying the correct information for the coin selected for edit. The correct message was displayed at
+the top of the screen after clicking the Upload button. The details of the coin had been updated when viewing the entry on the Coin List page.
+
+#### Test Result
+* **PASS**
+
+### Test-015: Delete Coin from Database
+Test to confirm that a coin can be deleted from the database and that it is also removed from a users collection and wishlist.
+
+**NOTE:** Before starting this test please ensure the coin that is to be deleted from the database is part of a users collection & wishlist.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using an administrator account.
+3. Navigate to the Coin List page using the link in the nav bar.
+4. Click the Delete button on the coin you would like to delete from the database.
+5. Confirm that the modal window contains the correct information for the coin selected for deletion.
+6. Click the Cancel button and confirm that the window closes and that the coin has not been deleted from the database.
+7. Click the Delete button again and this time click Confirm to delete the coin from the database.
+8. Confirm that the coin has been deleted from the Coin List and that the flash message "Deleted, 1 instance(s) of the coin" is displayed at the top of the screen.
+9. Logout of the administrator account and log back in using a non admin account.
+10. Confirm that the deleted coin has been removed from users collection and wishlist.
+
+#### Test Notes
+Clicking the delete button opened up a modal window containing the correct information for the coin. Clicking the Cancel button closed the window
+without deleting the coin from the database. Clicking the Confirm button in the modal window closed the window and the correct message appeared at the
+top of the screen. Checking the Coin List page it was confirmed that the coin had been deleted from the database and was no longer displayed in the list.
+
+Logged back in as a non-admin user and confirmed that the coin had been removed from the users collection. However, the coin had not been removed from the
+wishlist as can be seen in this [image](images/Test015_coindelete_err.png). The page is displaying an empty card were the deleted coin was peviously.
+
+Modified the app.py file to find all instances of the deleted coin in the wishlists collection and delete them. 
+[Change](https://github.com/peejaywk/MS3-CoinCollector/commit/918b560490d1366ea1360ade4dcc858c1202b9aa) commited and all tests repeated on deployed site.
+
+#### Test Results
+* **PASS (after modification to app.py)**
