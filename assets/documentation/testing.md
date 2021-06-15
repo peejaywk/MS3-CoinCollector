@@ -118,14 +118,16 @@ Test responsiveness of website on different browsers.
 26. For screen sizes <=992 pixels check that the coin cards are rendered correctly (see [My Wishlist S](images/Test001_mywishlist_s.png)).
 27. Repeat the above steps using Firefox, Opera, Edge & Safari browsers.
 
-    * **Test Results (Chrome Browser): PASS**
-    * **Test Results (Firefox Browser): PASS**
-    * **Test Results (Opera Browser): PASS**
-    * **Test Results (Edge Browser): PASS**
-    * **Test Results (Safari Browser): PASS**
-
+#### Test Notes
 All the forms / cards displayed correctly on all the browser listed above and at all screen sizes. The tests were also perofrmed on a Samsung Galaxy S8
 using the Chrome and Opera browsers with no issues found. No testing has been performed on Apple mobiles or tablets due to lack of access to the devices.
+
+#### Test Results
+* **Chrome Browser: PASS**
+* **Firefox Browser: PASS**
+* **Opera Browser: PASS**
+* **Edge Browser: PASS**
+* **Safari Browser: PASS**
 
 ### Test-002 : Navigation Bar
 Test navigation bar links function correctly and that the correct links are displayed for admin and non admin users.
@@ -146,13 +148,15 @@ Test navigation bar links function correctly and that the correct links are disp
 11. Repeat the above tests with a screen size of <=992 pixles and check that all the menu options collapse into the hamburger icon. NOTE: The 
 Coin Collector menu item should not form part of the hamburger menu and should remain located at the top left of the screen.
 
-    * **Test Results: PASS**
-
-    All the navigation links function correctly and link to the correct pages. For screen sizes <=992 pixels the navigation links
-    collapse into the hamburger menu and function correclty. The nav bar also remains fixed to the top of the page. 
+#### Test Notes
+All the navigation links function correctly and link to the correct pages. For screen sizes <=992 pixels the navigation links
+collapse into the hamburger menu and function correclty. The nav bar also remains fixed to the top of the page. 
     
-    Tests performed using  Chrome, Firefox, Opera, Edge & Safari desktop browsers.
-    Repeated tests using a Samsung Galaxy S8 mobile device with no issues.
+Tests performed using  Chrome, Firefox, Opera, Edge & Safari desktop browsers.
+Repeated tests using a Samsung Galaxy S8 mobile device with no issues.
+
+#### Test Results
+* **PASS**
 
 ### Test-003 : Footer
 Test footer links function correctly and that the Materialize sticky footer is also functioning.
@@ -165,13 +169,15 @@ Test footer links function correctly and that the Materialize sticky footer is a
 6. Repeat the above steps using Firefox, Opera, Edge & Safari browsers.
 7. Repeat the above steps using a mobile device if possible.
 
-    * **Test Results: PASS**
+#### Test Notes
+The footer is located at the bottom of the screen when little content is present and scrolls down when more content is added. The Contact Us option
+links to the correct page and all social media links are working and link to the correct pages, opening in a new tab.
 
-    The footer is located at the bottom of the screen when little content is present and scrolls down when more content is added. The Contact Us option
-    links to the correct page and all social media links are working and link to the correct pages, opening in a new tab.
+Tests performed using  Chrome, Firefox, Opera, Edge & Safari desktop browsers.
+Repeated tests using a Samsung Galaxy S8 mobile device with no issues.
 
-    Tests performed using  Chrome, Firefox, Opera, Edge & Safari desktop browsers.
-    Repeated tests using a Samsung Galaxy S8 mobile device with no issues.
+#### Test Results
+* **PASS**
 
 ### Test-004 : User Registration
 Test the form validation functions correctly and that duplicate users are detected and reported back. Also check that the user is correctly added to 
@@ -192,7 +198,8 @@ To reslove this the helper text underneath the password input was moved into the
     
 [Change](https://github.com/peejaywk/MS3-CoinCollector/commit/5e90278460d7094a165d7048edf6f510e238e2a8) commited and all tests repeated on deployed site.
 
-* **Test Results: PASS**
+#### Test Result
+* **PASS**
 
 All the form validation functions correclty and reports back to the user any issues when invalid information is entered. On entering a duplicate email
 address the correct flash message is displayed and the the user is redirected back to the registration page. On successful registration the correct flash
@@ -217,7 +224,7 @@ results in the correct flash message being displayed and the user returned to th
 page listing the coins in their collection (if any) and with the welcome flash message at the top of the sceen.
 
 #### Test Result
-**PASS**
+* **PASS**
 
 ### Test-006 : User Logout
 Tests that a user is logged out of the site and cannot brute force their way to any pages by directly typing an a URL.
@@ -236,6 +243,43 @@ On clicking the logout button the user is redirected to the page displaying the 
 browsers address bar the user is redirected back to the login page with a flash message being displayed asking the user to login/register to access the site.
 
 #### Test Result
-**PASS**
+* **PASS**
 
-### Test-007
+### Test-007: Copy Coin to User Collection
+Test to confirm that a coin from the Coin List can be copied to a users collection with custom notes attached.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using a non admin account.
+3. Navigate to the Coin List page using the link in the nav bar.
+4. Select any coin from the list and click the Copy button - confrim that the copy modal appears with the correct coin information displayed.
+5. Click on the date field and confirm the date selector modal appears. Select a date from the date selector.
+6. Enter some custom notes in the notes field.
+7. Click the Copy button to copy the coin entry with custom notes into your collection. Confirm flash message "Coin added to your collection" appears at the top of the screen.
+8. Return to your collection by clicking on the My Collection link in the nav bar and confirm that the coin has been added the collection with the correct date and notes appearing in the card reveal.
+
+#### Test Notes
+Clicking on the Copy button opened up the modal window with the correct coin information displayed. The date selector functioned as expected allowing any date
+in the past to be selected. All future dates are grayed out. Click the Copy button in the modal closed the window and the correct flash message was displayed at the top of the screen.
+Confirmed that the coin had been added to the collection by visiting the My Collection page and checking the date and custom notes were correct.
+
+#### Test Result
+* **PASS**
+
+### Test-008: Remove Coin from User Collection
+Test to confirm that a coin can be removed from a users collection.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using a non admin account.
+3. From 'Your Coin Collection' page click the Remove button to remove a coin from the collection.
+4. Confirmm that the correct coin information is displayed in the modal window.
+5. Confirm that clicking the Cancel button closes the modal without removing the coin from the collection.
+6. Click Remove again to open the modal window and click the Confirm button in the modal window to remove the coin from the collection.
+7. Confirm that the coin has been removed from the collection and that the flash message "Coin Deleted From Collection" is diaplayed at the top of the page.
+
+#### Test Notes
+Clicking the Remove button opened up a modal window displaying the correct information for the coin. Click Cancel closed the modal window without deleting
+the coin from the collection. Clicking the Confirm button in the modal window closed the modal and deleted the coin from the collection. The correct
+flash message was displayed at the top of the screen.
+
+#### Test Result
+* **PASS**
