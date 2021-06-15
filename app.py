@@ -452,8 +452,9 @@ def add_coin():
 def delete_coin(coin_id):
     if session.get('user'):
         if session.get('admin'):
-            # Find all users who have the coin marked for deletion and
-            # create a list containing all the Object ID's
+            # Search the coins collection for all users who have 
+            # the coin marked for deletion and create a list
+            # containing all the Object ID's
             user_coin_data = list(mongo.db.coins.find(
                 {"coin_id": ObjectId(coin_id)}, {"_id": 1}))
 
@@ -466,11 +467,26 @@ def delete_coin(coin_id):
             user_result = mongo.db.coins.delete_many(
                 {"_id": {"$in": user_coin_ids}})
 
+            # Search the wishlists collection for all users who have 
+            # the coin marked for deletion and create a list
+            # containing all the Object ID's
+            user_wishlist_data = list(mongo.db.wishlists.find(
+                {"coin_id": ObjectId(coin_id)}, {"_id": 1}))
+                
+            # Extract only the value from the key:value pair
+            user_wishlist_ids = []
+            for user_wishlist in user_wishlist_data:
+                user_wishlist_ids.append(user_wishlist["_id"])
+
+            # Delete all the wishlist coin entries
+            wishlist_result = mongo.db.wishlists.delete_many(
+                {"_id": {"$in": user_wishlist_ids}})
+
             # Delete the coin from the database
             mongo.db.circulation.delete_one({"_id": ObjectId(coin_id)})
 
             flash("Deleted, {} instance(s) of the coin".format(
-                user_result.deleted_count))
+                user_result.deleted_count+wishlist_result.deleted_count))
 
             return redirect(url_for("coin_list"))
         else:
