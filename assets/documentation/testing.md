@@ -178,7 +178,7 @@ Test the form validation functions correctly and that duplicate users are detect
 the database.
 
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
-2. Click on the Register button of the Register option in the nav bar.
+2. Click on the Register button or the Register option in the nav bar.
 3. Check that the form validation is functioning correctly by entering a first name, last name, email and password that are invalid. Confirm that
 the issue with a particular filed is reported back to the user.
 4. Check that submitting an email that has been previously registered reloads the register page with the flash message "Email already registered.".
@@ -193,15 +193,49 @@ To reslove this the helper text underneath the password input was moved into the
 [Change](https://github.com/peejaywk/MS3-CoinCollector/commit/5e90278460d7094a165d7048edf6f510e238e2a8) commited and all tests repeated on deployed site.
 
 * **Test Results: PASS**
+
 All the form validation functions correclty and reports back to the user any issues when invalid information is entered. On entering a duplicate email
 address the correct flash message is displayed and the the user is redirected back to the registration page. On successful registration the correct flash
 message is displayed on blank user coin page and the correct entry appears in the Users collection in MongoDB.
 
 Tested using Google Chrome on Windows desktop.
 
-
-
-
 ### Test-005 : User Login
+Test the form validation functions correctly and that any invalid data is reported back to the user. Check user is logged in and redirected to the 
+correct page.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Click on the Login button or the Login option in the nav bar.
+3. Confirm that entering an invalid email or password is reported back to the user by the form validation.
+4. Confirm that logging in with incorrect details results in a flash messaage being displayed at the top of the screen stating "Incorrect Username and/or Password".
+5. On successful login confirm the user is redirected to their coin list page and that a welcome flash message is displayed.
+
+#### Test Notes
+
+All the form validation functions correclty and reports back to the user and issues with the email address or password. Entering invalid credentials
+results in the correct flash message being displayed and the user returned to the login page. On successful login the user is redirected to their home
+page listing the coins in their collection (if any) and with the welcome flash message at the top of the sceen.
+
+#### Test Result
+**PASS**
 
 ### Test-006 : User Logout
+Tests that a user is logged out of the site and cannot brute force their way to any pages by directly typing an a URL.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website.
+3. Logout of the website and confirm that the user is returned to the page displaying the welcome message.
+4. Visit each of the URLs below and confirm that the user is redirected back to the login page:
+    * http://coin-collector-ci-ms3.herokuapp.com/coin_list
+    * http://coin-collector-ci-ms3.herokuapp.com/add_coin
+    * http://coin-collector-ci-ms3.herokuapp.com/wishlist
+
+#### Test Notes
+
+On clicking the logout button the user is redirected to the page displaying the welcome message. On entering the URLs listed above directly into the
+browsers address bar the user is redirected back to the login page with a flash message being displayed asking the user to login/register to access the site.
+
+#### Test Result
+**PASS**
+
+### Test-007
