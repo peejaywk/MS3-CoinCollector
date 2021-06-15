@@ -259,13 +259,32 @@ Test to confirm that a coin from the Coin List can be copied to a users collecti
 
 #### Test Notes
 Clicking on the Copy button opened up the modal window with the correct coin information displayed. The date selector functioned as expected allowing any date
-in the past to be selected. All future dates are grayed out. Click the Copy button in the modal closed the window and the correct flash message was displayed at the top of the screen.
+from the past to be selected. All future dates are grayed out. Click the Copy button in the modal closed the window and the correct flash message was displayed at the top of the screen.
 Confirmed that the coin had been added to the collection by visiting the My Collection page and checking the date and custom notes were correct.
 
 #### Test Result
 * **PASS**
 
-### Test-008: Remove Coin from User Collection
+### Test-008: Edit Coin in User Collection
+Test to confirm that found date and custom notes can be editted for a coin in a users collection.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using a non admin account.
+3. From 'Your Coin Collection' page click the Edit button to edit a coin entry in the collection.
+4. Confirmm that the correct coin information is displayed in the modal window.
+5. Confirm that clicking the Cancel button closes the modal without editting the coin in the collection.
+6. Click the Edit button again and edit the Date Found and Notes, clicking Save when finished.
+7. Confirm that the coin entry has been changed in the collection and that the flash message "Entry Successfully Updated" is diaplayed at the top of the page.
+
+#### Test Notes
+Clicking the Edit button opened up a modal window displaying the correct information for the coin. Clicking Cancel closed the modal window without editting
+the coin in the collection. Clicking the Save button in the modal window closed the modal and changed the fields for that coin entry. The correct
+flash message was displayed at the top of the screen.
+
+#### Test Result
+* **PASS**
+
+### Test-009: Remove Coin from User Collection
 Test to confirm that a coin can be removed from a users collection.
 
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
@@ -277,8 +296,65 @@ Test to confirm that a coin can be removed from a users collection.
 7. Confirm that the coin has been removed from the collection and that the flash message "Coin Deleted From Collection" is diaplayed at the top of the page.
 
 #### Test Notes
-Clicking the Remove button opened up a modal window displaying the correct information for the coin. Click Cancel closed the modal window without deleting
+Clicking the Remove button opened up a modal window displaying the correct information for the coin. Clicking Cancel closed the modal window without deleting
 the coin from the collection. Clicking the Confirm button in the modal window closed the modal and deleted the coin from the collection. The correct
+flash message was displayed at the top of the screen.
+
+#### Test Result
+* **PASS**
+
+### Test-010:  Add Coin to Wishlist
+Test to confirm that a coin from the Coin List can be added to a users wishlist.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using a non admin account.
+3. Navigate to the Coin List page using the link in the nav bar.
+4. Select any coin from the list and click the +Wishlist button. Confirm that the flash message "Coin added to your wishlist" is displayed at the top of the screen.
+5. Navigate to the Wishlist page using the link in the nav bar.
+6. Confirm that the coin appears in the wishlist.
+
+#### Test Notes
+Clicking the +Wishlist button for any coin results in the correct flash message being displayed at the top of the screen. The corresponding coin
+is also added to the users wishlist.
+
+#### Test Result
+* **PASS**
+
+### Test-011: Copy Coin from Wishlist to User Collection
+Test to confirm that a coin can be copied from a users wishlist to their collection.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using a non admin account.
+3. Navigate to the Wishlist page using the link in the nav bar.
+4. Select any coin from the wishlist and click the Copy button - confrim that the copy modal appears with the correct coin information displayed.
+5. Click on the date field and confirm the date selector modal appears. Select a date from the date selector.
+6. Enter some custom notes in the notes field.
+7. Click the Copy button to copy the coin entry with custom notes into your collection. Confirm flash message "Coin added to your collection" appears at the top of the screen.
+8. Return to your collection by clicking on the My Collection link in the nav bar and confirm that the coin has been added the collection with the correct date and notes appearing in the card reveal.
+
+#### Test Notes
+Clicking on the Copy button opened up the modal window with the correct coin information displayed. The date selector functioned as expected allowing any date
+from the past to be selected. All future dates are grayed out. Click the Copy button in the modal closed the window and the correct flash message was displayed at the top of the screen.
+Confirmed that the coin had been added to the collection by visiting the My Collection page and checking the date and custom notes were correct.
+
+#### Test Result
+* **PASS**
+
+### Test-012: Remove Coin from Wishlist
+Test to confirm that a coin can be removed from a users wishlist.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login to the website using a non admin account.
+3. Navigate to the Wishlist page using the link in the nav bar.
+4. Click the Remove button to remove a coin from the wishlist.
+5. Confirmm that the correct coin information is displayed in the modal window.
+6. Confirm that clicking the Cancel button closes the modal without removing the coin from the wishlist.
+7. Click Remove again to open the modal window and click the Confirm button in the modal window to remove the coin from the wishlist.
+8. Confirm that the coin has been removed from the wishlist and that the flash message "Coin Removed From Wishlist" is diaplayed at the top of the page.
+
+#### Test Notes
+Clicking the Remove button opened up a modal window displaying the correct information for the coin. Clicking Cancel closed the modal window without deleting
+the coin from the wishlist. Clicking the Confirm button in the modal window closed the modal and removed the coin from the wishlist. The correct
 flash message was displayed at the top of the screen.
 
 #### Test Result
