@@ -452,7 +452,7 @@ def add_coin():
 def delete_coin(coin_id):
     if session.get('user'):
         if session.get('admin'):
-            # Search the coins collection for all users who have 
+            # Search the coins collection for all users who have
             # the coin marked for deletion and create a list
             # containing all the Object ID's
             user_coin_data = list(mongo.db.coins.find(
@@ -467,12 +467,12 @@ def delete_coin(coin_id):
             user_result = mongo.db.coins.delete_many(
                 {"_id": {"$in": user_coin_ids}})
 
-            # Search the wishlists collection for all users who have 
+            # Search the wishlists collection for all users who have
             # the coin marked for deletion and create a list
             # containing all the Object ID's
             user_wishlist_data = list(mongo.db.wishlists.find(
                 {"coin_id": ObjectId(coin_id)}, {"_id": 1}))
-                
+
             # Extract only the value from the key:value pair
             user_wishlist_ids = []
             for user_wishlist in user_wishlist_data:
@@ -550,7 +550,8 @@ def edit_coin(coin_id):
                     "date_edited": date.today().strftime("%d %b %Y"),
                 }
                 print(coin_data)
-                mongo.db.circulation.update({"_id": ObjectId(coin_id)}, coin_data)
+                mongo.db.circulation.update(
+                    {"_id": ObjectId(coin_id)}, coin_data)
                 flash("Coin Successfully Updated")
                 return redirect(url_for("coin_list"))
             else:
@@ -580,8 +581,10 @@ def contact():
             msg = Message(subject="New Email From Coin Collector Contact Form")
             msg.sender = request.form.get("emailaddress")
             msg.recipients = [os.environ.get("MAIL_USERNAME")]
+            contact_num = request.form.get("contactnumber")
+            subject = request.form.get("subject")
             message = request.form.get("message")
-            msg.body = f"Email From: {msg.sender} \nMessage:{message}"
+            msg.body = f"Email From: {msg.sender} \nContact Num: {contact_num}\nSubject: {subject} \nMessage: {message}"
             mail.send(msg)
             flash("Message Sent Successfully!")
             return redirect(url_for("contact"))
