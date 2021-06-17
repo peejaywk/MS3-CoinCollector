@@ -454,3 +454,18 @@ email [here](images/Test016_email.png).
 
 #### Test Result
 * **PASS**
+
+### Test-017: 404 Error Page
+Test to confirm that Flask captures and handles the 404 error (page not found).
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Enter invalid URL (https://coin-collector-ci-ms3.herokuapp.com/invalid_url) into the address bar.
+3. Confirm that the 'Page Not Found' page is displayed as shown in [here](images/Test017_404).
+4. Confimr tha clicking the link in the paragraph text returns the user to the Welcome screen if logged out and the user coin list if logged in.
+
+#### Test Notes
+On entering the invalid URL to correct page is displayed. Clicking the link in the paragraph text returns the user to the correct page when they are logged
+in and logged out.
+
+#### Test Result
+* **PASS**
