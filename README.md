@@ -309,3 +309,4 @@ in the correct search term.
 * [Flask User Authentication](https://github.com/MiroslavSvec/DCD_lead/blob/user-auth/app.py) - Example code to register/authenticate a user using Flask.
 * [Flask-Mail Setup](https://code-institute-room.slack.com/archives/C7JQY2RHC/p1611678109168400) - Slack post by Karina on how to setup Flask-Mail
 * [Flask Referrer](https://code-institute-room.slack.com/archives/C7JQY2RHC/p1623169621486800) - BenKav_lead assistance in helping with redirecting users back to the page they came from
+* [Flask Error Pages](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/) - Capturing & handling 404 & 500 errors in Flask.
