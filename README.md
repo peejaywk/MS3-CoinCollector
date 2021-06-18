@@ -25,9 +25,9 @@ The main aims of the website are:
 
 [Testing](#testing)
 
-[Bugs/Issues](#bug)
-
 [Deployment](#deployment)
+
+[Bugs/Issues](#bug)
 
 [Credits](#credits)
 
@@ -259,12 +259,50 @@ classes provided by Mterialize. The custom colours used to style the rest of the
 * [jQuery](https://jquery.com/). JavaScript library.
 * [Colorate](https://colorate.azurewebsites.net/). Colour scheme design website.
 * [JS Lint](https://jslint.com/). Javascript code quality tool.
-* Amazon AWS
+* [Amazon AWS](https://aws.amazon.com/) - Amazon S3 Bucket used to store/upload coin images.
 
 <a name="testing"></a>
 ## Testing
 
 See [testing.md](/assets/documentation/testing.md) for the testing documentation.
+
+<a name="deployment"></a>
+## Deployment
+
+This project was developed using (GitPod)[https://gitpod.io/] and the latest version of the code base can be found in the master branch of this
+repository. No other branches were created during the development of this project.
+
+### Prerequisites
+
+Before deploying the website or cloning into a new development environment the following prerequisites must be satisified:
+
+* [Python 3](https://www.python.org) - Python Programming Language
+* [PIP](https://pypi.org/project/pip/) - Python Package Installer
+* [Git](https://git-scm.com/) - Version Control System
+* [MongoDB](https://www.mongodb.com/)
+* [Amazon AWS Bucket](https://aws.amazon.com/)
+* [Google Mail Account](https://www.google.com/intl/en-GB/gmail/about/#)
+    * Email account used to receive any queries made via the Contact Us page.
+    * To setup the Gmail account please follow the instructions posted [here](https://code-institute-room.slack.com/archives/C7JQY2RHC/p1611678109168400) on Slack.
+
+
+
+### Deploying to Heroku
+
+To delpoy the appllication to Heroku follow the instructions below. This process assumes you are using the GitPod development environment.
+
+1. Open a terminal window and type in the following command to create a requirments.txt file. This file contains a list of applications and 
+dependencies required to run our application.
+
+pip3 freeze --local > requirements.txt
+
+2. In the terminal type in the following command to create a Procfile. The Procfile is used to tell Heroku how to run the application
+
+echo web: python app.py > Procfile
+
+3. Save these files and commit/push them to GitHub.
+
+4. 
 
 
 Setting up GitPod environment
@@ -277,12 +315,7 @@ pip3 install flask-pymongo
 Install dnspython so the Mongo SRV connection string can be used
 pip3 install dnspython
 
-Heroku Deployment
-Create a list of applications and dependencies required to run our website.
-pip3 freeze --local > requirements.txt
 
-Create Procfile so Heroku knows how to run the application
-echo web: python app.py > Procfile
 
 Install boto3 AWS SDK
 pip3 install boto3
