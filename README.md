@@ -279,13 +279,36 @@ Before deploying the website or cloning into a new development environment the f
 * [Python 3](https://www.python.org) - Python Programming Language
 * [PIP](https://pypi.org/project/pip/) - Python Package Installer
 * [Git](https://git-scm.com/) - Version Control System
-* [MongoDB](https://www.mongodb.com/)
+* [MongoDB](https://www.mongodb.com/) - Non-relational Database
+
+    Mongo is used to store all user data and information on coins that have been added.
+
+    * Login to MongoDB and create a new database.
+    * Within this new database create the following collections
+        * circulation
+        * coins
+        * denominations
+        * users
+        * wishlists
+    * Inside the denominations collection create the following two documents:
+
+    Key | Value | Type
+    ----|-----------|------------
+    name | Fifty Pence | string
+
+    Key | Value | Type
+    ----|-----------|------------
+    name | Two Pound | string
+
 * [Amazon AWS Bucket](https://aws.amazon.com/)
+
+    Amazon AWS is used to host the coin images upploaded by users. Login the AWS and create a new Amazon S3 Bucket.
+
 * [Google Mail Account](https://www.google.com/intl/en-GB/gmail/about/#)
     * Email account used to receive any queries made via the Contact Us page.
     * To setup the Gmail account please follow the instructions posted [here](https://code-institute-room.slack.com/archives/C7JQY2RHC/p1611678109168400) on Slack.
 
-
+### Cloneing the Repository
 
 ### Deploying to Heroku
 
@@ -300,29 +323,46 @@ pip3 freeze --local > requirements.txt
 
 echo web: python app.py > Procfile
 
-3. Save these files and commit/push them to GitHub.
+3. Save these files and **commit/push** them to GitHub.
 
-4. 
+4. Create an account on [Heroku](https://www.heroku.com/) and **Login**.
 
+5. From the dashboard click in the **New** button and select **Create New App** from the dropdown.
 
-Setting up GitPod environment
-Install Flask
-pip3 install Flask
+6. Name the app (you will need a unique name for this) and select the closest region to you. Then click **Create app**.
 
-Install pymongo to allow Flask to communication with our Mongo database
-pip3 install flask-pymongo
+7. In the **Deploy** tab scroll down to the **Deployment method** and select GitHub.
 
-Install dnspython so the Mongo SRV connection string can be used
-pip3 install dnspython
+8. Enter you GitHub accouont details in the **Connect to GitHub** section and enter your repository details. Once found click on **Connect**.
 
+9. In the **Settings** tab scroll down to the Config Vars section and click on **Reveal Config Vars**.
 
+10. Enter the following key/value pairs using the data from the env.py file created previoulsy:
 
-Install boto3 AWS SDK
-pip3 install boto3
+    Key | Value |
+    ----|-----------
+    IP | 0.0.0.0
+    PORT | 5000
+    SECRET_KEY | <app_secret_key>
+    MONGO_URI | mongodb+srv://<user_name>:<password>@<cluster_name>.f7xmu.mongodb.net/<database_name>?retryWrites=true&w=majority
+    MONGO_DBNAME | <database_name>
+    S3_BUCKET | <S3_bucket_name>
+    S3_KEY | <S3_key>
+    S3_SECRET_ACCESS_KEY | <S3_secret_key>
+    MAIL_SERVER | smtp.gmail.com
+    MAIL_PORT | 465
+    MAIL_USE_SSL | True
+    MAIL_USERNAME | <gmail_user_name>
+    MAIL_PASSWORD | <gmail_password>
+    SECURITY_EMAIL_SENDER | <gmail_email_address>
 
+11. In the **Deploy** tab scroll down to **Automatic deploys** and select **Enable Automatic Deploys**. Ensure it is deploying from the **master** branch of the repository.
 
+12. In the **Manual deploy** section select **master** and click **Deploy Branch**.
 
-Bugs
+13. Wait for the app to finish building then click **Open App** button at the top of the dashboard page. This will open the deployed app.
+
+## Bugs
 
 Chrome autofill changes the background to a different colour on the coin add form. A solution implemented in the CSS file was found here.
 https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete
