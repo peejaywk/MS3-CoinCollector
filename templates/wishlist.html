@@ -109,14 +109,17 @@
                 </div>
                 <div class="row">
                     <div class="col s12 input-field">
-                        <input id="date-found" name="date-found" type="text" class="datepicker validate" required>
-                        <label for="date-found">Date Found</label>
+                        <input id="date-found-{{wishlist_coin.coin_data._id}}"
+                            name="date-found-{{wishlist_coin.coin_data._id}}" type="text" class="datepicker validate"
+                            required>
+                        <label for="date-found-{{wishlist_coin.coin_data._id}}">Date Found</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 input-field">
-                        <input id="notes" name="notes" type="text" class="validate">
-                        <label for="notes">Notes</label>
+                        <input id="notes-{{wishlist_coin.coin_data._id}}" name="notes-{{wishlist_coin.coin_data._id}}"
+                            type="text" class="validate">
+                        <label for="notes-{{wishlist_coin.coin_data._id}}">Notes</label>
                     </div>
                 </div>
             </div>

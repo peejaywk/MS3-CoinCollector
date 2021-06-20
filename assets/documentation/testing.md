@@ -483,3 +483,11 @@ in and logged out.
 * Coin List Page
     * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Add Coin modal (see [here](images/HTML-DuplicateError.png)). 
     Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.
+    
+* My Collection Page
+    * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Edit Coin modal (see [here](images/HTML-DuplicateError.png)). 
+    Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.
+
+* Wishlist Page
+    * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Add Coin modal (see [here](images/HTML-DuplicateError.png)). 
+    Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.
