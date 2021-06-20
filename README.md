@@ -1,4 +1,9 @@
 # Coin Collector
+
+[Visit Website](http://coin-collector-ci-ms3.herokuapp.com/)
+
+![alt text](assets/documentation/images/am_i_responsive.png "Am I Responsive Image)
+
 Coin Collector is a website for people who collect coins that are in everyday circulation within the UK. These could be coins found from the change in your 
 pocket to coins traded / purchased on online auction sites. The site maintains a database of coins currently in circulation within the UK and allows the user 
 to record what coins they have in their collection. Users can be granted admin access if they would like to contribute / add coins to the database.
