@@ -269,7 +269,7 @@ See [testing.md](/assets/documentation/testing.md) for the testing documentation
 <a name="deployment"></a>
 ## Deployment
 
-This project was developed using (GitPod)[https://gitpod.io/] and the latest version of the code base can be found in the master branch of this
+This project was developed using [GitPod](https://gitpod.io/) and the latest version of the code base can be found in the master branch of this
 repository. No other branches were created during the development of this project.
 
 ### Prerequisites
@@ -305,10 +305,12 @@ Before deploying the website or cloning into a new development environment the f
     Amazon AWS is used to host the coin images upploaded by users. Login the AWS and create a new Amazon S3 Bucket.
 
 * [Google Mail Account](https://www.google.com/intl/en-GB/gmail/about/#)
-    * Email account used to receive any queries made via the Contact Us page.
+
+    This is the email account used to receive any queries made via the Contact Us page.
+
     * To setup the Gmail account please follow the instructions posted [here](https://code-institute-room.slack.com/archives/C7JQY2RHC/p1611678109168400) on Slack.
 
-### Cloneing the Repository
+### Cloning the Repository
 
 ### Deploying to Heroku
 
@@ -317,11 +319,11 @@ To delpoy the appllication to Heroku follow the instructions below. This process
 1. Open a terminal window and type in the following command to create a requirments.txt file. This file contains a list of applications and 
 dependencies required to run our application.
 
-pip3 freeze --local > requirements.txt
+        pip3 freeze --local > requirements.txt
 
 2. In the terminal type in the following command to create a Procfile. The Procfile is used to tell Heroku how to run the application
 
-echo web: python app.py > Procfile
+        echo web: python app.py > Procfile
 
 3. Save these files and **commit/push** them to GitHub.
 
