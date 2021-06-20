@@ -329,6 +329,7 @@ def delete_wishlist_coin(wishlist_coin_id):
 @app.route("/add_user_coin/<coin_id>", methods=["GET", "POST"])
 def add_user_coin(coin_id):
     if session.get('user'):
+        print(f"date-found-{coin_id}")
         if request.method == "POST":
             # Find the current session user in the db and retrieve the
             # users ObjectId
@@ -338,8 +339,8 @@ def add_user_coin(coin_id):
             coin = {
                 "user_id": ObjectId(user_id),
                 "coin_id": ObjectId(coin_id),
-                "date_found": request.form.get("date-found"),
-                "notes": request.form.get("notes")
+                "date_found": request.form.get(f"date-found-{coin_id}"),
+                "notes": request.form.get(f"notes-{coin_id}")
             }
             mongo.db.coins.insert_one(coin)
             flash("Coin added to your collection.")

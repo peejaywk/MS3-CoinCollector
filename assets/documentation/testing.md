@@ -469,3 +469,17 @@ in and logged out.
 
 #### Test Result
 * **PASS**
+
+## Code Validation
+
+### [PEP8 Online Check](http://pep8online.com/)
+* One error reported with a line being too long. See report [here](images/PEP8-Online-Check.png).
+    * This is a comment containing a URL so it was decided to leave it as a long line.
+
+### [JS Hint](https://jshint.com/)
+* Two warnings reported by JS Hint. See report [here](images/JSHint-Warnings.png).
+
+### [Nu HTML Checker](https://validator.w3.org/nu/)
+* Coin List Page
+    * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Add Coin modal (see [here](images/HTML-DuplicateError.png)). 
+    Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.

@@ -15,9 +15,6 @@ $(document).ready(function () {
         }
     });
 
-
-
-
     // Code used to validate the materialize select items
     // CREDIT: Code Institute Flask mini project
     validateMaterializeSelect();
@@ -64,5 +61,5 @@ $(document).ready(function () {
 
 // Delete the Flash message when the user clicks the close icon.
 function delete_flash(flash) {
-    $(flash).parent().remove()
+    $(flash).parent().remove();
 }

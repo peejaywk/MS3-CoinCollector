@@ -2,227 +2,231 @@
 {% block content %}
 
 {% if not session.user %}
-    <div class="row">
-        <div class="col s12">
-            <h1 class="center-align">Welcome to Coin Collector</h1>
-            <p>Coin Collector is a website for people who enjoy collecting commemorative coins
-                issued in the UK. Coin Collector is a place to easily record the coins in your
-                collection and to see what commemorative have been issued.
-            </p>
-            <p>To get started please register to create an account. If already registered then please login to
-                see your collection.
-            </p>
-            <p>Good luck collecting those coins!</p>
-        </div>
+<div class="row">
+    <div class="col s12">
+        <h1 class="center-align">Welcome to Coin Collector</h1>
+        <p>Coin Collector is a website for people who enjoy collecting commemorative coins
+            issued in the UK. Coin Collector is a place to easily record the coins in your
+            collection and to see what commemorative have been issued.
+        </p>
+        <p>To get started please register to create an account. If already registered then please login to
+            see your collection.
+        </p>
+        <p>Good luck collecting those coins!</p>
     </div>
-    <div class="row">
-        <div class="col s12 center-align">
-            <a class="waves-effect waves-light btn-large light-blue darken-4" href="{{ url_for('register') }}">Register</a>
-            <a class="waves-effect waves-light btn-large light-blue darken-4" href="{{ url_for('login') }}">Login</a>
-        </div>
+</div>
+<div class="row">
+    <div class="col s12 center-align">
+        <a class="waves-effect waves-light btn-large light-blue darken-4" href="{{ url_for('register') }}">Register</a>
+        <a class="waves-effect waves-light btn-large light-blue darken-4" href="{{ url_for('login') }}">Login</a>
     </div>
+</div>
 {% else %}
-    {% if not session.admin %}
-        {% if coins|length > 0 %}
-        <div class="row">
-            <div class="col s12">
-                <h4>Your Coin Collection</h4>
-                <p>Below are the coins currently in your collection. To edit or delete a coin use the buttons inside each panel.
-                </p>
+{% if not session.admin %}
+{% if coins|length > 0 %}
+<div class="row">
+    <div class="col s12">
+        <h4>Your Coin Collection</h4>
+        <p>Below are the coins currently in your collection. To edit or delete a coin use the buttons inside each panel.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    {% for coin in coins %}
+    <div class="col s12 l6 xl4">
+        <div class="coin-card card small">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}" alt="Reverse Image">
             </div>
-        </div>
 
-        <div class="row">
-            {% for coin in coins %}
-            <div class="col s12 l6 xl4">
-                <div class="coin-card card small">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
-                    </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{ coin.coin_data.year}}:
+                    {{ coin.coin_data.issue }}<i class="fas fa-ellipsis-v right"></i></span>
+            </div>
 
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ coin.coin_data.year}}:
-                            {{ coin.coin_data.issue }}<i class="fas fa-ellipsis-v right"></i></span>
-                    </div>
-
-                    <div class="card-action">
-                        <div class="col s6 btn-wrapper">
-                            <a href="#edit_{{coin._id}}"
-                                class="tooltipped waves-effect waves-light btn-small green lighten-1 modal-trigger" data-position="top" data-tooltip="Edit User Notes">Edit</a>
-                        </div>
-                        <div class="col s6 btn-wrapper">
-                            <a href="#delete_{{coin._id}}"
-                                class="tooltipped waves-effect waves-light btn-small red lighten-1 modal-trigger" data-position="top" data-tooltip="Remove from Collection">Remove</a>
-                        </div>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ coin.coin_data.issue }}<i
-                                class="fas fa-times right"></i></span>
-                        <p>{{ coin.coin_data.description }}</p>
-                        <p>Found {{ coin.date_found }}</p>
-                        <p>{{ coin.notes }}</p>
-                        <table>
-                            <tr>
-                                <td class="td-text-heading">Year</td>
-                                <td class="td-text">{{ coin.coin_data.year }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-heading">General Circulation</td>
-                                <td class="td-text">{{ coin.coin_data.circulation }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-heading">Edge Inscription</td>
-                                <td class="td-text">{{ coin.coin_data.edge }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-heading">Mintage</td>
-                                <td class="td-text">{{ coin.coin_data.mintage }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-heading">Material</td>
-                                <td class="td-text">{{ coin.coin_data.material }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-heading">Thickness</td>
-                                <td class="td-text">{{ coin.coin_data.thickness }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-heading">Weight</td>
-                                <td class="td-text">{{ coin.coin_data.weight }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-heading">Diameter</td>
-                                <td class="td-text">{{ coin.coin_data.diameter }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-heading">Obverse Designer</td>
-                                <td class="td-text">{{ coin.coin_data.obverse_designer }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-heading">Reverse Designer</td>
-                                <td class="td-text">{{ coin.coin_data.reverse_designer }}</td>
-                            </tr>
-                        </table>
-                        <div class="col s12">
-                            <div class="center-align">
-                                <img class="activator coin-image" src="{{ coin.coin_data.obverse_image }}">
-                            </div>
-                        </div>
+            <div class="card-action">
+                <div class="col s6 btn-wrapper">
+                    <a href="#edit_{{coin._id}}"
+                        class="tooltipped waves-effect waves-light btn-small green lighten-1 modal-trigger"
+                        data-position="top" data-tooltip="Edit User Notes">Edit</a>
+                </div>
+                <div class="col s6 btn-wrapper">
+                    <a href="#delete_{{coin._id}}"
+                        class="tooltipped waves-effect waves-light btn-small red lighten-1 modal-trigger"
+                        data-position="top" data-tooltip="Remove from Collection">Remove</a>
+                </div>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ coin.coin_data.issue }}<i
+                        class="fas fa-times right"></i></span>
+                <p>{{ coin.coin_data.description }}</p>
+                <p>Found {{ coin.date_found }}</p>
+                <p>{{ coin.notes }}</p>
+                <table>
+                    <tr>
+                        <td class="td-text-heading">Year</td>
+                        <td class="td-text">{{ coin.coin_data.year }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">General Circulation</td>
+                        <td class="td-text">{{ coin.coin_data.circulation }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Edge Inscription</td>
+                        <td class="td-text">{{ coin.coin_data.edge }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Mintage</td>
+                        <td class="td-text">{{ coin.coin_data.mintage }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Material</td>
+                        <td class="td-text">{{ coin.coin_data.material }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Thickness</td>
+                        <td class="td-text">{{ coin.coin_data.thickness }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Weight</td>
+                        <td class="td-text">{{ coin.coin_data.weight }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Diameter</td>
+                        <td class="td-text">{{ coin.coin_data.diameter }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Obverse Designer</td>
+                        <td class="td-text">{{ coin.coin_data.obverse_designer }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-text-heading">Reverse Designer</td>
+                        <td class="td-text">{{ coin.coin_data.reverse_designer }}</td>
+                    </tr>
+                </table>
+                <div class="col s12">
+                    <div class="center-align">
+                        <img class="activator coin-image" src="{{ coin.coin_data.obverse_image }}" alt="Obverse Image">
                     </div>
                 </div>
             </div>
-
-            <!-- Edit Modal Structure -->
-            <div id="edit_{{coin._id}}" class="modal modal-style">
-                <form method="POST" action="{{ url_for('edit_user_coin', user_coin_id=coin._id) }}">
-                    <div class="modal-content">
-                        <div class="row">
-                            <div class="col s12 center-align">
-                                <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
-                                    {{ coin.coin_data.issue }}</h5>
-                            </div>
-                            <div class="col s12">
-                                <div class="center-align">
-                                    <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s12 input-field">
-                                <input id="date-found" name="date-found" type="text" class="datepicker validate"
-                                    value="{{ coin.date_found }}" required>
-                                <label for="date-found">Date Found</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s12 input-field">
-                                <input id="notes" name="notes" type="text" class="validate" value="{{ coin.notes }}">
-                                <label for="notes">Notes</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer modal-footer-style">
-                        <div class="row">
-                            <div class="col s6">
-                                <button type="submit" class="btn-small green lighten-1 right">Save</button>
-                            </div>
-                            <div class="col s6">
-                                <a href="#!" class="modal-close btn-small red lighten-1 left">Cancel</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Delete Modal Structure -->
-            <div id="delete_{{coin._id}}" class="modal modal-style">
-                <div class="modal-content">
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
-                                {{ coin.coin_data.issue }}</h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <p>Please confirm removal of the above coin from your collection.</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal-footer modal-footer-style">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col s6">
-                                <a href="{{ url_for('delete_user_coin', user_coin_id=coin._id)}}"
-                                    class="modal-close waves-effect waves-green btn-small right red lighten-1">Confirm</a>
-                            </div>
-                            <div class="col s6">
-                                <a href="#!"
-                                    class="modal-close waves-effect waves-green btn-small left green lighten-1">Cancel</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {% endfor %}
-        </div>
-
-        <div class="row">
-            <div class="col s12 center-align">
-                {{ pagination.links }}
-                {{ pagination.info }}
-            </div>
-        </div>
-        {% else %}
-        <div class="row">
-            <div class="col s12">
-                <h4>Your Collection</h4>
-                <p>You currently have no coins in your collection. To start collecting click 'Coin List' in the menu above or
-                    click
-                    the button below.</p>
-
-            </div>
-            <div class="col s12">
-                <a href="{{ url_for('coin_list') }}" class="secondary-content btn-small green lighten-1 left">Add Coin</a>
-            </div>
-        </div>
-        {% endif %}
-    {% else %}
-    <div class="row">
-        <div class="col s12">
-            <h4>Administrator</h4>
-            <p>You are currently logged in as an administrator. Use the navigation links above to add/edit the catalogue.</p>
         </div>
     </div>
-    {% endif %}
+
+    <!-- Edit Modal Structure -->
+    <div id="edit_{{coin._id}}" class="modal modal-style">
+        <form method="POST" action="{{ url_for('edit_user_coin', user_coin_id=coin._id) }}">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
+                            {{ coin.coin_data.issue }}</h5>
+                    </div>
+                    <div class="col s12">
+                        <div class="center-align">
+                            <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}"
+                                alt="Reverse Image">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 input-field">
+                        <input id="date-found" name="date-found" type="text" class="datepicker validate"
+                            value="{{ coin.date_found }}" required>
+                        <label for="date-found">Date Found</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 input-field">
+                        <input id="notes" name="notes" type="text" class="validate" value="{{ coin.notes }}">
+                        <label for="notes">Notes</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer modal-footer-style">
+                <div class="row">
+                    <div class="col s6">
+                        <button type="submit" class="btn-small green lighten-1 right">Save</button>
+                    </div>
+                    <div class="col s6">
+                        <a href="#!" class="modal-close btn-small red lighten-1 left">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Delete Modal Structure -->
+    <div id="delete_{{coin._id}}" class="modal modal-style">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h5>{{ coin.coin_data.year }} - {{ coin.coin_data.denomination }} -
+                        {{ coin.coin_data.issue }}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <img class="activator coin-image" src="{{ coin.coin_data.reverse_image }}" alt="Reverse Image">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p>Please confirm removal of the above coin from your collection.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-footer modal-footer-style">
+            <div class="container">
+                <div class="row">
+                    <div class="col s6">
+                        <a href="{{ url_for('delete_user_coin', user_coin_id=coin._id)}}"
+                            class="modal-close waves-effect waves-green btn-small right red lighten-1">Confirm</a>
+                    </div>
+                    <div class="col s6">
+                        <a href="#!"
+                            class="modal-close waves-effect waves-green btn-small left green lighten-1">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+<div class="row">
+    <div class="col s12 center-align">
+        {{ pagination.links }}
+        {{ pagination.info }}
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col s12">
+        <h4>Your Collection</h4>
+        <p>You currently have no coins in your collection. To start collecting click 'Coin List' in the menu above or
+            click
+            the button below.</p>
+
+    </div>
+    <div class="col s12">
+        <a href="{{ url_for('coin_list') }}" class="secondary-content btn-small green lighten-1 left">Add Coin</a>
+    </div>
+</div>
+{% endif %}
+{% else %}
+<div class="row">
+    <div class="col s12">
+        <h4>Administrator</h4>
+        <p>You are currently logged in as an administrator. Use the navigation links above to add/edit the catalogue.
+        </p>
+    </div>
+</div>
+{% endif %}
 {% endif %}
 {% endblock %}
