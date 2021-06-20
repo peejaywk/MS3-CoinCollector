@@ -260,6 +260,7 @@ classes provided by Mterialize. The custom colours used to style the rest of the
 * [Colorate](https://colorate.azurewebsites.net/). Colour scheme design website.
 * [JS Lint](https://jslint.com/). Javascript code quality tool.
 * [Amazon AWS](https://aws.amazon.com/) - Amazon S3 Bucket used to store/upload coin images.
+* [Favicon.io](https://favicon.io/) - Favicon Generator
 
 <a name="testing"></a>
 ## Testing
