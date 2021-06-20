@@ -312,6 +312,47 @@ Before deploying the website or cloning into a new development environment the f
 
 ### Cloning the Repository
 
+To clone this [repository](https://github.com/peejaywk/MS3-CoinCollector) follow the instruction below:
+
+1. Navigate to the [repository](https://github.com/peejaywk/MS3-CoinCollector).
+
+2. Click on the **Code** button and copy the URL from the **Clone>>HTTPS** section.
+
+3. Inside your development environment/IDE open a command terminal.
+
+4. Create / navigate to the directory you would like the cloned copy to be made.
+
+5. Type in the following command using the URL copied from step 2 and press Enter. This will create a cloned copy of the repository.
+
+        git clone https://github.com/peejaywk/MS3-CoinCollector
+
+6. Create a file called eny.p to hold all the environmental variables required by the app. Copy the following into the file entering in your own details for some of the key values:
+
+        import os
+
+        os.environ.setdefault("IP", "0.0.0.0")
+        os.environ.setdefault("PORT", "5000")
+        os.environ.setdefault("SECRET_KEY", "<app_secret_key>")
+        os.environ.setdefault("MONGO_URI", "mongodb+srv://<username>:<password>@<cluster_name>.f7xmu.mongodb.net/<database_name>?retryWrites=true&w=majority")
+        os.environ.setdefault("MONGO_DBNAME", "<database_name>")
+
+        os.environ.setdefault("S3_BUCKET", "<S3_bucket_name>")
+        os.environ.setdefault("S3_KEY", "<S3_key>")
+        os.environ.setdefault("S3_SECRET_ACCESS_KEY", "<S3_secret_key>")
+
+        os.environ.setdefault("MAIL_SERVER", "smtp.gmail.com")
+        os.environ.setdefault("MAIL_PORT", "465")
+        os.environ.setdefault("MAIL_USE_SSL", "True")
+        os.environ.setdefault("MAIL_USERNAME", "<gmail_user_name>")
+        os.environ.setdefault("MAIL_PASSWORD", "<gmail_password>")
+        os.environ.setdefault("SECURITY_EMAIL_SENDER", "<gmail_email_address>")
+
+7. Add the env.py file to the .gitignore file to prevent any secret keys / passwords being pushed to your GitHub repository.
+
+8. To run the app locally type the following at the command prompt:
+
+        python3 app.py
+
 ### Deploying to Heroku
 
 To delpoy the appllication to Heroku follow the instructions below. This process assumes you are using the GitPod development environment.
