@@ -479,17 +479,17 @@ in and logged out.
 ### [JS Hint](https://jshint.com/)
 * Two warnings reported by JS Hint. See report [here](images/JSHint-Warnings.png).
 
-### [Nu HTML Checker](https://validator.w3.org/nu/)
-* Coin List Page (Logged In)
+### [W3C HTML Checker](https://validator.w3.org/nu/)
+* Coin List Page
     * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Add Coin modal (see [here](images/HTML-DuplicateError.png)). 
     Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.
     
-* Coin List Page (Logged Out)
-    * No errors reported.
-
-* My Collection Page
+* My Collection Page (Logged In)
     * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Edit Coin modal (see [here](images/HTML-DuplicateError.png)). 
     Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.
+
+* My Collection Pag (Logged Out)
+    * No errors reported.
 
 * Wishlist Page
     * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Add Coin modal (see [here](images/HTML-DuplicateError.png)). 
@@ -505,3 +505,39 @@ in and logged out.
 * Edit Coin Page
     * Two errors reported - see [here](images/HTML-AddCoinError.png) for details. These are related to the custom JS code added to validate the materialize
     select items. Didn't want to edit the code in anyway so the errors remain.
+
+### [W3C CSS Checker](https://jigsaw.w3.org/css-validator/)
+
+* No errors reported.
+
+### Google Chrome Dev Tools - Lighthouse
+
+Google Lighthouse was used to check the Performance, Accessibility, Best Practices and Search Engine Optimisation of the website.
+
+* My Collection Page (Logged In)
+    * Mobile Report [link](reports/mycollection_loggedin_mobile.html)
+    * Desktop Report [link](reports/mycollection_loggedin_desktop.html)
+
+* My Collection Page (Logged Out)
+    * Mobile Report [link](reports/mycollection_loggedout_mobile.html)
+    * Desktop Report [link](reports/mycollection_loggedout_desktop.html)
+
+* Coin List Page
+    * Mobile Report [link](reports/coinlist_mobile.html)
+    * Desktop Report [link](reports/coinlist_desktop.html)
+
+* Wishlist Page
+    * Mobile Report [link](reports/wishlist_mobile.html)
+    * Desktop Report [link](reports/wishlist_desktop.html)
+
+* Contact Us Page
+    * Mobile Report [link](reports/contact_mobile.html)
+    * Desktop Report [link](reports/contact_desktop.html)
+
+* Add Coin Page
+    * Mobile Report [link](reports/addcoin_mobile.html)
+    * Desktop Report [link](reports/addcoin_desktop.html)
+
+* Edit Coin Page
+    * Mobile Report [link](reports/editcoin_mobile.html)
+    * Desktop Report [link](reports/editcoin_desktop.html)
