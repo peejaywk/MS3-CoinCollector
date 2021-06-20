@@ -606,7 +606,9 @@ def contact():
             contact_num = request.form.get("contactnumber")
             subject = request.form.get("subject")
             message = request.form.get("message")
-            msg.body = f"Email From: {msg.sender} \nContact Num: {contact_num}\nSubject: {subject} \nMessage: {message}"
+            msg.body = (f"Email From: {msg.sender} \n"
+                        f"Contact Num: {contact_num}\n"
+                        f"Subject: {subject} \nMessage: {message}")
             mail.send(msg)
             flash("Message Sent Successfully!")
             return redirect(url_for("contact"))
