@@ -58,6 +58,7 @@ s3 = boto3.client(
     aws_secret_access_key=S3_SECRET
 )
 
+# Pagination limit set to 6 cards per page.
 CARDS_PER_PAGE = 6
 
 
@@ -67,7 +68,6 @@ def upload_file_to_s3(file, acl="public-read"):
     """
 
     try:
-
         s3.upload_fileobj(
             file,
             S3_BUCKET,
@@ -142,13 +142,16 @@ def get_coins():
 
         pagination_coins = paginate_coins(coins, CARDS_PER_PAGE)
         pagination = paginate_args(coins, CARDS_PER_PAGE)
-        return render_template("user_coins.html", coins=pagination_coins, pagination=pagination)
+        return render_template("user_coins.html",
+                               coins=pagination_coins,
+                               pagination=pagination)
 
     return render_template("user_coins.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    # Check if the user is currently in session
     if "user" in session:
         flash("You are already logged in!")
         return redirect(url_for("get_coins"))
@@ -189,23 +192,25 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
+        # Find the user in the database
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
         if existing_user:
-            # ensure hased password matches user input
-            if check_password_hash(existing_user["password"], request.form.get("password")):
+            # Ensure hashed password matches user input
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email").lower()
                 session["admin"] = existing_user["admin"]
                 flash("Welcome, {}".format(
                     existing_user["fname"].capitalize()))
                 return redirect(url_for("get_coins"))
             else:
-                # invalid password match
+                # Invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
         else:
-            # username doesn't exist
+            # Username/email doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
@@ -214,7 +219,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    # remove user from session cookies
+    # Remove user from session cookies
     flash("You have been logged out")
     session.pop("user")
     session.pop("admin")
@@ -229,7 +234,9 @@ def coin_list():
         coins = list(mongo.db.circulation.find())
         pagination_coins = paginate_coins(coins, CARDS_PER_PAGE)
         pagination = paginate_args(coins, CARDS_PER_PAGE)
-        return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
+        return render_template("coin_list.html",
+                               coins=pagination_coins,
+                               pagination=pagination)
     else:
         flash("Please Log In or Register to access the site")
         return redirect(url_for("login"))
@@ -263,7 +270,9 @@ def wishlist():
         pagination_coins = paginate_coins(coins, CARDS_PER_PAGE)
         pagination = paginate_args(coins, CARDS_PER_PAGE)
 
-        return render_template("wishlist.html", wishlist_coins=pagination_coins, pagination=pagination)
+        return render_template("wishlist.html",
+                               wishlist_coins=pagination_coins,
+                               pagination=pagination)
 
     else:
         flash("Please Log In or Register to access the site")
@@ -273,7 +282,8 @@ def wishlist():
 @app.route("/add_wishlist/<coin_id>")
 def add_wishlist(coin_id):
     if session.get('user'):
-        # Find the current session user in the db and retrieve the users ObjectId
+        # Find the current session user in the db and retrieve the users
+        # ObjectId
         user_id = mongo.db.users.find_one(
             {"email": session["user"]})["_id"]
 
@@ -282,7 +292,7 @@ def add_wishlist(coin_id):
             "coin_id": ObjectId(coin_id)
         }
 
-        # Add user & coin to the wishlist catalogue.
+        # Add user & coin to the wishlist collection.
         mongo.db.wishlists.insert_one(wishlist_coin)
         flash("Coin added to your wish list.")
 
@@ -320,7 +330,8 @@ def delete_wishlist_coin(wishlist_coin_id):
 def add_user_coin(coin_id):
     if session.get('user'):
         if request.method == "POST":
-            # Find the current session user in the db and retrieve the users ObjectId
+            # Find the current session user in the db and retrieve the
+            # users ObjectId
             user_id = mongo.db.users.find_one(
                 {"email": session["user"]})["_id"]
 
@@ -350,14 +361,17 @@ def add_user_coin(coin_id):
 def edit_user_coin(user_coin_id):
     if session.get('user'):
         if request.method == "POST":
+            # Retrieve the user coin to be editted.
             user_coin = mongo.db.coins.find_one(
                 {"_id": ObjectId(user_coin_id)})
 
+            # Get new data from the form
             update_data = {"$set": {
                 "date_found": request.form.get("date-found"),
                 "notes": request.form.get("notes")
             }}
 
+            # Update entry
             mongo.db.coins.update_many(user_coin, update_data)
             flash("Entry Successfully Updated")
             return redirect(url_for("get_coins"))
@@ -381,6 +395,7 @@ def delete_user_coin(user_coin_id):
 
 @app.route("/add_coin", methods=["GET", "POST"])
 def add_coin():
+    # Check user is in session and has admin access
     if session.get('user'):
         if session.get('admin'):
             # Request a list of denominations from Mongo for the form.
@@ -437,9 +452,11 @@ def add_coin():
                 mongo.db.circulation.insert_one(coin_data)
                 flash("Coin added to database.")
 
-                return render_template("add_coin.html", denominations=denominations)
+                return render_template("add_coin.html",
+                                       denominations=denominations)
             else:
-                return render_template("add_coin.html", denominations=denominations)
+                return render_template("add_coin.html",
+                                       denominations=denominations)
         else:
             flash("You do not have the correct access to view this page")
             return redirect(url_for("get_coins"))
@@ -450,6 +467,7 @@ def add_coin():
 
 @app.route("/delete_coin/<coin_id>")
 def delete_coin(coin_id):
+    # Check user is in session and has admin access
     if session.get('user'):
         if session.get('admin'):
             # Search the coins collection for all users who have
@@ -555,7 +573,9 @@ def edit_coin(coin_id):
                 flash("Coin Successfully Updated")
                 return redirect(url_for("coin_list"))
             else:
-                return render_template("edit_coin.html", coin=coin, denominations=denominations)
+                return render_template("edit_coin.html",
+                                       coin=coin,
+                                       denominations=denominations)
         else:
             flash("You do not have the correct access to view this page")
             return redirect(url_for("get_coins"))
@@ -571,7 +591,9 @@ def search():
 
     pagination_coins = paginate_coins(coins, CARDS_PER_PAGE)
     pagination = paginate_args(coins, CARDS_PER_PAGE)
-    return render_template("coin_list.html", coins=pagination_coins, pagination=pagination)
+    return render_template("coin_list.html",
+                           coins=pagination_coins,
+                           pagination=pagination)
 
 
 @app.route("/contact", methods=["GET", "POST"])
