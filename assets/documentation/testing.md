@@ -515,29 +515,29 @@ in and logged out.
 Google Lighthouse was used to check the Performance, Accessibility, Best Practices and Search Engine Optimisation of the website.
 
 * My Collection Page (Logged In)
-    * Mobile Report [link](reports/mycollection_loggedin_mobile.html)
-    * Desktop Report [link](reports/mycollection_loggedin_desktop.html)
+    * Mobile Report [link](reports/mycollection_loggedin_mobile.pdf)
+    * Desktop Report [link](reports/mycollection_loggedin_desktop.pdf)
 
 * My Collection Page (Logged Out)
-    * Mobile Report [link](reports/mycollection_loggedout_mobile.html)
-    * Desktop Report [link](reports/mycollection_loggedout_desktop.html)
+    * Mobile Report [link](reports/mycollection_loggedout_mobile.pdf)
+    * Desktop Report [link](reports/mycollection_loggedout_desktop.pdf)
 
 * Coin List Page
-    * Mobile Report [link](reports/coinlist_mobile.html)
-    * Desktop Report [link](reports/coinlist_desktop.html)
+    * Mobile Report [link](reports/coinlist_mobile.pdf)
+    * Desktop Report [link](reports/coinlist_desktop.pdf)
 
 * Wishlist Page
-    * Mobile Report [link](reports/wishlist_mobile.html)
-    * Desktop Report [link](reports/wishlist_desktop.html)
+    * Mobile Report [link](reports/wishlist_mobile.pdf)
+    * Desktop Report [link](reports/wishlist_desktop.pdf)
 
 * Contact Us Page
-    * Mobile Report [link](reports/contact_mobile.html)
-    * Desktop Report [link](reports/contact_desktop.html)
+    * Mobile Report [link](reports/contact_mobile.pdf)
+    * Desktop Report [link](reports/contact_desktop.pdf)
 
 * Add Coin Page
-    * Mobile Report [link](reports/addcoin_mobile.html)
-    * Desktop Report [link](reports/addcoin_desktop.html)
+    * Mobile Report [link](reports/addcoin_mobile.pdf)
+    * Desktop Report [link](reports/addcoin_desktop.pdf)
 
 * Edit Coin Page
-    * Mobile Report [link](reports/editcoin_mobile.html)
-    * Desktop Report [link](reports/editcoin_desktop.html)
+    * Mobile Report [link](reports/editcoin_mobile.pdf)
+    * Desktop Report [link](reports/editcoin_desktop.pdf)
