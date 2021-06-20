@@ -480,10 +480,13 @@ in and logged out.
 * Two warnings reported by JS Hint. See report [here](images/JSHint-Warnings.png).
 
 ### [Nu HTML Checker](https://validator.w3.org/nu/)
-* Coin List Page
+* Coin List Page (Logged In)
     * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Add Coin modal (see [here](images/HTML-DuplicateError.png)). 
     Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.
     
+* Coin List Page (Logged Out)
+    * No errors reported.
+
 * My Collection Page
     * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Edit Coin modal (see [here](images/HTML-DuplicateError.png)). 
     Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.
@@ -491,3 +494,14 @@ in and logged out.
 * Wishlist Page
     * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Add Coin modal (see [here](images/HTML-DuplicateError.png)). 
     Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.
+
+* Contact Us Page   
+    * No errors reported.
+
+* Add Coin Page
+    * Two errors reported - see [here](images/HTML-AddCoinError.png) for details. These are related to the custom JS code added to validate the materialize
+    select items. Didn't want to edit the code in anyway so the errors remain.
+
+* Edit Coin Page
+    * Two errors reported - see [here](images/HTML-AddCoinError.png) for details. These are related to the custom JS code added to validate the materialize
+    select items. Didn't want to edit the code in anyway so the errors remain.

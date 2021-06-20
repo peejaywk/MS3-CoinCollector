@@ -5,7 +5,7 @@
     <form class="col s12" method="POST" action="{{ url_for('edit_coin', coin_id=coin._id) }}" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s12 l6">
-                <select name="denomination" id="denomination" class="validate" value="{{ coin.denomination }}"required>
+                <select name="denomination" id="denomination" class="validate" required>
                     <option value="">Select Denomination</option>
                     {% for denomination in denominations %}
                         {% if coin.denomination == denomination.name %}
@@ -14,7 +14,7 @@
                             <option value="{{ denomination.name }}">{{ denomination.name }}</option>
                         {% endif %}
                     {% endfor %}
-                    <label for="denomination">Denomination</label>
+                    <label for="denomination"></label>
                 </select>
             </div>
             <div class="input-field col s12 l6">
@@ -37,16 +37,13 @@
         <div class="row">
             <div class="input-field col s12 l6">
                 <select name="circulation" id="circulation" class="validate" required>
-                    <option value="" disabled selected>Choose your option</option>
+                    <option value="" disabled>Choose your option</option>
                     {% if coin.circulation == "Yes" %}
                         <option value="Yes" selected>Yes</option>
+                        <option value="No">No</option>
                     {% else %}
                         <option value="Yes">Yes</option>
-                    {% endif %}
-                    {% if coin.circulation == "No" %}
                         <option value="No" selected>No</option>
-                    {% else %}
-                        <option value="No">No</option>
                     {% endif %}
                 </select>
                 <label for="circulation">General Circulation (Yes/No)</label>
