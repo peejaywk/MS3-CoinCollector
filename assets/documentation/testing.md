@@ -1,3 +1,16 @@
+## Testing
+
+### Table of Contents
+
+[Test Strategy](#teststrategy)
+
+[User Story Testing](#userstorytesting)
+
+[Functional/Features Testing](#functionaltesting)
+
+[Code Validation](#codevalidation)
+
+<a name="teststrategy"></a>
 ## Test Strategy
 
 To ensure the site is fit for purpose all user stories and features documented in the main README.md file are to be tested. The test procedures
@@ -6,11 +19,12 @@ and results are documented below.
 The code (HTML/CSS/JS/Python) must also satisfy the requirements of the online validation tools. These are:
 * [W3C Markup Validation Service](https://validator.w3.org/). Check the markup of web documents.
 * [W3C CSS Validator](https://jigsaw.w3.org/css-validator/). Check Cascading Style Sheets
-* [JS Lint](https://jslint.com/). Javascript code quality tool. 
+* [JS Hint](https://jshint.com/). Javascript code quality tool. 
 * [PEP8 Online](http://pep8online.com/). Checks Python code for PEP8 compliance.
 
 Google Lighthouse will be used to check the Peformance, Accessibility, Best Practices and Search Engine Optimisation of the website.
 
+<a name="userstorytesting"></a>
 ## User Story Testing
 ### New Users
 * *"As a user, I want a clear layout so I can easily navigate the site on all platforms."*
@@ -81,6 +95,7 @@ Google Lighthouse will be used to check the Peformance, Accessibility, Best Prac
     * The frontend of the website has been implemented using the [Materialize](https://materializecss.com/) framework. This provides all the tools
     required to implement a website that is responsive and works across all different platforms from desktops to mobiles.
 
+<a name="functionaltesting"></a>
 ## Functional/Features Testing
 
 ### Test-001 : Responsive Design
@@ -470,6 +485,24 @@ in and logged out.
 #### Test Result
 * **PASS**
 
+### Test-018 Pagination
+Test to confirm that the pagination links function correctly and allow the user to move between different pages.
+
+1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
+2. Login as a non-admin and navigate to the Coin List page.
+3. Confirm that the pagination links at the bottom of the page are functioning correclty and that only six items are displayed per page.
+4. Navigate to the My Collection page and edit the collection to have less than 6 coins in the collection. Confirm the pagination links are not displayed at the bottom of the screen.
+5. Add more coins to the collection (greater than 6) and conform the pagination links appear at the bottom of the screen and function correclty.
+6. Repeat steps 4 and 5 for the Wish List page.
+
+#### Test Notes
+The pagination links functioned correctly on all pages that require them. When there are less than 6 items to display the pagination links are not
+displayed at the bottom of the screen. When there are more than 6 items being displayed the pagination links appear and function as expected.
+
+#### Test Result
+* **PASS**
+
+<a name="codevalidation"></a>
 ## Code Validation
 
 ### [PEP8 Online Check](http://pep8online.com/)
