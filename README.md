@@ -246,6 +246,27 @@ classes provided by Mterialize. The custom colours used to style the rest of the
     * Card Reveal
 * Buttons use the built in Materialize colours
 
+### Features Not Implemented
+
+* For the initial release of the website it was decided not to add any functions that allow users to display statistics on their collection. This will
+be added when there is more data that can be used for gathering statistics such as price paid, current estimated price etc.
+
+### Future Features
+
+Below are features that could be added in the future to improve the user experience and to attract more users.
+
+* Expand the database to allow coins from all over the world to be added.
+* Allow the user to record more data such as:
+    * Price paid
+    * Location found
+    * Duplicate coins
+    * Coins for sale
+    * Coin condition
+    * Coin type (Circulated, Silver Proof, Gold Proof etc.)
+* Ability to share wishlists with other users.
+* Improve the process of adding new coins to the database. Have default tempates for different coins so the administrator can select a coin from
+a pre-defined list. This will save a lot of typing in duplicate information such as material type, thickness, weight etc.
+
 <a name="technologies"></a>
 
 ## Technologies Used

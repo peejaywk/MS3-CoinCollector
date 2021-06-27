@@ -604,3 +604,7 @@ display all the coins in the database again.
     When removing a coin from a collection/wishlist (and the user is on any page other than page 1) if by removing this coin causes the page the user
     is currently on to no longer be required (say going from 7 to 6 coins) then the user is not returned to the correct page once the coin has been
     removed. Due to time constraints it was not possible to fully debug/resolve this issue.
+
+* Image Quality
+    When converting some of the coin images so they have transparent backgrounds it resulted in a blurred edge that can be seen in some of the images
+    on the site. Higher quality images need to be resoured to fix this issue.
