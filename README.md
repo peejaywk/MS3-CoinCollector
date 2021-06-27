@@ -32,8 +32,6 @@ The main aims of the website are:
 
 [Deployment](#deployment)
 
-[Bugs/Issues](#bug)
-
 [Credits](#credits)
 
 <a name="userexperience"></a>
@@ -410,16 +408,6 @@ dependencies required to run our application.
 12. In the **Manual deploy** section select **master** and click **Deploy Branch**.
 
 13. Wait for the app to finish building then click **Open App** button at the top of the dashboard page. This will open the deployed app.
-
-## Bugs
-
-Chrome autofill changes the background to a different colour on the coin add form. A solution implemented in the CSS file was found here.
-https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete
-
-Pagination links not working when searching for an item. 
-In the app.py file was using 'query = request.form.get("query")' to get the search query retruned a null search string when the pagination link was pressed
-to move to the next window. Fixed this by changing the line of code to 'query = request.args.get("query")' to get the value via the arguments. This passed 
-in the correct search term.
 
 <a name="credits"></a>
 ## Credits

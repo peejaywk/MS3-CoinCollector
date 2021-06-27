@@ -10,6 +10,8 @@
 
 [Code Validation](#codevalidation)
 
+[Bugs / Issues](#bugsissues)
+
 <a name="teststrategy"></a>
 ## Test Strategy
 
@@ -574,3 +576,31 @@ Google Lighthouse was used to check the Performance, Accessibility, Best Practic
 * Edit Coin Page
     * Mobile Report [link](reports/editcoin_mobile.pdf)
     * Desktop Report [link](reports/editcoin_desktop.pdf)
+
+
+<a name="bugsissues"></a>
+## Bugs / Issues
+
+Any bugs/issues found during the testing of the website have been documented in the [Functional/Features Testing](#functionaltesting) section above.
+
+### Resolved Bugs/Issues
+
+* Chrome autofill changes the background to a different colour on the coin add form. 
+
+    A solution implemented in the CSS file was found [here](https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete)
+
+
+* Pagination links not working when searching for an item. If the search returned more than six items clicking on the pagination links caused the search to reset and
+display all the coins in the database again.
+
+    The /search route in the app.py file was using 'query = request.form.get("query")' to get the search query and this was returning a null search string when the pagination link was clicked
+    to move to the next window. This was fixed this by changing the line of code to 'query = request.args.get("query")' to get the value via the arguments. This passed 
+    in the correct search term when using the pagination links.
+
+### Unresolved Bugs/Issues
+
+* Pagination
+
+    When removing a coin from a collection/wishlist (and the user is on any page other than page 1) if by removing this coin causes the page the user
+    is currently on to no longer be required (say going from 7 to 6 coins) then the user is not returned to the correct page once the coin has been
+    removed. Due to time constraints it was not possible to fully debug/resolve this issue.
