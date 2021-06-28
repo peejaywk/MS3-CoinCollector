@@ -1,6 +1,4 @@
-# Coin Collector
-
-[Visit Website](http://coin-collector-ci-ms3.herokuapp.com/)
+# [Coin Collector](http://coin-collector-ci-ms3.herokuapp.com/)
 
 ![alt text](/assets/documentation/images/am_i_responsive.png "Am I Responsive Image")
 
