@@ -597,6 +597,10 @@ display all the coins in the database again.
     to move to the next window. This was fixed this by changing the line of code to 'query = request.args.get("query")' to get the value via the arguments. This passed 
     in the correct search term when using the pagination links.
 
+* Flash message close button being moved down a line on mobiles when the message is too long.
+
+    Modified the CSS file to reduce the font size of the Flash Message to allow more space for the close button on small screen devices.
+
 ### Unresolved Bugs/Issues
 
 * Pagination
