@@ -24,7 +24,7 @@ The code (HTML/CSS/JS/Python) must also satisfy the requirements of the online v
 * [JS Hint](https://jshint.com/). Javascript code quality tool. 
 * [PEP8 Online](http://pep8online.com/). Checks Python code for PEP8 compliance.
 
-Google Lighthouse will be used to check the Peformance, Accessibility, Best Practices and Search Engine Optimisation of the website.
+Google Lighthouse will be used to check the Performance, Accessibility, Best Practices and Search Engine Optimisation of the website.
 
 <a name="userstorytesting"></a>
 ## User Story Testing
@@ -32,7 +32,7 @@ Google Lighthouse will be used to check the Peformance, Accessibility, Best Prac
 * *"As a user, I want a clear layout so I can easily navigate the site on all platforms."*
     * The frontend of the website has been implemented using the [Materialize](https://materializecss.com/) framework. This provides all the tools
     required to implement a website that is responsive and works across all different platforms. All coins are presented to the user using Materialize
-    cards which display a clear image of the coin and also allow the user the view more detailed information by using the card-reveal propertiy of the card.
+    cards which display a clear image of the coin and also allow the user the view more detailed information by using the card-reveal property of the card.
 * *"As a user, I would like the website to remember the coins in my collection so I don’t need to keep entering the data"*
     * The user must create an account on the website before they can start adding coins to their collection. This allows the website
     so store information about the users collection in the database so they can access it at any time and on any platform.
@@ -47,10 +47,10 @@ Google Lighthouse will be used to check the Peformance, Accessibility, Best Prac
     See [image](images/add_coin.png) for details.
 * *"As a user, when adding new coins to my collection I want the ability to select the coin from a pre-defined list"*
     * All the coins available in the database are available to the user via the 'coin_list' page. These are displayed 6 per page inside Materialize
-    cards with pagination links at the bottom of the screen allowing the user to move between different pages. The caon list is also searchable using
+    cards with pagination links at the bottom of the screen allowing the user to move between different pages. The coin list is also searchable using
     the search bar at the top of the screen.
 * *"As a user, I want to be able to edit a coin entry in my database"*
-    * Users can edit any coin in their collection by clicking on the 'Edit' button when viwing coins on the 'My Collection' page. This will open
+    * Users can edit any coin in their collection by clicking on the 'Edit' button when viewing coins on the 'My Collection' page. This will open
     a modal window allowing the user to edit the details and to save the changes. These are shown in the following images ([Edit](images/user_edit_remove.png)
     & [Edit Modal](images/user_edit_modal.png))
 * *"As a user, I want to be able to remove a coin from my collection and for it to move into my ‘missing’ list"*
@@ -79,7 +79,7 @@ Google Lighthouse will be used to check the Peformance, Accessibility, Best Prac
     to the 'Add Coin' page displays a form for the admin to complete. See [image](images/admin_add_coin.png) for details.
 * *"As the owner, I want the ability to edit coins and users in the database"*
     * The owner/admin can edit any coin via the 'Coin List' page by clicking on the 'Edit' button inside the card. This will take the admin/owner to
-    a similar form used for adding coins but with all the data pre-populated ready for editting. 
+    a similar form used for adding coins but with all the data pre-populated ready for editing. 
     These are shown in the following images. ([Edit Button](images/admin_edit_delete.png) & [Edit Form](images/admin_edit_coin.png)).
 * *"As the owner, I want the ability to delete coins and users in the database"*
     * The owner/admin can delete any coin via the 'Coin List' page by clicking on the 'Delete' button inside the card. This will open up a modal
@@ -90,7 +90,7 @@ Google Lighthouse will be used to check the Peformance, Accessibility, Best Prac
 * *"As the owner, I want to display data in a clear and informative way that works on any platform."*
     * The frontend of the website has been implemented using the [Materialize](https://materializecss.com/) framework. This provides all the tools
     required to implement a website that is responsive and works across all different platforms. All coins are presented to the user using Materialize
-    cards which display a clear image of the coin and also allow the user the view more detailed information by using the card-reveal propertiy of the card.
+    cards which display a clear image of the coin and also allow the user the view more detailed information by using the card-reveal property of the card.
 * *"As the owner, I want the ability to expand the website in the future to add more coins to the database."*
     * The website uses [MongoDB](https://www.mongodb.com/) as the backend database which can manage large data structures far beyond the requirements of this project.
 * *"As the owner, I want the website to be responsive in design and work across all devices from desktops to mobile phones."*
@@ -136,7 +136,7 @@ Test responsiveness of website on different browsers.
 27. Repeat the above steps using Firefox, Opera, Edge & Safari browsers.
 
 #### Test Notes
-All the forms / cards displayed correctly on all the browser listed above and at all screen sizes. The tests were also perofrmed on a Samsung Galaxy S8
+All the forms / cards displayed correctly on all the browser listed above and at all screen sizes. The tests were also performed on a Samsung Galaxy S8
 using the Chrome and Opera browsers with no issues found. No testing has been performed on Apple mobiles or tablets due to lack of access to the devices.
 
 #### Test Results
@@ -162,12 +162,12 @@ Test navigation bar links function correctly and that the correct links are disp
 8. Click each menu option in turn and check that you are taken to the correct page. Clicking the Logout option should log you out of the website.
 9. Repeat the above steps using Firefox, Opera, Edge & Safari browsers.
 10. Repeat the above steps using a mobile device if possible.
-11. Repeat the above tests with a screen size of <=992 pixles and check that all the menu options collapse into the hamburger icon. NOTE: The 
+11. Repeat the above tests with a screen size of <=992 pixels and check that all the menu options collapse into the hamburger icon. NOTE: The 
 Coin Collector menu item should not form part of the hamburger menu and should remain located at the top left of the screen.
 
 #### Test Notes
 All the navigation links function correctly and link to the correct pages. For screen sizes <=992 pixels the navigation links
-collapse into the hamburger menu and function correclty. The nav bar also remains fixed to the top of the page. 
+collapse into the hamburger menu and function correctly. The nav bar also remains fixed to the top of the page. 
     
 Tests performed using  Chrome, Firefox, Opera, Edge & Safari desktop browsers.
 Repeated tests using a Samsung Galaxy S8 mobile device with no issues.
@@ -213,13 +213,13 @@ the issue with a particular filed is reported back to the user.
 During testing of the form validation an error was found with the helper text over laying each other (see [image](images/Test004_register_error.png)).
 To reslove this the helper text underneath the password input was moved into the input field (see [image](images/Test004_register_error_fix.png)).
     
-[Change](https://github.com/peejaywk/MS3-CoinCollector/commit/5e90278460d7094a165d7048edf6f510e238e2a8) commited and all tests repeated on deployed site.
+[Change](https://github.com/peejaywk/MS3-CoinCollector/commit/5e90278460d7094a165d7048edf6f510e238e2a8) committed and all tests repeated on deployed site.
 
 #### Test Result
 * **PASS**
 
-All the form validation functions correclty and reports back to the user any issues when invalid information is entered. On entering a duplicate email
-address the correct flash message is displayed and the the user is redirected back to the registration page. On successful registration the correct flash
+All the form validation functions correctly and reports back to the user any issues when invalid information is entered. On entering a duplicate email
+address the correct flash message is displayed and the user is redirected back to the registration page. On successful registration the correct flash
 message is displayed on blank user coin page and the correct entry appears in the Users collection in MongoDB.
 
 Tested using Google Chrome on Windows desktop.
@@ -231,14 +231,14 @@ correct page.
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
 2. Click on the Login button or the Login option in the nav bar.
 3. Confirm that entering an invalid email or password is reported back to the user by the form validation.
-4. Confirm that logging in with incorrect details results in a flash messaage being displayed at the top of the screen stating "Incorrect Username and/or Password".
+4. Confirm that logging in with incorrect details results in a flash message being displayed at the top of the screen stating "Incorrect Username and/or Password".
 5. On successful login confirm the user is redirected to their coin list page and that a welcome flash message is displayed.
 
 #### Test Notes
 
-All the form validation functions correclty and reports back to the user and issues with the email address or password. Entering invalid credentials
+All the form validation functions correctly and reports back to the user and issues with the email address or password. Entering invalid credentials
 results in the correct flash message being displayed and the user returned to the login page. On successful login the user is redirected to their home
-page listing the coins in their collection (if any) and with the welcome flash message at the top of the sceen.
+page listing the coins in their collection (if any) and with the welcome flash message at the top of the screen.
 
 #### Test Result
 * **PASS**
@@ -268,7 +268,7 @@ Test to confirm that a coin from the Coin List can be copied to a users collecti
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
 2. Login to the website using a non admin account.
 3. Navigate to the Coin List page using the link in the nav bar.
-4. Select any coin from the list and click the Copy button - confrim that the copy modal appears with the correct coin information displayed.
+4. Select any coin from the list and click the Copy button - confirm that the copy modal appears with the correct coin information displayed.
 5. Click on the date field and confirm the date selector modal appears. Select a date from the date selector.
 6. Enter some custom notes in the notes field.
 7. Click the Copy button to copy the coin entry with custom notes into your collection. Confirm flash message "Coin added to your collection" appears at the top of the screen.
@@ -283,18 +283,18 @@ Confirmed that the coin had been added to the collection by visiting the My Coll
 * **PASS**
 
 ### Test-008: Edit Coin in User Collection
-Test to confirm that found date and custom notes can be editted for a coin in a users collection.
+Test to confirm that found date and custom notes can be edited for a coin in a users collection.
 
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
 2. Login to the website using a non admin account.
 3. From 'Your Coin Collection' page click the Edit button to edit a coin entry in the collection.
-4. Confirmm that the correct coin information is displayed in the modal window.
-5. Confirm that clicking the Cancel button closes the modal without editting the coin in the collection.
+4. Confirm that the correct coin information is displayed in the modal window.
+5. Confirm that clicking the Cancel button closes the modal without editing the coin in the collection.
 6. Click the Edit button again and edit the Date Found and Notes, clicking Save when finished.
-7. Confirm that the coin entry has been changed in the collection and that the flash message "Entry Successfully Updated" is diaplayed at the top of the page.
+7. Confirm that the coin entry has been changed in the collection and that the flash message "Entry Successfully Updated" is displayed at the top of the page.
 
 #### Test Notes
-Clicking the Edit button opened up a modal window displaying the correct information for the coin. Clicking Cancel closed the modal window without editting
+Clicking the Edit button opened up a modal window displaying the correct information for the coin. Clicking Cancel closed the modal window without editing
 the coin in the collection. Clicking the Save button in the modal window closed the modal and changed the fields for that coin entry. The correct
 flash message was displayed at the top of the screen.
 
@@ -307,10 +307,10 @@ Test to confirm that a coin can be removed from a users collection.
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
 2. Login to the website using a non admin account.
 3. From 'Your Coin Collection' page click the Remove button to remove a coin from the collection.
-4. Confirmm that the correct coin information is displayed in the modal window.
+4. Confirm that the correct coin information is displayed in the modal window.
 5. Confirm that clicking the Cancel button closes the modal without removing the coin from the collection.
 6. Click Remove again to open the modal window and click the Confirm button in the modal window to remove the coin from the collection.
-7. Confirm that the coin has been removed from the collection and that the flash message "Coin Deleted From Collection" is diaplayed at the top of the page.
+7. Confirm that the coin has been removed from the collection and that the flash message "Coin Deleted From Collection" is displayed at the top of the page.
 
 #### Test Notes
 Clicking the Remove button opened up a modal window displaying the correct information for the coin. Clicking Cancel closed the modal window without deleting
@@ -343,7 +343,7 @@ Test to confirm that a coin can be copied from a users wishlist to their collect
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
 2. Login to the website using a non admin account.
 3. Navigate to the Wishlist page using the link in the nav bar.
-4. Select any coin from the wishlist and click the Copy button - confrim that the copy modal appears with the correct coin information displayed.
+4. Select any coin from the wishlist and click the Copy button - confirm that the copy modal appears with the correct coin information displayed.
 5. Click on the date field and confirm the date selector modal appears. Select a date from the date selector.
 6. Enter some custom notes in the notes field.
 7. Click the Copy button to copy the coin entry with custom notes into your collection. Confirm flash message "Coin added to your collection" appears at the top of the screen.
@@ -367,7 +367,7 @@ Test to confirm that a coin can be removed from a users wishlist.
 5. Confirmm that the correct coin information is displayed in the modal window.
 6. Confirm that clicking the Cancel button closes the modal without removing the coin from the wishlist.
 7. Click Remove again to open the modal window and click the Confirm button in the modal window to remove the coin from the wishlist.
-8. Confirm that the coin has been removed from the wishlist and that the flash message "Coin Removed From Wishlist" is diaplayed at the top of the page.
+8. Confirm that the coin has been removed from the wishlist and that the flash message "Coin Removed From Wishlist" is displayed at the top of the page.
 
 #### Test Notes
 Clicking the Remove button opened up a modal window displaying the correct information for the coin. Clicking Cancel closed the modal window without deleting
@@ -384,11 +384,11 @@ Test to confirm that a new coin can be added to the database.
 2. Login to the website using an administrator account.
 3. Navigate to the Add Coin page using the link in the nav bar.
 4. Complete all field on the form adding images for the obverse and reverse of the coin.
-5. Confirm that the form validation is working for the required fileds (Denomination, Year, Issue, Description and Circulation).
+5. Confirm that the form validation is working for the required fields (Denomination, Year, Issue, Description and Circulation).
 6. On completion of the form click the Upload button. This will upload the text to Mongo and the images to an Amazon Bucket.
 7. Confirm that the flash message "Coin added to database" is displayed at the top of the screen.
 8. Navigate to the Coin List page using the link in the nav bar.
-9. Confirm that the coin is visible in the list and that all the infomration and images are correct.
+9. Confirm that the coin is visible in the list and that all the information and images are correct.
 
 #### Test Notes
 All form validation is working prompting the user to complete all required fields. On clicking the Upload button the correct flash message
@@ -399,13 +399,13 @@ successfully downloaded from the Amazon Bucket and clearly rendered in the card.
 * **PASS**
 
 ### Test-014: Edit Coin in Database
-Test to confirm that an existing coin in the database can be editted.
+Test to confirm that an existing coin in the database can be edited.
 
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
 2. Login to the website using an administrator account.
 3. Navigate to the Coin List page using the link in the nav bar.
 4. Click the Edit button for a coin and confirm the correct details are loaded into the edit coin form.
-5. Edit the details for the coin and click upload when complete. Confirm that the flash messge "Coin Successfully Updated" is displayed at the top of the screen.
+5. Edit the details for the coin and click upload when complete. Confirm that the flash message "Coin Successfully Updated" is displayed at the top of the screen.
 6. Return to the Coin List page and confirm that the details for the coin have been changed.
 
 #### Test Notes
@@ -437,10 +437,10 @@ without deleting the coin from the database. Clicking the Confirm button in the 
 top of the screen. Checking the Coin List page it was confirmed that the coin had been deleted from the database and was no longer displayed in the list.
 
 Logged back in as a non-admin user and confirmed that the coin had been removed from the users collection. However, the coin had not been removed from the
-wishlist as can be seen in this [image](images/Test015_coindelete_err.png). The page is displaying an empty card were the deleted coin was peviously.
+wishlist as can be seen in this [image](images/Test015_coindelete_err.png). The page is displaying an empty card were the deleted coin was previously.
 
 Modified the app.py file to find all instances of the deleted coin in the wishlists collection and delete them. 
-[Change](https://github.com/peejaywk/MS3-CoinCollector/commit/918b560490d1366ea1360ade4dcc858c1202b9aa) commited and all tests repeated on deployed site.
+[Change](https://github.com/peejaywk/MS3-CoinCollector/commit/918b560490d1366ea1360ade4dcc858c1202b9aa) committed and all tests repeated on deployed site.
 
 #### Test Results
 * **PASS (after modification to app.py)**
@@ -452,7 +452,7 @@ the details of the query.
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
 2. Login to the website using a non admin account.
 3. Navigate to the Contact Us page using the link in the nav bar or footer.
-4. Check the form validation is functioning correclty and it prompts you to complete all the required fields and enter a valid email address. The required fields are:
+4. Check the form validation is functioning correctly and it prompts you to complete all the required fields and enter a valid email address. The required fields are:
     * Name
     * Email Address
     * Subject
@@ -461,7 +461,7 @@ the details of the query.
 6. Confirm that an email is sent to the websites email address containing the details of the contact form.
 
 #### Test Notes
-The form validation functioned correclty and prompted the user to complete all required fields with a valid email address. Clicking the Send button
+The form validation functioned correctly and prompted the user to complete all required fields with a valid email address. Clicking the Send button
 cleared the form and displayed the correct message at the top of the screen.
 
 The email was sent successfully to the websites email account. The submitted form can be seen [here](images/Test016_completed_form.png) and the received
@@ -478,7 +478,7 @@ Test to confirm that Flask captures and handles the 404 error (page not found).
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
 2. Enter invalid URL (https://coin-collector-ci-ms3.herokuapp.com/invalid_url) into the address bar.
 3. Confirm that the 'Page Not Found' page is displayed as shown in [here](images/Test017_404).
-4. Confimr tha clicking the link in the paragraph text returns the user to the Welcome screen if logged out and the user coin list if logged in.
+4. Confirm tha clicking the link in the paragraph text returns the user to the Welcome screen if logged out and the user coin list if logged in.
 
 #### Test Notes
 On entering the invalid URL to correct page is displayed. Clicking the link in the paragraph text returns the user to the correct page when they are logged
@@ -492,9 +492,9 @@ Test to confirm that the pagination links function correctly and allow the user 
 
 1. Open browser and navigate to: http://coin-collector-ci-ms3.herokuapp.com/.
 2. Login as a non-admin and navigate to the Coin List page.
-3. Confirm that the pagination links at the bottom of the page are functioning correclty and that only six items are displayed per page.
+3. Confirm that the pagination links at the bottom of the page are functioning correctly and that only six items are displayed per page.
 4. Navigate to the My Collection page and edit the collection to have less than 6 coins in the collection. Confirm the pagination links are not displayed at the bottom of the screen.
-5. Add more coins to the collection (greater than 6) and conform the pagination links appear at the bottom of the screen and function correclty.
+5. Add more coins to the collection (greater than 6) and conform the pagination links appear at the bottom of the screen and function correctly.
 6. Repeat steps 4 and 5 for the Wish List page.
 
 #### Test Notes
@@ -523,7 +523,7 @@ displayed at the bottom of the screen. When there are more than 6 items being di
     * Errors reported for Duplicate IDs on the inputs 'date-found' and 'notes' in the Edit Coin modal (see [here](images/HTML-DuplicateError.png)). 
     Modified the HTML and associated route in the app.py file to use unique IDs. Repeated the test and no errors found.
 
-* My Collection Pag (Logged Out)
+* My Collection Page (Logged Out)
     * No errors reported.
 
 * Wishlist Page
@@ -607,4 +607,4 @@ display all the coins in the database again.
 
 * Image Quality
     When converting some of the coin images so they have transparent backgrounds it resulted in a blurred edge that can be seen in some of the images
-    on the site. Higher quality images need to be resoured to fix this issue.
+    on the site. Higher quality images need to be resourced to fix this issue.
