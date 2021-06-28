@@ -14,7 +14,7 @@
                 <select name="denomination" id="denomination" class="validate" required>
                     <option value="" disabled selected>Select Denomination</option>
                     {% for denomination in denominations %}
-                    <option value="{{ denomination.name }}">{{ denomination.name }}</option>
+                        <option value="{{ denomination.name }}">{{ denomination.name }}</option>
                     {% endfor %}
                     <label for="denomination"></label>
                 </select>

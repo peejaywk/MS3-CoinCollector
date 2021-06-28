@@ -40,20 +40,20 @@
                         <li><a href="{{ url_for('wishlist') }}">My Wishlist</a></li>
                     {% endif %}
                 {% else %}
-                <li><a href="{{ url_for('get_coins') }}">Home</a></li>
+                    <li><a href="{{ url_for('get_coins') }}">Home</a></li>
                 {% endif %}
 
                 {% if session.user %}
-                <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
+                    <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
                 {% else %}
-                <li><a href="{{ url_for('login') }}">Login</a></li>
-                <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                 {% endif %}
                 {% if session.user %}
-                {% if session.admin %}
-                <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
-                {% endif %}
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% if session.admin %}
+                        <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
             </ul>
@@ -67,20 +67,20 @@
                 <li><a href="{{ url_for('wishlist') }}">My Wishlist</a></li>
             {% endif %}
         {% else %}
-        <li><a href="{{ url_for('get_coins') }}">Home</a></li>
+            <li><a href="{{ url_for('get_coins') }}">Home</a></li>
         {% endif %}
 
         {% if session.user %}
-        <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
+            <li><a href="{{ url_for('coin_list') }}">Coin List</a></li>
         {% else %}
-        <li><a href="{{ url_for('login') }}">Login</a></li>
-        <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
         {% endif %}
         {% if session.user %}
-        {% if session.admin %}
-        <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
-        {% endif %}
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% if session.admin %}
+                <li><a href="{{ url_for('add_coin') }}">Add Coin</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
         {% endif %}
         <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
     </ul>
